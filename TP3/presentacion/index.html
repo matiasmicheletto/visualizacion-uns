@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Análisis visual de grandes volúmenes de datos - TP3</title>
+
+		<meta name="description" content="Análisis visual de grandes volúmenes de datos - TP3">
+		<meta name="author" content="Matias Micheletto - Noelia Revollo">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css" id="theme">
+	</head>
+
+	<body>
+		<div class="reveal">
+
+			<div class="slides">
+				<section>
+					<h4>Análisis Visual de <br> Grandes Volúmenes de Datos</h4>
+					<br>
+					<h4>Actividad N° 3:</h4>
+					<h3><i>Diseño de la visualización</i></h3>
+					<br>
+					<p style="font-size: 60%;">Matías Micheletto - Noelia Revollo</p>					
+				</section>
+
+
+				<section data-background="img/Pagina_BF.png">					
+				</section>
+
+
+				<section data-background-iframe="https://www.brewersfriend.com/homebrew-recipes/" data-background-interactive>
+				</section>
+
+
+				<section>
+					<p style="text-align: left;">Objetivos a resolver con una visualización:</p>
+					<ol>
+						<li>¿Cuáles son los estilos de cerveza más populares en el ámbito de la web de cervercería artesanal?</li>
+						<br>
+						<li>¿Cuáles son la o las propiedades o características cuantitativas de la cerveza que mejor definen cada tipo o estilo?</li>
+						<br>
+						<li>¿Es posible clasificar los estilos de acuerdo a estas propiedades?</li>
+					</ol>
+				</section>
+
+
+				<section>
+					<p style="text-align: left;"><b>Audiencia:</b></p>
+					<ul>
+						<li>Fabricantes artensanales de cerveza.</li>
+						<li>Usuarios del sitio.</li>
+					</ul>
+					<p style="text-align: left;"><b>Objetivo:</b></p>
+					<p style="font-size: 75%;">Ayudar al usuario a seleccionar el estilo adecuado en función de las propiedades del producto resultante que está publicando.</p>
+				</section>
+
+
+				<section>
+					<p style="text-align: left;">Soluciones existentes:</p>
+					<ul>
+						<li><a href="https://www.kaggle.com/samlac79/beer-recipe-exploratory-analysis">Análisis exploratorio</a></li>
+						<li><a href="https://github.com/JinheonBaek/Beer-Classification/blob/master/learning.ipynb">Clasificación de estilos</a></li>
+					</ul>
+				</section>
+
+
+				<section style="line-height: 0px;">
+					<h4>Conjunto de datos</h4>
+					
+					<p style="text-align: left;"><b>Atributos categóricos:</b></p>
+					<br>
+					<p style="font-size: 75%;">URL, Name, Style, SugarScale, BrewMethod, PrimingMethod.</p>
+					
+					<br><br>
+					
+					<p style="text-align: left;"><b>Atributos numéricos:</b></p>
+					<br>
+					<p style="font-size: 75%;">BeerID, StyleID, UserID, Size, OG, FG, ABV, IBU, Color, BoilSize, BoilTime, BoilGravity, Efficiency, MashThickness, PitchRate, PrimingTemp, PrimingAmount.</p>
+				</section>
+
+				
+				<section>
+					<h3>Mapeos visuales</h3>
+				</section>
+
+
+				<section>
+					<h5>Recetas más populares</h5>
+					<img src="img/Preg1.png" style="background: 0; border:0">
+				</section>
+
+
+				<section>
+					<h5>Propiedades descriptivas</h5>
+					<img src="img/Preg2.png" style="background: 0; border:0">
+				</section>
+
+
+				<section>
+					<h5>Clasificación</h5>
+					<img src="img/Preg3.png" style="background: 0; border:0">
+				</section>
+
+				<section>
+					<h5>Clasificación</h5>
+					<img src="img/Final.png" style="background: 0; border:0">
+				</section>
+
+
+				<section>
+					<h4>Análisis Visual de <br> Grandes Volúmenes de Datos</h4>
+					<br>
+					<h4>Actividad N° 3:</h4>
+					<h3><i>Diseño de la visualización</i></h3>
+					<br>
+					<p style="font-size: 60%;">Matías Micheletto - Noelia Revollo</p>					
+				</section>
+			</div>
+		</div>
+
+		<script src="js/reveal.js"></script>
+		<script>
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				center: true,
+				hash: true,
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+				dependencies: [
+					{ src: 'plugin/highlight/highlight.js' },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+		</script>
+
+	</body>
+</html>
