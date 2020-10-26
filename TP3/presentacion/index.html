@@ -16,18 +16,19 @@
 
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/black.css" id="theme">
+		<link rel="stylesheet" href="css/style.css">
 	</head>
 
 	<body>
 		<div class="reveal">
 
 			<div class="slides">
-				<section>
-					<h4>Análisis Visual de <br> Grandes Volúmenes de Datos</h4>
+				<section data-background="img/Beers.jpg" data-state="blur">
+					<h5>Análisis Visual de Grandes Volúmenes de Datos</h5>					
+					<h5>Actividad N° 3: <i>Diseño de la visualización</i></h5>
 					<br>
-					<h4>Actividad N° 3:</h4>
-					<h3><i>Diseño de la visualización</i></h3>
-					<br>
+					<h3>¿Cuánto sabemos sobre la cerveza?</h3>
+					<br><br>
 					<p style="font-size: 60%;">Matías Micheletto - Noelia Revollo</p>					
 				</section>
 
@@ -40,7 +41,7 @@
 				</section>
 
 
-				<section>
+				<section data-background="img/Beers2.jpg" data-state="blur">
 					<p style="text-align: left;">Objetivos a resolver con una visualización:</p>
 					<ol>
 						<li>¿Cuáles son los estilos de cerveza más populares en el ámbito de la web de cervercería artesanal?</li>
@@ -52,7 +53,7 @@
 				</section>
 
 
-				<section>
+				<section data-background="img/Beers3.jpg" data-state="blur">
 					<p style="text-align: left;"><b>Audiencia:</b></p>
 					<ul>
 						<li>Fabricantes artensanales de cerveza.</li>
@@ -63,7 +64,7 @@
 				</section>
 
 
-				<section>
+				<section data-background="img/Beers4.jpg" data-state="blur">
 					<p style="text-align: left;">Soluciones existentes:</p>
 					<ul>
 						<li><a href="https://www.kaggle.com/samlac79/beer-recipe-exploratory-analysis">Análisis exploratorio</a></li>
@@ -72,7 +73,7 @@
 				</section>
 
 
-				<section style="line-height: 0px;">
+				<section data-background="img/Beers5.jpg" data-state="blur" style="line-height: 0px;">
 					<h4>Conjunto de datos</h4>
 					
 					<p style="text-align: left;"><b>Atributos categóricos:</b></p>
@@ -87,7 +88,7 @@
 				</section>
 
 				
-				<section>
+				<section data-background="img/Beers2.jpg" data-state="blur">
 					<h3>Mapeos visuales</h3>
 				</section>
 
@@ -115,7 +116,7 @@
 				</section>
 
 
-				<section>
+				<section data-background="img/Beers.jpg" data-state="blur">
 					<h4>Análisis Visual de <br> Grandes Volúmenes de Datos</h4>
 					<br>
 					<h4>Actividad N° 3:</h4>
@@ -133,7 +134,8 @@
 				progress: true,
 				center: true,
 				hash: true,
-				transition: 'slide', // none/fade/slide/convex/concave/zoom
+				transition: 'fade', // none/fade/slide/convex/concave/zoom
+				backgroundTransition: 'fade',
 				dependencies: [
 					{ src: 'plugin/highlight/highlight.js' },
 					{ src: 'plugin/zoom-js/zoom.js', async: true },
