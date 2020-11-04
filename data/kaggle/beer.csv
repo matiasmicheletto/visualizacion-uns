@@ -1,0 +1,151 @@
+Batch_Id,OG,ABV,pH,IBU,Beer 
+1,5.1,3.5,1.4,9,Premium Lager
+2,4.9,3,1.4,10,Premium Lager
+3,4.7,3.2,1.3,7,Premium Lager
+4,4.6,3.1,1.5,9,Premium Lager
+5,5,3.6,1.4,8,Premium Lager
+6,5.4,3.9,1.7,7.7,Premium Lager
+7,4.6,3.4,1.4,7.4,Premium Lager
+8,5,3.4,1.5,7.1,Premium Lager
+9,4.4,2.9,1.4,6.8,Premium Lager
+10,4.9,3.1,1.5,6.5,Premium Lager
+11,5.4,3.7,1.5,6.2,Premium Lager
+12,4.8,3.4,1.6,5.9,Premium Lager
+13,4.8,3,1.4,5.6,Premium Lager
+14,4.3,3,1.1,5.3,Premium Lager
+15,5.8,4,1.2,5,Premium Lager
+16,5.7,4.4,1.5,4.7,Premium Lager
+17,5.4,3.9,1.3,4.4,Premium Lager
+18,5.1,3.5,1.4,4.1,Premium Lager
+19,5.7,3.8,1.7,9,Premium Lager
+20,5.1,3.8,1.5,10,Premium Lager
+21,5.4,3.4,1.7,7,Premium Lager
+22,5.1,3.7,1.5,9,Premium Lager
+23,4.6,3.6,1,8,Premium Lager
+24,5.1,3.3,1.7,7.7,Premium Lager
+25,4.8,3.4,1.9,7.4,Premium Lager
+26,5,3,1.6,7.1,Premium Lager
+27,5,3.4,1.6,6.8,Premium Lager
+28,5.2,3.5,1.5,6.5,Premium Lager
+29,5.2,3.4,1.4,6.2,Premium Lager
+30,4.7,3.2,1.6,5.9,Premium Lager
+31,4.8,3.1,1.6,5.6,Premium Lager
+32,5.4,3.4,1.5,5.3,Premium Lager
+33,5.2,4.1,1.5,5,Premium Lager
+34,5.5,4.2,1.4,4.7,Premium Lager
+35,4.9,3.1,1.5,4.4,Premium Lager
+36,5,3.2,1.2,7.7,Premium Lager
+37,5.5,3.5,1.3,7.4,Premium Lager
+38,4.9,3.1,1.5,7.1,Premium Lager
+39,4.4,3,1.3,6.8,Premium Lager
+40,5.1,3.4,1.5,6.5,Premium Lager
+41,5,3.5,1.3,6.2,Premium Lager
+42,4.5,2.3,1.3,5.9,Premium Lager
+43,4.4,3.2,1.3,5.6,Premium Lager
+44,5,3.5,1.6,5.3,Premium Lager
+45,5.1,3.8,1.9,5,Premium Lager
+46,4.8,3,1.4,4.7,Premium Lager
+47,5.1,3.8,1.6,4.4,Premium Lager
+48,4.6,3.2,1.4,6,Premium Lager
+49,5.3,3.7,1.5,6,Premium Lager
+50,5,3.3,1.4,10,Premium Lager
+51,7,3.2,4.7,35.0,IPA
+52,6.4,3.2,4.5,32.0,IPA
+53,6.9,3.1,4.9,42.0,IPA
+54,5.5,2.3,4,42.0,IPA
+55,6.5,2.8,4.6,45.0,IPA
+56,5.7,2.8,4.5,38.0,IPA
+57,6.3,3.3,4.7,44.4,IPA
+58,4.9,2.4,3.3,45.9,IPA
+59,6.6,2.9,4.6,47.5,IPA
+60,5.2,2.7,3.9,49.0,IPA
+61,5,2,3.5,50.6,IPA
+62,5.9,3,4.2,52.1,IPA
+63,6,2.2,4,53.7,IPA
+64,6.1,2.9,4.7,35.0,IPA
+65,5.6,2.9,3.6,32.0,IPA
+66,6.7,3.1,4.4,42.0,IPA
+67,5.6,3,4.5,42.0,IPA
+68,5.8,2.7,4.1,45.0,IPA
+69,6.2,2.2,4.5,38.0,IPA
+70,5.6,2.5,3.9,44.4,IPA
+71,5.9,3.2,4.8,45.9,IPA
+72,6.1,2.8,4,35.0,IPA
+73,6.3,2.5,4.9,32.0,IPA
+74,6.1,2.8,4.7,42.0,IPA
+75,6.4,2.9,4.3,42.0,IPA
+76,6.6,3,4.4,45.0,IPA
+77,6.8,2.8,4.8,38.0,IPA
+78,6.7,3,5,44.4,IPA
+79,6,2.9,4.5,45.9,IPA
+80,5.7,2.6,3.5,45.6,IPA
+81,5.5,2.4,3.8,46.6,IPA
+82,5.5,2.4,3.7,47.5,IPA
+83,5.8,2.7,3.9,48.4,IPA
+84,6,2.7,5.1,49.3,IPA
+85,5.4,3,4.5,50.3,IPA
+86,6,3.4,4.5,51.2,IPA
+87,6.7,3.1,4.7,52.1,IPA
+88,6.3,2.3,4.4,53.0,IPA
+89,5.6,3,4.1,53.9,IPA
+90,5.5,2.5,4,54.9,IPA
+91,5.5,2.6,4.4,42.0,IPA
+92,6.1,3,4.6,42.0,IPA
+93,5.8,2.6,4,45.0,IPA
+94,5,2.3,3.3,38.0,IPA
+95,5.6,2.7,4.2,44.4,IPA
+96,5.7,3,4.2,45.9,IPA
+97,5.7,2.9,4.2,47.5,IPA
+98,6.2,2.9,4.3,49.0,IPA
+99,5.1,2.5,3,50.6,IPA
+100,5.7,2.8,4.1,52.1,IPA
+101,6.3,3.3,6,6.5,Light Lager
+102,5.8,2.7,5.1,6.2,Light Lager
+103,7.1,3,5.9,5.9,Light Lager
+104,6.3,2.9,5.6,5.6,Light Lager
+105,6.5,3,5.8,5.3,Light Lager
+106,7.6,3,6.6,6.2,Light Lager
+107,4.9,2.5,4.5,5.9,Light Lager
+108,7.3,2.9,6.3,5.6,Light Lager
+109,6.7,2.5,5.8,5.3,Light Lager
+110,7.2,3.6,6.1,5,Light Lager
+111,6.5,3.2,5.1,4.7,Light Lager
+112,6.4,2.7,5.3,4.4,Light Lager
+113,6.8,3,5.5,4.1,Light Lager
+114,5.7,2.5,5,7.7,Light Lager
+115,5.8,2.8,5.1,7.4,Light Lager
+116,6.4,3.2,5.3,7.1,Light Lager
+117,6.5,3,5.5,6.8,Light Lager
+118,7.7,3.8,6.7,6.5,Light Lager
+119,7.7,2.6,6.9,6.2,Light Lager
+120,6,2.2,5,5.9,Light Lager
+121,6.9,3.2,5.7,5.6,Light Lager
+122,5.6,2.8,4.9,5.3,Light Lager
+123,7.7,2.8,6.7,5,Light Lager
+124,6.3,2.7,4.9,4.7,Light Lager
+125,6.7,3.3,5.7,4.4,Light Lager
+126,7.2,3.2,6,4.1,Light Lager
+127,6.2,2.8,4.8,1.8,Light Lager
+128,6.1,3,4.9,7.7,Light Lager
+129,6.4,2.8,5.6,7.4,Light Lager
+130,7.2,3,5.8,7.1,Light Lager
+131,7.4,2.8,6.1,6.8,Light Lager
+132,7.9,3.8,6.4,6.5,Light Lager
+133,6.4,2.8,5.6,6.2,Light Lager
+134,6.3,2.8,5.1,5.9,Light Lager
+135,6.1,2.6,5.6,5.6,Light Lager
+136,7.7,3,6.1,5.3,Light Lager
+137,6.3,3.4,5.6,5,Light Lager
+138,6.4,3.1,5.5,4.7,Light Lager
+139,6,3,4.8,4.4,Light Lager
+140,6.9,3.1,5.4,4.1,Light Lager
+141,6.7,3.1,5.6,7.7,Light Lager
+142,6.9,3.1,5.1,7.4,Light Lager
+143,5.8,2.7,5.1,7.1,Light Lager
+144,6.8,3.2,5.9,6.8,Light Lager
+145,6.7,3.3,5.7,6.5,Light Lager
+146,6.7,3,5.2,6.2,Light Lager
+147,6.3,2.5,5,5.9,Light Lager
+148,6.5,3,5.2,5.6,Light Lager
+149,6.2,3.4,5.4,5.3,Light Lager
+150,5.9,3,5.1,5,Light Lager
