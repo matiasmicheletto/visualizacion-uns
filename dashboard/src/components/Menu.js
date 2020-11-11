@@ -14,9 +14,11 @@ class Menu extends Component {
         <Nav className="mr-auto">
           <Link to="/home" component={Nav.Link}>Inicio</Link>
           <Link to="/data" component={Nav.Link}>Datos</Link>
-          <Link to="/dashboard" component={Nav.Link}>Tablero</Link>
-          <Link to="/about" component={Nav.Link}>Acerca de</Link>
+          <Link to="/dashboard" component={Nav.Link}>Tablero</Link>          
         </Nav>          
+        <Nav>
+          <Link to="/about" component={Nav.Link} className="right">Acerca de</Link>
+        </Nav>
       </Navbar>  
     );
   }

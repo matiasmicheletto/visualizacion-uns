@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {Container, Row, Table, Pagination} from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import data from '../data/Brewers_Friend_Recipes.json'
+import LtoColor from './LovibondScale.js'
 
 
 // Tabla de datos con paginacion
@@ -64,6 +65,10 @@ class Data extends Component {
   getTableRows() { // Genera las filas de la tabla a partir de un rango de los datos
     let start = this.itemsPerPage*this.state.currentPage;
     let end = this.itemsPerPage*(this.state.currentPage+1);
+    let style = {
+      color: "rgb(255, 0, 0)",
+      backgroundColor: "rgb(255, 255, 0)"
+    }
     return (
       data.slice(start, end).map( (item, pos)=>(
         <tr key={pos}>
@@ -72,8 +77,8 @@ class Data extends Component {
           <td>{item.Style}</td>
           <td>{item.BoilTime} min.</td>
           <td>{item.IBU}</td>
-          <td>{item.ABV}</td>
-          <td>{item.Color} °L</td>
+          <td>{item.ABV} %</td>
+          <td style={LtoColor(item.Color)}>{item.Color} °L</td>
         </tr>
       ))                  
     )
@@ -83,14 +88,16 @@ class Data extends Component {
     return (
         <Container>
           <Row><h3>Base de datos</h3></Row>
+          <Row><p>Fuente: <a href="https://www.brewersfriend.com/homebrew-recipes/">Brewer's Friend Recipes</a></p></Row>
+          <br></br>
           <Row>
             <Table striped bordered hover>
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>Name</th>
-                  <th>Style</th>
-                  <th>Boil Time</th>
+                  <th>Nombre</th>
+                  <th>Estilo</th>
+                  <th>Tiempo de ebullición</th>
                   <th>IBU</th>
                   <th>ABV</th>
                   <th>Color</th>

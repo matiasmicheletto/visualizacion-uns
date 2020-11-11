@@ -23,7 +23,7 @@ print('\n\n')
 # Quitar los datos cuyas clases no pertenecen a las 10 primeras
 clean_data = data[ data['Style'].isin( top_ten_styles ) ] \
             .drop(columns = not_relevant_columns, axis=1) \
-            .sample(frac = 0.03)
+            .sample(frac = 0.2)
 
 # Submuestrear
 ss_data = clean_data

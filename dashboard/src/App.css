@@ -1,3 +1,42 @@
 .container {
     margin-top:100px
 }
+
+/* Paginacion de tabla de datos */
+
+.pagination > li > a
+{
+    background-color: white;
+    color: #222222;
+}
+
+.pagination > li > a:focus,
+.pagination > li > a:hover,
+.pagination > li > span:focus,
+.pagination > li > span:hover
+{
+    color: #5a5a5a;
+    background-color: #eee;
+    border-color: #ddd;
+}
+
+.pagination > .active > a
+{
+    color: white;
+    background-color: #333333 !Important;
+    border: solid 1px #333333 !Important;
+}
+
+.pagination > .active > a:hover
+{
+    background-color: #333333 !Important;
+    border: solid 1px #333333;
+}
+
+
+/* Highcharts */
+
+.highcharts-figure {
+    width: 100%;
+    height: 100%;
+}
