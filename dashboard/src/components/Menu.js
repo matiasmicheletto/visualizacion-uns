@@ -7,7 +7,7 @@ import logo from '../img/logo_uns.png';
 class Menu extends Component {
   render() {
     return (
-      <Navbar bg="dark" variant="dark">
+      <Navbar bg="dark" variant="dark" fixed="top">
         <Link to="/" component={Navbar.Brand}>
           <img src={logo} width="40" height="40" className="d-inline-block align-top" alt="Logo"/>
         </Link>
