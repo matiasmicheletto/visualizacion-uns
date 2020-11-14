@@ -1,8 +1,8 @@
 import data from '../data/Brewers_Friend_Recipes.json'
-var _ = require('lodash');
+import _ from 'lodash'
 
 // Par de variables a relacionar
-const vars = ["Color", "ABV"]
+const vars = ["Color", "IBU"]
 
 // Agrupar estilos
 let styles = _.groupBy(data, 'Style');

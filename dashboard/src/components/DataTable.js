@@ -2,11 +2,11 @@ import React, {Component} from 'react'
 import {Container, Row, Table, Pagination} from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import data from '../data/Brewers_Friend_Recipes.json'
-import LtoColor from './LovibondScale.js'
+import {LtoTextColor} from '../utils/LovibondScale.js'
 
 
 // Tabla de datos con paginacion
-class Data extends Component {
+class DataTable extends Component {
 
   itemsPerPage = 20
   selectorCount = 10 // Cantidad de selectores de pagina a mostrar
@@ -78,7 +78,7 @@ class Data extends Component {
           <td>{item.BoilTime} min.</td>
           <td>{item.IBU}</td>
           <td>{item.ABV} %</td>
-          <td style={LtoColor(item.Color)}>{item.Color} °L</td>
+          <td style={LtoTextColor(item.Color)}>{item.Color} °L</td>
         </tr>
       ))                  
     )
@@ -134,4 +134,4 @@ class Data extends Component {
   }
 }
 
-export default Data
+export default DataTable

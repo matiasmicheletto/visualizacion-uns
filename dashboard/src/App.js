@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import Menu from './components/Menu.js'
 import Home from './components/Home.js'
-import Data from './components/Data.js'
+import DataTable from './components/DataTable.js'
 import Dashboard from './components/Dashboard.js'
 import About from './components/About.js'
 import {
@@ -14,7 +14,7 @@ import './App.css';
 
 class App extends Component {
   render() {
-    return (
+    return ( 
       <Router>
         <Menu />
         <Route exact path="/">
@@ -25,7 +25,7 @@ class App extends Component {
               <Home />
             </Route>
             <Route path="/data">
-              <Data />
+              <DataTable />
             </Route>
             <Route path="/dashboard">
               <Dashboard />
