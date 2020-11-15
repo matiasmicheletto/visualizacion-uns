@@ -1,23 +1,25 @@
 import React, {Component} from 'react';
-import {Link} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import {Navbar, Nav} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from '../img/logo_uns.png';
 
 class Menu extends Component {
-  render() {
+
+  render() {        
+
     return (
       <Navbar bg="dark" variant="dark" fixed="top">
-        <Link to="/" component={Navbar.Brand}>
+        <NavLink to="/" component={Navbar.Brand}>
           <img src={logo} width="40" height="40" className="d-inline-block align-top" alt="Logo"/>
-        </Link>
-        <Nav className="mr-auto">
-          <Link to="/home" component={Nav.Link}>Inicio</Link>
-          <Link to="/data" component={Nav.Link}>Datos</Link>
-          <Link to="/dashboard" component={Nav.Link}>Tablero</Link>          
+        </NavLink>
+        <Nav className="mr-auto">          
+          <NavLink to="/home" component={Nav.Link} activeClassName='active'>Inicio</NavLink>
+          <NavLink to="/data" component={Nav.Link} activeClassName='active'>Datos</NavLink>
+          <NavLink to="/dashboard" component={Nav.Link} activeClassName='active'>Tablero</NavLink>                    
         </Nav>          
         <Nav>
-          <Link to="/about" component={Nav.Link} className="right">Acerca de</Link>
+          <NavLink to="/about" component={Nav.Link} className="right">Acerca de</NavLink>
         </Nav>
       </Navbar>  
     );

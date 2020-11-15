@@ -1,26 +1,19 @@
 import React, {Component} from 'react'
 import {Container, Row} from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Highcharts from 'highcharts';
-import config from '../charts/scatterConfig.js'
+import ScatterPlot from '../charts/ScatterPlot.js'
 
 class Dashboard extends Component {
-  
   render() {
     return (
-      <Container>
-        <Row>
-            <h3>Dashboard</h3>
-            <figure className="highcharts-figure">
-                <div id="container"></div>                
-            </figure>
+      <Container>        
+        <Row style={{marginTop:"20px"}}>                      
+          <ScatterPlot id="sp1" dataX = "Color" dataY = "IBU"/>
+          <br></br>
+          <ScatterPlot id="sp2" dataX = "ABV" dataY = "IBU"/>          
         </Row>
       </Container>
     );
-  }
-
-  componentDidMount() {
-    Highcharts.chart('container', config);
   }
 }
 
