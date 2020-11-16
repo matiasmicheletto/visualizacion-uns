@@ -3,6 +3,7 @@ import {Container, Row, Table, Pagination} from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import data from '../data/Brewers_Friend_Recipes.json'
 import {LtoTextColor} from '../utils/LovibondScale.js'
+import './DataTable.css'
 
 
 // Tabla de datos con paginacion
@@ -65,10 +66,6 @@ class DataTable extends Component {
   getTableRows() { // Genera las filas de la tabla a partir de un rango de los datos
     let start = this.itemsPerPage*this.state.currentPage;
     let end = this.itemsPerPage*(this.state.currentPage+1);
-    let style = {
-      color: "rgb(255, 0, 0)",
-      backgroundColor: "rgb(255, 255, 0)"
-    }
     return (
       data.slice(start, end).map( (item, pos)=>(
         <tr key={pos}>

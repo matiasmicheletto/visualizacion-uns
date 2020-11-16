@@ -1,0 +1,5 @@
+
+.card:hover {
+    color: darkblue;
+    box-shadow: 0 16px 24px 0 rgba(0, 0, 149, 0.2)!important;
+}

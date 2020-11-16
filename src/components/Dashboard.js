@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {Container, Row} from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ScatterPlot from '../charts/ScatterPlot.js'
+import './Dashboard.css'
 
 class Dashboard extends Component {
   render() {
