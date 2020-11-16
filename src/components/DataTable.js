@@ -72,7 +72,7 @@ class DataTable extends Component {
           <td>{start+pos+1}</td>
           <td>{item.Name}</td>
           <td>{item.Style}</td>
-          <td>{item.BoilTime} min.</td>
+          {/* <td>{item.BoilTime} min.</td> */}
           <td>{item.IBU}</td>
           <td>{item.ABV} %</td>
           <td style={LtoTextColor(item.Color)}>{item.Color} °L</td>
@@ -94,7 +94,7 @@ class DataTable extends Component {
                   <th>#</th>
                   <th>Nombre</th>
                   <th>Estilo</th>
-                  <th>Tiempo de ebullición</th>
+                  {/* <th>Tiempo de ebullición</th> */}
                   <th>IBU</th>
                   <th>ABV</th>
                   <th>Color</th>
