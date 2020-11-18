@@ -1,9 +1,11 @@
 import React, {Component} from 'react'
-import {Container, Row, Table, Pagination} from 'react-bootstrap'
+import {Container, Row, Col, Table, Pagination} from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import data from '../data/Brewers_Friend_Recipes.json'
+import data from '../data/brewers_friend_recipes.json'
 import {LtoTextColor} from '../utils/LovibondScale.js'
+import ScatterPlot from '../charts/ScatterPlot.js';
 import './DataTable.css'
+
 
 
 // Tabla de datos con paginacion
@@ -83,12 +85,12 @@ class DataTable extends Component {
 
   render() {
     return (
-        <Container>
+        <Container style={{maxWidth: "90%"}}>
           <Row><h3>Base de datos</h3></Row>
           <Row><p>Fuente: <a href="https://www.brewersfriend.com/homebrew-recipes/">Brewer's Friend Recipes</a></p></Row>
           <br></br>
           <Row>
-            <Table striped bordered hover>
+            <Table striped bordered hover style={{maxWidth: "75%", margin: "0 auto"}}>
               <thead>
                 <tr>
                   <th>#</th>
@@ -125,6 +127,15 @@ class DataTable extends Component {
               <Pagination.Next onClick={this.incrementPage} />
               <Pagination.Last onClick={this.gotoLast}/>
             </Pagination>
+          </Row>
+          <br></br>
+          <Row style={{marginTop:"20px"}}>                      
+            <Col md={12} lg={6}>
+              <ScatterPlot id="sp1" dataX = "Color" dataY = "IBU" />
+            </Col>
+            <Col md={12} md={6}>
+              <ScatterPlot id="sp2" dataX = "ABV" dataY = "IBU" />
+            </Col>
           </Row>
         </Container>
     );

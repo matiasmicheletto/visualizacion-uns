@@ -22,20 +22,7 @@ class Home extends Component {
           <Row>
             <h3>Menú</h3>
           </Row>
-          <Row>
-            <Col sm={12} md={6} lg={4} xl={3}>
-              <a href="https://www.kaggle.com/matiasmiche/brewers-friend-recipes-analysis/" target="_blank" rel="noopener noreferrer" style={{color: "black"}}>
-                <Card className="shadow rounded">
-                  <Card.Img variant="top" src={card_img_eda} />
-                  <Card.Body>
-                    <Card.Title>Análisis exploratorio <FaExternalLinkAlt/></Card.Title>
-                    <Card.Text>
-                      Preprocesamiento y limpieza de los datos originales.
-                    </Card.Text>
-                  </Card.Body>
-                </Card>
-              </a>
-            </Col>  
+          <Row>            
             <Col sm={12} md={6} lg={4} xl={3}>
               <Link to="/data" style={{color: "black"}}>
                 <Card className="shadow rounded">
@@ -43,20 +30,33 @@ class Home extends Component {
                   <Card.Body>
                     <Card.Title>Conjunto de datos</Card.Title>
                     <Card.Text>
-                      Esta sección contiene el listado de los datos pre-procesados.
+                      Previsualización de los datos crudos.
                     </Card.Text>
                   </Card.Body>
                 </Card>
               </Link>
             </Col>  
             <Col sm={12} md={6} lg={4} xl={3}>
+              <a href="https://www.kaggle.com/matiasmiche/brewers-friend-recipes-analysis/" target="_blank" rel="noopener noreferrer" style={{color: "black"}}>
+                <Card className="shadow rounded">
+                  <Card.Img variant="top" src={card_img_eda} />
+                  <Card.Body>
+                    <Card.Title>Análisis exploratorio <FaExternalLinkAlt/></Card.Title>
+                    <Card.Text>
+                      Preprocesamiento y limpieza de los datos del conjunto original.
+                    </Card.Text>
+                  </Card.Body>
+                </Card>
+              </a>
+            </Col>  
+            <Col sm={12} md={6} lg={4} xl={3}>
               <Link to="/dashboard" style={{color: "black"}}>
                 <Card className="shadow rounded">
                   <Card.Img variant="top" src={card_img_plot} />
                   <Card.Body>
-                    <Card.Title>Tablero de visualizaciones</Card.Title>
+                    <Card.Title>Tablero interactivo</Card.Title>
                     <Card.Text>
-                      Un tablero para el análisis visual de los datos.
+                      Un tablero para analizar el estilo de una cerveza a partir de sus atributos cuantitativos.
                     </Card.Text>
                   </Card.Body>                    
                 </Card>
@@ -69,7 +69,7 @@ class Home extends Component {
                   <Card.Body>
                     <Card.Title>Documentación <FaExternalLinkAlt/></Card.Title>
                     <Card.Text>
-                      Código fuente de la aplicación.
+                      Código fuente del desarrollo.
                     </Card.Text>
                   </Card.Body>                    
                 </Card>

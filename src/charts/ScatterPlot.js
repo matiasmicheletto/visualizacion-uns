@@ -1,68 +1,68 @@
 import React, {Component} from 'react'
 import Highcharts from 'highcharts';
-import data from '../data/Brewers_Friend_Recipes.json'
+import data from '../data/brewers_friend_recipes.json'
 import _ from 'lodash'
 
 class ScatterPlot extends Component {
     
     config = {
-        "chart": {
-            "type": "scatter",
-            "zoomType": "xy",
-            "height": "80%"
+        chart: {
+            type: 'scatter',
+            zoomType: 'xy',
+            height: '80%'
         },
-        "credits":{
-            "enabled":false
+        credits: {
+            enabled: false
         },
-        "title": {
-            "text": this.props.dataX+" vs "+this.props.dataY+" para distintos estilos de cerveza"
+        title: {
+            text: this.props.dataX+' vs '+this.props.dataY+' para distintos estilos de cerveza'
         },
-        "subtitle": {
-            "text": "Fuente: Brewer's Friend Recipes"
+        subtitle: {
+            text: "Fuente: Brewer's Friend Recipes"
         },
-        "xAxis": {
-            "title": {
-                "enabled": true,
-                "text": this.props.dataX
+        xAxis: {
+            title: {
+                enabled: true,
+                text: this.props.dataX
             },
-            "startOnTick": true,
-            "endOnTick": true,
-            "showLastLabel": true
+            startOnTick: true,
+            endOnTick: true,
+            showLastLabel: true
         },
-        "yAxis": {
-            "title": {
-                "text": this.props.dataY
+        yAxis: {
+            title: {
+                text: this.props.dataY
             }
         },
-        "legend": {
-            "layout": "vertical",
-            "align": "right",
-            "verticalAlign": "middle",        
-            "floating": true,
-            "backgroundColor": "#ffffff",
-            "borderWidth": 1
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'middle',        
+            floating: true,
+            backgroundColor: '#ffffff',
+            borderWidth: 1
         },
-        "plotOptions": {
-            "scatter": {
-                "marker": {
-                    "radius": 5,
-                    "states": {
-                        "hover": {
-                            "enabled": true,
-                            "lineColor": "rgb(100,100,100)"
+        plotOptions: {
+            scatter: {
+                marker: {
+                    radius: 5,
+                    states: {
+                        hover: {
+                            enabled: true,
+                            lineColor: 'rgb(100,100,100)'
                         }
                     }
                 },
-                "states": {
-                    "hover": {
-                        "marker": {
-                            "enabled": false
+                states: {
+                    hover: {
+                        marker: {
+                            enabled: false
                         }
                     }
                 },
-                "tooltip": {
-                    "headerFormat": "<b>{series.name}</b><br>",
-                    "pointFormat": "{point.x}, {point.y}"
+                tooltip: {
+                    headerFormat: '<b>{series.name}</b><br>',
+                    pointFormat: '{point.x}, {point.y}'
                 }
             }
         }
@@ -70,7 +70,7 @@ class ScatterPlot extends Component {
 
     render() {        
         return(
-            <figure className="highcharts-figure">
+            <figure className='highcharts-figure'>
                 <div id={this.props.id}></div>                
             </figure>
         )
@@ -86,7 +86,7 @@ class ScatterPlot extends Component {
         for(var s in styles){
             let serie = {
                 name: s,
-                //color: "rgba("+Math.floor(Math.random()*100+155)+", "+Math.floor(Math.random()*50+150)+", "+Math.floor(Math.random()*10)+", 0.6)",
+                //color: 'rgba('+Math.floor(Math.random()*100+155)+', '+Math.floor(Math.random()*50+150)+', '+Math.floor(Math.random()*10)+', 0.6)',
                 data: []
             };
             for(var d in styles[s])

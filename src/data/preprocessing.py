@@ -64,6 +64,8 @@ plt.legend(loc = 2)
 
 plt.savefig('Scatter3D.png')
 
+clean_data = clean_data.sample(frac = 1) # Para mezclar los estilos y que no esten ordenados
+
 # Exportar datos limpios a formato json
 clean_data.to_json(clean_data_file_name, orient = 'records')
 
