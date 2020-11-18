@@ -11,8 +11,7 @@ import card_img_db from '../img/card_db.png';
 import card_img_plot from '../img/card_plot.png';
 import card_img_repo from '../img/card_repo.png';
 import card_img_eda from '../img/card_kaggle.png';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faExternalLinkSquareAlt } from '@fortawesome/free-solid-svg-icons'
+import {FaExternalLinkAlt} from 'react-icons/fa';
 
 import './Home.css'
 
@@ -25,11 +24,11 @@ class Home extends Component {
           </Row>
           <Row>
             <Col sm={12} md={6} lg={4} xl={3}>
-              <a href="https://www.kaggle.com/matiasmiche/brewers-friend-recipes-analysis/" target="_blank" rel="noreferrer" style={{color: "black"}}>
+              <a href="https://www.kaggle.com/matiasmiche/brewers-friend-recipes-analysis/" target="_blank" rel="noopener noreferrer" style={{color: "black"}}>
                 <Card className="shadow rounded">
                   <Card.Img variant="top" src={card_img_eda} />
                   <Card.Body>
-                    <Card.Title>Análisis exploratorio <FontAwesomeIcon icon={faExternalLinkSquareAlt} /></Card.Title>
+                    <Card.Title>Análisis exploratorio <FaExternalLinkAlt/></Card.Title>
                     <Card.Text>
                       Preprocesamiento y limpieza de los datos originales.
                     </Card.Text>
@@ -64,11 +63,11 @@ class Home extends Component {
               </Link>     
             </Col>
             <Col sm={12} md={6} lg={4} xl={3}>
-              <a href="https://github.com/matiasmicheletto/visualizacion-uns" target="_blank" rel="noreferrer" style={{color: "black"}}>
+              <a href="https://github.com/matiasmicheletto/visualizacion-uns" target="_blank" rel="noopener noreferrer" style={{color: "black"}}>
                 <Card className="shadow rounded">
                   <Card.Img variant="top" src={card_img_repo} />
                   <Card.Body>
-                    <Card.Title>Documentación <FontAwesomeIcon icon={faExternalLinkSquareAlt} /></Card.Title>
+                    <Card.Title>Documentación <FaExternalLinkAlt/></Card.Title>
                     <Card.Text>
                       Código fuente de la aplicación.
                     </Card.Text>
