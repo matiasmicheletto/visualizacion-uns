@@ -1,9 +1,11 @@
 import pandas as pd
 import numpy as np
 from scipy.stats import zscore
+import scipy.linalg as la
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 import seaborn as sns
+import math
 
 ## Datos
 
@@ -35,7 +37,7 @@ relevant_columns = ['IBU', 'Color', 'ABV'] # Variables a utilizar
 not_relevant_columns = ['FG', 'OG', 'URL', 'StyleID', 'Size(L)', 'BoilSize', 'BoilTime', 'BoilGravity', 'Efficiency', 'MashThickness', 'SugarScale', 'BrewMethod', 'PitchRate', 'PrimaryTemp', 'PrimingMethod', 'PrimingAmount', 'UserId'] # Variables a descartar
 
 # Quitar las columnas que no se van a utilizar
-data = data.drop(columns = not_relevant_columns, axis=1);
+data = data.drop(columns = not_relevant_columns, axis = 1);
 
 
 
@@ -51,7 +53,7 @@ ax = fig1.add_subplot(111, projection = '3d')
 clean_data = pd.DataFrame(columns = data.columns) # Recopilar datos en otro dataframe
 for s in top_ten_styles:
     temp = top_ten_data.loc[ top_ten_data['Style'] == s ] # Subconjunto de cada estilo
-    temp = temp.loc[(abs(zscore(temp[relevant_columns])) < 1).all(axis=1)].sample(frac = 0.25) # Quitar atípicos y submuestrear
+    temp = temp.loc[(abs(zscore(temp[relevant_columns])) < 1).all(axis = 1)].sample(frac = 0.25) # Quitar atípicos y submuestrear
     clean_data = clean_data.append(temp) # Adjuntar al conjunto de datos limpios
     ax.scatter(temp['Color'], temp['ABV'], temp['IBU'], label = s) # Agregar set al grafico
 
@@ -96,21 +98,65 @@ plt.savefig('VariableDistribution.png')
 
 ## Generar datos para cálculos de clasificación de estilos
 
-new_cols = ['Style', 'Freq', 'ABV_mean', 'IBU_mean', 'Color_mean', 'ABV_std', 'IBU_std', 'Color_std']
-result = pd.DataFrame(columns = new_cols) # Resultado a exportar
+mean_mat_cols = ["u_{}".format(v) for v in relevant_columns] # Nombre de las columnas de promedio
+cov_mat_cols = ["s{}{}".format(j+1,k+1) for j in range(len(relevant_columns)) for k in range(len(relevant_columns))] # Nombre de las columnas de los indices de la matriz de covarianza
+new_cols = ['Style', 'Freq'] + mean_mat_cols + cov_mat_cols # Todas las columnas del dataframe a exportar
+
+distribution = pd.DataFrame(columns = new_cols) # Resultado a exportar
 ctr = 0 # Contador de fila dataframe
 for s in styles:
     temp = data.loc[ data['Style'] == s ] # Subconjunto de cada estilo
     temp = temp.loc[(abs(zscore(temp[relevant_columns])) < 2).all(axis = 1)] # Quitar atípicos
+    
+    freq = len(temp.index) # Cantidad de recetas del estilo actual
     avgs = temp.mean() # Promedio
-    stds = temp.std() # Desvio estandar
-    freq = len(temp.index)
-    row = [(s, freq, avgs['ABV'], avgs['IBU'], avgs['Color'], stds['ABV'], stds['IBU'], stds['Color'])]
-    if freq >= 100: # Solo usar los estilos que tienen más de 100 observaciones (sin atípicos)
-        result = result.append( pd.DataFrame(row, columns = new_cols, index = [ctr]) )
-        ctr = ctr + 1
+    cov = temp.cov() # Matriz de covarianza del conjunto
+    
+    if freq < 100: # No agregar si hay menos de 100 observaciones
+        continue
+    if la.det(cov) < 0.01: # La matriz de covarianza debe ser invertible
+        print("Estilo", s, "tiene matriz de covarianza singular")        
+        continue
 
-print(result)
+    inv_cov = pd.DataFrame(la.inv(cov.values), cov.columns, cov.index) # Inversa de la covarianza
+    
+    # Generar fila del dataframe
+    row = (s, freq) # Estilo y frecuencia     
+    for v in relevant_columns:
+        row = row + (avgs[v],) # Agregar promedios
+    for i, vi in inv_cov.items(): # Para cada fila
+        for j, vj in vi.items(): # Para cada columna
+            row = row + (vj, ) # Agregar indices de la matriz de covarianza inv
+    
+    distribution = distribution.append( pd.DataFrame([row], columns = new_cols, index = [ctr]) )
+    ctr = ctr + 1
 
 # Exportar a formato json
-result.to_json(styles_distribution_file_name, orient = 'records')
+distribution.to_json(styles_distribution_file_name, orient = 'records')
+
+
+
+
+## Ejemplo: Clasificacion de estilos
+
+def mahalanobis(x, data): # Distancia de Mahalanobis
+    x_mu = x - data.mean() # x - u
+    cov = data.cov() # Matriz de covariancia del conjunto de datos
+    cov_inv = pd.DataFrame(la.inv(cov.values), cov.columns, cov.index) # Inversa de la matriz de covarianza
+    m = x_mu.dot(cov_inv).dot(x_mu.T) # Formula de Mahalanobis cuadratica
+    return math.sqrt(m)
+
+
+# Nuevo estilo de cerveza (aleatorio)
+sx = pd.Series([5.36, 25.21, 10.61], index = ['ABV', 'IBU', 'Color'])
+
+results = {}
+for s in top_ten_styles:
+    temp = clean_data.loc[ clean_data['Style'] == s ]
+    m = mahalanobis(sx, temp)
+    results[s] = m
+    
+# Imprimir datos ordenados
+for k, v in sorted(results.items(), key = lambda item: item[1]):
+    print("{}: {:.2f}".format(k,v)) 
+
