@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, {Component} from 'react';
 import Highcharts from 'highcharts';
 
 
@@ -57,7 +57,9 @@ class BarPlot extends Component {
         ]
     }
 
-    render() {        
+    chart = null
+
+    render() {                
         return(
             <figure className="highcharts-figure">
                 <div id={this.props.id}></div>                
@@ -65,16 +67,23 @@ class BarPlot extends Component {
         )
     }
     
-    componentDidMount() {
+    componentDidMount() {        
+        this.config.xAxis.categories = this.props.data.names;
+        this.config.series[0].data = this.props.data.data;
+        this.chart = Highcharts.chart(this.props.id, this.config);
+    }
 
-        this.config.xAxis.categories = ['Imperial IPA', 'Red Irish Ale', 'Imperial Stout'];
-        this.config.series[0].data = [
-            {y: 12, color: "#ff0000"},
-            {y: 10},
-            {y: 9}
-        ];
-
-        Highcharts.chart(this.props.id, this.config);
+    componentDidUpdate() {
+        this.chart.update({
+            xAxis: {
+                categories: this.props.data.names
+            },
+            series:[
+                {
+                    data: this.props.data.data
+                }
+            ]
+        });
     }
 }
 

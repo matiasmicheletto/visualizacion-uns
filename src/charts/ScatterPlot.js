@@ -1,7 +1,7 @@
-import React, {Component} from 'react'
+import React, {Component} from 'react';
 import Highcharts from 'highcharts';
-import data from '../data/brewers_friend_recipes.json'
-import _ from 'lodash'
+import data from '../data/brewers_friend_recipes.json';
+import _ from 'lodash';
 
 class ScatterPlot extends Component {
     

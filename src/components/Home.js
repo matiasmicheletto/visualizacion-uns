@@ -1,11 +1,11 @@
-import React, {Component} from 'react'
+import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {
   Container, 
   Row,
   Col,  
   Card  
-} from 'react-bootstrap'
+} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import card_img_db from '../img/card_db.png';
 import card_img_plot from '../img/card_plot.png';

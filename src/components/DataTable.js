@@ -1,10 +1,10 @@
-import React, {Component} from 'react'
-import {Container, Row, Col, Table, Pagination} from 'react-bootstrap'
+import React, {Component} from 'react';
+import {Container, Row, Col, Table, Pagination} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import data from '../data/brewers_friend_recipes.json'
-import {LtoTextColor} from '../utils/LovibondScale.js'
+import data from '../data/brewers_friend_recipes.json';
+import {LtoTextColor} from '../utils/LovibondScale.js';
 import ScatterPlot from '../charts/ScatterPlot.js';
-import './DataTable.css'
+import './DataTable.css';
 
 
 
