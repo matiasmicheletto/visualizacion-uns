@@ -31,7 +31,7 @@ const classify = (s) => {
 
     for(let k in data){ // Para cada clase o estilo
 
-        let u = [ // Centroide de la clase
+        let u = [ // Centroide de la clase (promedio)
             data[k].u_Color,
             data[k].u_IBU,
             data[k].u_ABV
@@ -59,7 +59,7 @@ const classify = (s) => {
         data: []
     };
 
-    for(let k in styles.slice(0,20)){
+    for(let k in styles.slice(0,15)){
         result.names[k] = styles[k].name;
         result.data[k] = {
             y: Math.round(styles[k].dist*100)/100,

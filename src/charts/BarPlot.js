@@ -13,7 +13,17 @@ class BarPlot extends Component {
             text: 'Probabilidad de que la receta pertenezca a cada estilo'
         },   
         xAxis: {
-            categories: [] // Lista de estilos
+            categories: [], // Lista de estilos
+            width: '200px',
+            /*
+            labels:{
+                useHTML: true,                        
+                step: 1,
+                formatter: function () {
+                    return '<div style="width:500px">' + this.value + '</div>';
+                }
+            }
+            */
         },
         yAxis: {
             min: 0,
@@ -35,23 +45,13 @@ class BarPlot extends Component {
                 }
             }
         },
-        legend: {
-            layout: 'vertical',
-            align: 'right',
-            verticalAlign: 'top',            
-            floating: true,
-            borderWidth: 1,
-            backgroundColor:
-                Highcharts.defaultOptions.legend.backgroundColor || '#FFFFFF',
-            shadow: true
-        },
         credits: {
             enabled: false
         },
         series: [
             {
                 name: 'Probabilidad',   
-                showInLegend:false,
+                showInLegend: false,
                 data: [] // Definir
             }
         ]

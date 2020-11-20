@@ -7,9 +7,9 @@ import './Dashboard.css';
 
 // Valores por defecto al inicio
 const defaultTarget = {
-  color: 20,
-  ibu: 25,
-  abv: 5
+  color: 10.61,
+  ibu: 25.21,
+  abv: 5.36
 };
 
 class Dashboard extends Component {
@@ -19,19 +19,12 @@ class Dashboard extends Component {
     styles: classify(defaultTarget)
   }
 
-  targetChange(color, ibu, abv) {     
-    this.setState((prevState,prevProps) => {      
-      let target = {
-        color: color, 
-        ibu: ibu, 
-        abv: abv
-      };
-      let newState = {
-        target: target, 
-        styles: classify(target)
-      }
-      return newState;
-    });
+  targetChange(newTarget) {         
+    let newState = {
+      target: newTarget, 
+      styles: classify(newTarget)
+    };    
+    this.setState(newState);
   }
 
   render() {
@@ -42,14 +35,41 @@ class Dashboard extends Component {
             <Row style={{marginBottom:'20px'}}>
               <h3>Selector de atributos</h3>
             </Row>
-            <Row style={{marginBottom:'20px'}}>
-              <Form.Control onChange={(e) =>{this.targetChange(parseInt(e.target.value), this.state.target.ibu, this.state.target.abv)}} id="Color" type="range" />
+            <Row style={{marginBottom:'20px'}}>                
+              <Form.Control onChange={e => {
+                  this.targetChange({
+                      color: parseInt(e.target.value), 
+                      ibu: this.state.target.ibu, 
+                      abv: this.state.target.abv
+                    })
+                  }
+                }
+                id="Color" type="range" min="0" max="40" 
+                value={this.state.target.color}/>
             </Row>
             <Row style={{marginBottom:'20px'}}>
-              <Form.Control onChange={(e) =>{this.targetChange(this.state.target.color, parseInt(e.target.value), this.state.target.abv)}} id="IBU" type="range"/>
+              <Form.Control onChange={e => {
+                  this.targetChange({
+                    color: this.state.target.color, 
+                    ibu: parseInt(e.target.value), 
+                    abv: this.state.target.abv
+                    })
+                  } 
+                }
+              id="IBU" type="range" min="0" max="100"
+              value={this.state.target.ibu}/>
             </Row>
             <Row style={{marginBottom:'20px'}}>
-              <Form.Control onChange={(e) =>{this.targetChange(this.state.target.color, this.state.target.ibu, parseInt(e.target.value))}} id="ABV" type="range" />
+              <Form.Control onChange={e => {
+                  this.targetChange({
+                    color: this.state.target.color, 
+                    ibu: this.state.target.ibu, 
+                    abv: parseInt(e.target.value)
+                    })
+                 }
+                }  
+              id="ABV" type="range" min="0" max="20" step="0.1"
+              value={this.state.target.abv}/>
             </Row>
           </Col>
           <Col sm={12} md={6}>
