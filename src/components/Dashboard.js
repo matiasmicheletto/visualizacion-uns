@@ -12,20 +12,21 @@ const defaultTarget = {
   ibu: 25.2,
   abv: 5.7
 };
+const numStyles = 25;
 
 class Dashboard extends Component {
-  
+ 
   state = {
     target: defaultTarget,
-    styles: classify(defaultTarget)
+    styles: classify(defaultTarget, numStyles),
+    numStyles: numStyles
   }
 
   targetChange(newTarget) {         
     let newState = {
       target: newTarget, 
-      styles: classify(newTarget)
+      styles: classify(newTarget, this.state.numStyles)
     };    
-    //console.log(newTarget);
     this.setState(newState);
   }
 
@@ -45,7 +46,7 @@ class Dashboard extends Component {
                       })
                     } 
                   }
-                id="Color" type="range" min={0} max={40} step={0.1}
+                type="range" min={0} max={40} step={0.1}
                 value={this.state.target.color}/>
             </Row>
 
@@ -69,6 +70,23 @@ class Dashboard extends Component {
 
           <Col sm={12} lg={6} style={{height:"100%"}}>
             <BarPlot id='prob-chart' data={this.state.styles}/>
+            <Form.Group>
+                <Form.Label>Cantidad de clases: {this.state.numStyles}</Form.Label>
+              <Form.Control className="num-style-slider"
+                onChange={e => {                  
+                    this.setState((p, c) => {
+                      return {
+                        target: p.target,
+                        styles: classify(p.target, e.target.value),
+                        numStyles: e.target.value
+                      }
+                    });
+                  } 
+                }
+                type="range" min={10} max={60} step={1}
+                value={this.state.numStyles}
+              />
+            </Form.Group>
           </Col>
 
         </Row>

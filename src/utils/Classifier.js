@@ -17,13 +17,15 @@ const mahalanobis = (x, u, ci) => {
     return m;
 };
 
-const classify = (s) => {
-    // Dado el estilo de cerveza con atributos s = {color, ibu, abv} obtiene la distancia
+const classify = (s, n = 10) => {
+    // Dado el estilo de cerveza con atributos "s = {color, ibu, abv}" obtiene la distancia
     // de Mahalanobis a cada estilo de cerveza conocido presente en el dataset "data"
+    // "n" es la cantidad de resultados a devolver
 
     let x = [s.color, s.ibu, s.abv]; // Vector de la receta a evaluar
     
     let styles = []; // Lista de distancias a cada distribucion
+
 
     for(let k in data){ // Para cada clase o estilo
 
@@ -44,8 +46,14 @@ const classify = (s) => {
             dist: mahalanobis(x, u, ci)
         });
     }
-  
-    styles.sort(( a,b ) => { // Ordenar resultados por distancia
+
+    /*
+    const cSum = styles.reduce((a, b) => {return a + b.dist}, 0);
+    const maxDist = Math.max.apply(Math, styles.map(v => { return v.dist; }));
+    styles = styles.map( v => {return {name: v.name, dist: v.dist}} );
+    */
+
+    styles.sort(( a,b ) => { // Ordenar resultados por probabilidad
         return  a.dist > b.dist ? 1 : -1;
     });
 
@@ -55,7 +63,7 @@ const classify = (s) => {
         data: []
     };
 
-    for(let k in styles.slice(0,15)){
+    for(let k in styles.slice(0,n)){
         result.names[k] = styles[k].name;
         result.data[k] = {
             y: Math.round(styles[k].dist*100)/100,

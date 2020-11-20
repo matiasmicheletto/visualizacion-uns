@@ -24,10 +24,9 @@ class BarPlot extends Component {
                 }    
             }
         },
-        yAxis: {
-            min: 0,            
+        yAxis: {            
             title: {
-                text: 'Probabilidad (%)',
+                text: 'Dist. Mahalanobis',
                 align: 'high'
             },
             labels: {
@@ -37,15 +36,16 @@ class BarPlot extends Component {
                 }
             }
         },
+        /*
         tooltip: {
             valueSuffix: ' %'
         },
+        */
         plotOptions: {
             bar: {
                 dataLabels: {
                     enabled: true
-                },
-                pointWidth: 40
+                }
             }
         },
         credits: {
@@ -53,7 +53,7 @@ class BarPlot extends Component {
         },
         series: [
             {
-                name: 'Probabilidad',   
+                name: 'Dist. a centroide',   
                 showInLegend: false,
                 data: [] // Definir
             }
@@ -73,6 +73,7 @@ class BarPlot extends Component {
     componentDidMount() {        
         this.config.xAxis.categories = this.props.data.names;
         this.config.series[0].data = this.props.data.data;
+        this.config.plotOptions.bar.pointWidth = Math.round(600/this.props.data.names.length);
         this.chart = Highcharts.chart(this.props.id, this.config);
     }
 
@@ -80,7 +81,12 @@ class BarPlot extends Component {
         this.chart.update({
             xAxis: {
                 categories: this.props.data.names
-            },
+            },       
+            plotOptions: {
+                bar: {
+                    pointWidth: Math.round(600/this.props.data.names.length)
+                }
+            },  
             series:[
                 {
                     data: this.props.data.data

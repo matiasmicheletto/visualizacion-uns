@@ -1,15 +1,15 @@
 
 /* Slector de color */
 
-input[type=range] {
+.color-slider {
     width: 100%;
     -webkit-appearance: none;
     margin: 0;
 }
 
-input[type=range]:focus { outline: none; }
+.color-slider:focus { outline: none; }
 
-input[type=range]::-webkit-slider-runnable-track {
+.color-slider::-webkit-slider-runnable-track {
     width: 100%;
     height: 100%;
     cursor: pointer;
@@ -19,7 +19,7 @@ input[type=range]::-webkit-slider-runnable-track {
     border: 0.2px solid #010101;
 }
 
-input[type=range]::-webkit-slider-thumb {
+.color-slider::-webkit-slider-thumb {
     box-shadow: 2px 2px 2px #000000, 0px 0px 1px #0d0d0d;
     border: 1px solid #000000;    
     height: 100%;
@@ -30,7 +30,7 @@ input[type=range]::-webkit-slider-thumb {
     -webkit-appearance: none;    
 }
 
-input[type=range]::-webkit-slider-thumb:hover {
+.color-slider::-webkit-slider-thumb:hover {
     background: white;
 }
 
