@@ -131,10 +131,10 @@ class DataTable extends Component {
           <br></br>
           <Row style={{marginTop:"20px"}}>                      
             <Col md={12} lg={6}>
-              <ScatterPlot id="sp1" dataX = "Color" dataY = "IBU" />
+              <ScatterPlot id="sp1" dataX="Color" dataY="IBU" />
             </Col>
             <Col md={12} md={6}>
-              <ScatterPlot id="sp2" dataX = "ABV" dataY = "IBU" />
+              <ScatterPlot id="sp2" dataX="ABV" dataY="IBU" />
             </Col>
           </Row>
         </Container>

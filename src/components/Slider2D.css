@@ -1,0 +1,8 @@
+.canvas-container {
+    height: 100%;
+    width: inherit;
+}
+
+canvas {
+    border: 1px solid black
+}
