@@ -31,8 +31,8 @@ class Dashboard extends Component {
   render() {
     return (
       <Container style={{maxWidth:"85%"}}>
-        <Row>
-          <Col sm={12} md={6}>            
+        <Row style={{height:"100%"}}>
+          <Col sm={12} lg={6}>            
             
             <Row>
               <span className="color-value" style={{marginLeft:this.state.target.color*2.3+"%"}}>{this.state.target.color}°L</span>
@@ -58,8 +58,8 @@ class Dashboard extends Component {
                 onChange={e => {
                     this.targetChange({
                       color: this.state.target.color, 
-                      ibu: parseFloat(e.target.xValue), 
-                      abv: parseFloat(e.target.yValue)
+                      ibu: parseFloat(e.xValue), 
+                      abv: parseFloat(e.yValue)
                       })
                     } 
                   }/>
@@ -67,12 +67,11 @@ class Dashboard extends Component {
 
           </Col>
 
-          <Col sm={12} md={6}>
+          <Col sm={12} lg={6} style={{height:"100%"}}>
             <BarPlot id='prob-chart' data={this.state.styles}/>
           </Col>
 
         </Row>
-        
         
       </Container>
     );

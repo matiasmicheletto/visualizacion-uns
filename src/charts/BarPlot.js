@@ -7,26 +7,16 @@ class BarPlot extends Component {
     config = {
         chart: {
             type: 'bar',
-            height: '100%'
+            height: '950px'
         },
         title: {
-            text: 'Probabilidad de que la receta pertenezca a cada estilo'
+            text: 'Estilos de cerveza y sus probabilidades'
         },   
         xAxis: {
-            categories: [], // Lista de estilos
-            width: '200px',
-            /*
-            labels:{
-                useHTML: true,                        
-                step: 1,
-                formatter: function () {
-                    return '<div style="width:500px">' + this.value + '</div>';
-                }
-            }
-            */
+            categories: [] // Lista de estilos                                
         },
         yAxis: {
-            min: 0,
+            min: 0,            
             title: {
                 text: 'Probabilidad (%)',
                 align: 'high'
