@@ -1,10 +1,6 @@
 import data from '../data/beer_styles_distribution.json';
 import {multiply, transpose} from 'mathjs';
-
-const randomColor = () => {
-    // Devuelve un valor aleatorio entre 0 y 256 para generar colores
-    return Math.floor(Math.random()*256);
-};
+import {hsl2rgb} from './Colors.js'
 
 const mahalanobis = (x, u, ci) => { 
     // Calcula la distancia de Mahalanobies entre el vector x y el vector u dada
@@ -72,11 +68,10 @@ const classify = (s) => {
 
 // Generar colores aleatorios para las clases o estilos
 var colors = {};
-for(let k in data){
-    let r = randomColor();
-    let g = randomColor();
-    let b = randomColor();
-    colors[data[k].Style] = "rgb("+r+","+g+","+b+")";
+let N = data.length; 
+for(let k in data){    
+    let rgb = hsl2rgb(k/N, 0.6, 0.4);    
+    colors[data[k].Style] = "rgb("+rgb[0]+","+rgb[1]+","+rgb[2]+")";
 };
 
 export default classify;

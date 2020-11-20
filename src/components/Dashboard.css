@@ -1,3 +1,4 @@
+
 /* Slector de color */
 
 input[type=range] {
@@ -35,18 +36,18 @@ input[type=range]::-webkit-slider-thumb:hover {
 
 .color-slider:before {
     content: attr(min);
-    margin-right: 10px;
+    margin-right: 10px;    
     color: black;
-    font-size: 2rem;
+    font-size: 1.5em;
 }
 
 .color-slider:after {
     content: attr(max);
-    margin-left: 10px;    
+    margin-left: 10px;        
     color: black;
-    font-size: 2rem;
+    font-size: 1.5em;
 }
 
 .color-value {        
-    font-size: 1.6rem;            
+    font-size: 1.5em;            
 }

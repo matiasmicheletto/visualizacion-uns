@@ -7,13 +7,22 @@ class BarPlot extends Component {
     config = {
         chart: {
             type: 'bar',
-            height: '950px'
+            height: '900px'
         },
         title: {
-            text: 'Estilos de cerveza y sus probabilidades'
+            text: 'Estilos de cerveza más probables',
+            style: {
+                fontSize: '2em',
+                fontWeight: 'bold'
+            } 
         },   
         xAxis: {
-            categories: [] // Lista de estilos                                
+            categories: [], // Lista de estilos                                
+            labels: {
+                style: {
+                    fontSize: '1.6em'
+                }    
+            }
         },
         yAxis: {
             min: 0,            
@@ -22,7 +31,10 @@ class BarPlot extends Component {
                 align: 'high'
             },
             labels: {
-                overflow: 'justify'
+                overflow: 'justify',
+                style: {
+                    fontSize: '1.6em'
+                }
             }
         },
         tooltip: {
@@ -32,7 +44,8 @@ class BarPlot extends Component {
             bar: {
                 dataLabels: {
                     enabled: true
-                }
+                },
+                pointWidth: 40
             }
         },
         credits: {

@@ -25,16 +25,16 @@ class Dashboard extends Component {
       target: newTarget, 
       styles: classify(newTarget)
     };    
+    //console.log(newTarget);
     this.setState(newState);
   }
 
   render() {
     return (
       <Container style={{maxWidth:"85%"}}>
-        <Row style={{height:"100%"}}>
-          <Col sm={12} lg={6}>            
-            
-            <Row>
+        <Row>
+          <Col sm={12} lg={6}>                        
+            <Row>              
               <span className="color-value" style={{marginLeft:this.state.target.color*2.3+"%"}}>{this.state.target.color}°L</span>
               <Form.Control className="color-slider"
                 onChange={e => {
@@ -58,8 +58,8 @@ class Dashboard extends Component {
                 onChange={e => {
                     this.targetChange({
                       color: this.state.target.color, 
-                      ibu: parseFloat(e.xValue), 
-                      abv: parseFloat(e.yValue)
+                      abv: parseFloat(e.xValue), 
+                      ibu: parseFloat(e.yValue)
                       })
                     } 
                   }/>

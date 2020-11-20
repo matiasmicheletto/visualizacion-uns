@@ -45,7 +45,7 @@ class Slider2D extends Component {
 
         // Redibujado canvas
         this.ctx.clearRect(0, 0, this.width, this.height);
-        this.ctx.drawImage(knobImg, x - 25, y - 25, 50, 50);
+        this.ctx.drawImage(knobImg, x - 20, y - 20, 40, 40);
     }
 
     componentDidMount() { 
