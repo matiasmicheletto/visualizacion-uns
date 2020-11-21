@@ -26,7 +26,7 @@ class BarPlot extends Component {
         },
         yAxis: {            
             title: {
-                text: 'Dist. Mahalanobis',
+                text: 'Probabilidad [%]',
                 align: 'high'
             },
             labels: {
@@ -36,11 +36,9 @@ class BarPlot extends Component {
                 }
             }
         },
-        /*
         tooltip: {
             valueSuffix: ' %'
         },
-        */
         plotOptions: {
             bar: {
                 dataLabels: {
@@ -53,7 +51,7 @@ class BarPlot extends Component {
         },
         series: [
             {
-                name: 'Dist. a centroide',   
+                name: 'Probabilidad',   
                 showInLegend: false,
                 data: [] // Definir
             }
