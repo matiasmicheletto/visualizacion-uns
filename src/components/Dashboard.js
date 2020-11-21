@@ -12,7 +12,7 @@ const defaultTarget = {
   ibu: 25.2,
   abv: 5.7
 };
-const numStyles = 25;
+const numStyles = 15;
 
 class Dashboard extends Component {
  
@@ -48,32 +48,31 @@ class Dashboard extends Component {
             <Row>              
               <span className="color-value" style={{marginLeft:this.state.target.color*2.3+"%"}}>{this.state.target.color}°L</span>
               <Form.Control className="color-slider"
-                onChange={e => {
-                    this.targetChange({
-                      color: parseFloat(e.target.value), 
-                      ibu: this.state.target.ibu, 
-                      abv: this.state.target.abv
-                      })
-                    } 
-                  }
+                onChange={e => { this.targetChange({color: parseFloat(e.target.value), ibu: this.state.target.ibu, abv: this.state.target.abv})} }
                 id="color-slider" type="range" min={0} max={40} step={0.1}
                 value={this.state.target.color}/>
             </Row>
 
-            <Row style={{marginTop:'20px', padding:'0', height:'100%', width:'100%'}}>
+            <Row style={{marginTop:'20px', padding:'0', width:'100%'}}>
               <Slider2D id="slider2d" 
+                xLabel="ABV %"
+                yLabel="IBU"
                 xValue={this.state.target.abv} 
                 yValue={this.state.target.ibu} 
                 width="100%"
                 height="100%"
-                onChange={e => {
-                    this.targetChange({
-                      color: this.state.target.color, 
-                      abv: parseFloat(e.xValue), 
-                      ibu: parseFloat(e.yValue)
-                      })
-                    } 
-                  }/>
+                onChange={e => {this.targetChange({color: this.state.target.color, abv: parseFloat(e.xValue), ibu: parseFloat(e.yValue)})} }/>
+            </Row>
+
+            <Row style={{marginTop: "20px"}}>
+              <div>
+                <h5>Propiedades a evaluar: </h5>
+                <ul>
+                  <li><b>Color: </b>{this.state.target.color}°L</li> 
+                  <li><b>IBU: </b>{this.state.target.ibu.toFixed(2)} </li> 
+                  <li><b>ABV: </b>{this.state.target.abv.toFixed(2)} %</li>
+                </ul>
+              </div>
             </Row>
 
           </Col>

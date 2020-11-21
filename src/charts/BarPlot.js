@@ -10,7 +10,7 @@ class BarPlot extends Component {
             height: '900px'
         },
         title: {
-            text: 'Estilos de cerveza más probables',
+            text: 'Estilos de cerveza y puntajes de similitud',
             style: {
                 fontSize: '2em',
                 fontWeight: 'bold'
