@@ -6,7 +6,7 @@ import BarPlot from '../charts/BarPlot.js';
 import classify from '../utils/Classifier.js';
 import './Dashboard.css';
 
-// Valores por defecto al inicio
+// Valores de configuracion por defecto
 const defaultTarget = {
   color: 10.6,
   ibu: 25.2,
@@ -30,6 +30,16 @@ class Dashboard extends Component {
     this.setState(newState);
   }
 
+  numStylesChange(newValue) {
+    this.setState((p, c) => {                          
+      return {
+        target: p.target,
+        styles: classify(p.target, newValue),
+        numStyles: newValue
+      }
+    });
+  }
+
   render() {
     return (
       <Container style={{maxWidth:"85%"}}>
@@ -46,7 +56,7 @@ class Dashboard extends Component {
                       })
                     } 
                   }
-                type="range" min={0} max={40} step={0.1}
+                id="color-slider" type="range" min={0} max={40} step={0.1}
                 value={this.state.target.color}/>
             </Row>
 
@@ -73,17 +83,11 @@ class Dashboard extends Component {
             <Form.Group>
                 <Form.Label>Cantidad de clases: {this.state.numStyles}</Form.Label>
               <Form.Control className="num-style-slider"
-                onChange={e => {                  
-                    this.setState((p, c) => {
-                      return {
-                        target: p.target,
-                        styles: classify(p.target, e.target.value),
-                        numStyles: e.target.value
-                      }
-                    });
+                onChange={e => {      
+                    this.numStylesChange(parseInt(e.target.value));
                   } 
                 }
-                type="range" min={10} max={60} step={1}
+                id="num-styles-slider" type="range" min={10} max={60} step={1}
                 value={this.state.numStyles}
               />
             </Form.Group>
