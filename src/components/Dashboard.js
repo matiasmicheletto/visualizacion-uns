@@ -22,7 +22,16 @@ class Dashboard extends Component {
     numStyles: numStyles
   }
 
-  targetChange(newTarget) {         
+  sliderConfig = { // Slider bidimensional
+    xLabel: "ABV [%]",
+    xPrefix: "%",
+    xMax:10,
+    yLabel: "IBU",
+    yPrefix: "",
+    yMax:100
+  }
+
+  targetChange(newTarget) { // Evento de cambio de receta a evaluar
     let newState = {
       target: newTarget, 
       styles: classify(newTarget, this.state.numStyles)
@@ -30,7 +39,7 @@ class Dashboard extends Component {
     this.setState(newState);
   }
 
-  numStylesChange(newValue) {
+  numStylesChange(newValue) { // Evento de cambio de cantidad de estilos a mostrar
     this.setState((p, c) => {                          
       return {
         target: p.target,
@@ -55,12 +64,9 @@ class Dashboard extends Component {
 
             <Row style={{marginTop:'20px', padding:'0', width:'100%'}}>
               <Slider2D id="slider2d" 
-                xLabel="ABV %"
-                yLabel="IBU"
+                config={this.sliderConfig}
                 xValue={this.state.target.abv} 
                 yValue={this.state.target.ibu} 
-                width="100%"
-                height="100%"
                 onChange={e => {this.targetChange({color: this.state.target.color, abv: parseFloat(e.xValue), ibu: parseFloat(e.yValue)})} }/>
             </Row>
 
@@ -78,14 +84,13 @@ class Dashboard extends Component {
           </Col>
 
           <Col sm={12} lg={6} style={{height:"100%"}}>
+            
             <BarPlot id='prob-chart' data={this.state.styles}/>
+
             <Form.Group>
                 <Form.Label>Cantidad de clases: {this.state.numStyles}</Form.Label>
               <Form.Control className="num-style-slider"
-                onChange={e => {      
-                    this.numStylesChange(parseInt(e.target.value));
-                  } 
-                }
+                onChange={e => {this.numStylesChange(parseInt(e.target.value));} }
                 id="num-styles-slider" type="range" min={10} max={60} step={1}
                 value={this.state.numStyles}
               />

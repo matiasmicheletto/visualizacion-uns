@@ -10,10 +10,17 @@ class Slider2D extends Component {
     // Propiedades del slider
     width = 800
     height = 800
-    xLabel = "Eje X"
-    yLabel = "Eje Y"
     padding = 20
     ctx = null   
+
+    config = { // Configuracion por defecto
+        xLabel: "Eje X",
+        yLabel: "Eje Y",
+        xPrefix: "",
+        yPrefix: "",
+        xMax: 100,
+        yMax: 100
+    }
 
     dragging = false    
     
@@ -26,6 +33,20 @@ class Slider2D extends Component {
         super();
         this.containerRef = React.createRef();
         this.canvasRef = React.createRef();        
+
+        window.addEventListener('resize', () => { // Ajustar escalas al cambiar tamanio de ventana
+            try{
+                const canvas = this.canvasRef.current;
+                this.width = this.containerRef.current.clientWidth;
+                this.height = this.containerRef.current.clientHeight;
+                canvas.width = this.width;
+                canvas.height = this.height;
+                this.ctx.font = "18px Helvetica";
+                this.componentDidUpdate();
+            }catch(e){
+                //console.log(e);
+            }
+        });
     }
 
     render() {
@@ -52,20 +73,20 @@ class Slider2D extends Component {
         // Etiqueta
         this.ctx.save();
         this.ctx.rotate(-Math.PI/2);
-        this.ctx.fillText(this.yLabel, this.padding - 100, this.padding);
+        this.ctx.fillText(this.config.yLabel, this.padding - 100, this.padding - 5);
         this.ctx.restore();
         
         // Eje X
         this.ctx.moveTo(this.padding, this.height - this.padding);
         this.ctx.lineTo(this.width - this.padding, this.height - this.padding);
         // Etiqueta
-        this.ctx.fillText(this.xLabel, this.width - this.padding - 50, this.height - this.padding + 20);
+        this.ctx.fillText(this.config.xLabel, this.width - this.padding - 50, this.height - this.padding + 20);
 
         this.ctx.stroke();
 
         // Dibujar perilla del deslizador
-        const x = Math.round(this.state.xValue / 100 * (this.width - 2*this.padding)) + this.padding;
-        const y = Math.round((100 - this.state.yValue) / 100 * (this.height - 2*this.padding)) + this.padding;
+        const x = Math.round(this.state.xValue / this.config.xMax * (this.width - 2*this.padding)) + this.padding;
+        const y = Math.round((100 - this.state.yValue) / this.config.yMax * (this.height - 2*this.padding)) + this.padding;
         
         this.ctx.drawImage(knobImg, x - 20, y - 20, 40, 40);
     }
@@ -81,11 +102,12 @@ class Slider2D extends Component {
         canvas.height = this.height;
 
         this.ctx = canvas.getContext("2d");
-        this.ctx.font = "25px Helvetica";
+        this.ctx.font = "18px Helvetica";
         this.ctx.textAlign = "center";
 
-        if(this.props.xLabel) this.xLabel = this.props.xLabel;
-        if(this.props.yLabel) this.yLabel = this.props.yLabel;
+        // Copiar configuracion
+        if(this.props.config)
+            this.config = Object.assign(this.config, this.props.config);
 
         // Configurar valor inicial del slider
         this.setState({
@@ -110,8 +132,8 @@ class Slider2D extends Component {
                 const r = canvas.getBoundingClientRect();
 
                 // Mapear a escala 0-100
-                const x = (e.clientX - r.left - this.padding) / (r.right - r.left - 2*this.padding) * 100;
-                const y = 100 - (e.clientY - r.top - this.padding) / (r.bottom - r.top - 2*this.padding) * 100;
+                const x = (e.clientX - r.left - this.padding) / (r.right - r.left - 2*this.padding) * this.config.xMax;
+                const y = this.config.yMax - (e.clientY - r.top - this.padding) / (r.bottom - r.top - 2*this.padding) * this.config.yMax;
                 
                 this.setState({xValue: x, yValue: y}); // Actualizar estado
 
