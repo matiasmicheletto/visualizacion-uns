@@ -9,3 +9,5 @@ Este notebook presenta un análisis de los datos del conjunto y la obtención de
 
 #### [Demo Aplicación Web](https://vis-uns.herokuapp.com/)
 Una aplicación web para analizar una receta de cerveza y determinar el estilo apropiado en base a sus características.
+
+![screenshot](doc/screenshot.png)
