@@ -17,15 +17,17 @@ const mahalanobis = (x, u, ci) => {
     return m;
 };
 
-const classify = (s, n = 10) => {
+const classify = (s, n = 10, uf = false) => {
     // Dado el estilo de cerveza con atributos "s = {color, ibu, abv}" obtiene la distancia
     // de Mahalanobis a cada estilo de cerveza conocido presente en el dataset "data"
-    // "n" es la cantidad de resultados a devolver
+    // "n" es la cantidad de resultados a devolver y "uf" indica si hay que tener
+    // en cuenta la frecuencia de cada clase o no 
 
     let x = [s.color, s.ibu, s.abv]; // Vector de la receta a evaluar
     
     let styles = []; // Lista de distancias a cada distribucion
 
+    const fSum = uf ? data.reduce((a, b) => {return a + b.Freq}, 0) : 0; // Suma de la frecuencia de cada clase
 
     for(let k in data){ // Para cada clase o estilo
 
@@ -41,9 +43,11 @@ const classify = (s, n = 10) => {
             [data[k].s31, data[k].s32, data[k].s33]
         ];
 
+        const m = uf ? mahalanobis(x, u, ci) * data[k].Freq / fSum : mahalanobis(x, u, ci);
+
         styles.push({ // Agregar nuevo resultado de distancia de Mahalanobis
             name: data[k].Style,
-            dist: mahalanobis(x, u, ci),
+            dist: m,
             u: [data[k].u_Color,data[k].u_IBU,data[k].u_ABV]
         });
     }

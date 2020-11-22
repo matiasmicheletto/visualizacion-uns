@@ -13,13 +13,16 @@ const defaultTarget = {
   abv: 5.7
 };
 const numStyles = 15;
+const useFreq = false;
 
 class Dashboard extends Component {
  
   state = {
     target: defaultTarget,
-    styles: classify(defaultTarget, numStyles),
-    numStyles: numStyles
+    styles: classify(defaultTarget, numStyles, useFreq),
+    numStyles: numStyles, // Cantidad de estilos a incluir
+    showLabels: true, // Mostrar etiquetas de estilos en el slider
+    useFreq: useFreq // Usar popularidad para ponderar estilos
   }
 
   sliderConfig = { // Slider bidimensional
@@ -28,13 +31,13 @@ class Dashboard extends Component {
     xMax: 15,
     yLabel: "IBU",
     yPrefix: "",
-    yMax:100
+    yMax:150
   }
 
   targetChange(newTarget) { // Evento de cambio de receta a evaluar
     let newState = {
       target: newTarget, 
-      styles: classify(newTarget, this.state.numStyles)
+      styles: classify(newTarget, this.state.numStyles, this.state.useFreq)
     };    
     this.setState(newState);
   }
@@ -66,36 +69,49 @@ class Dashboard extends Component {
               <Slider2D id="slider2d" 
                 config={this.sliderConfig}
                 dataBackground={this.state.styles}
+                showLabels={this.state.showLabels}
                 xValue={this.state.target.abv} 
                 yValue={this.state.target.ibu} 
                 onChange={e => {this.targetChange({color: this.state.target.color, abv: parseFloat(e.xValue), ibu: parseFloat(e.yValue)})} }/>
             </Row>
 
             <Row style={{marginTop: "20px"}}>
-              <div>
-                <h5>Propiedades a evaluar: </h5>
-                <ul>
-                  <li><b>Color: </b>{this.state.target.color}°L</li> 
-                  <li><b>IBU: </b>{this.state.target.ibu.toFixed(2)} </li> 
-                  <li><b>ABV: </b>{this.state.target.abv.toFixed(2)} %</li>
-                </ul>
-              </div>
+              <Col>
+                <div>
+                  <h5>Propiedades a evaluar: </h5>
+                  <ul>
+                    <li><b>Color: </b>{this.state.target.color}°L</li> 
+                    <li><b>IBU: </b>{this.state.target.ibu.toFixed(2)} </li> 
+                    <li><b>ABV: </b>{this.state.target.abv.toFixed(2)} %</li>
+                  </ul>
+                </div>
+              </Col>
+              <Col>
+                <Form.Group>
+                  <Form.Label>Cantidad de clases: {this.state.numStyles}</Form.Label>
+                  <Form.Control className="num-style-slider"
+                    onChange={e => {this.numStylesChange(parseInt(e.target.value));} }
+                    id="num-styles-slider" type="range" min={10} max={60} step={1}
+                    value={this.state.numStyles}
+                  />
+                </Form.Group>
+                <Form.Group>  
+                  <Form.Check type="switch" id="freq-switch" label="Ponderar por popularidad" checked={this.state.useFreq}
+                    onChange={e => {
+                      this.setState({
+                        useFreq: e.target.checked, 
+                        styles: classify(this.state.target, this.state.numStyles, e.target.checked)});
+                      }}/>
+                  <Form.Check type="switch" id="labls-switch" label="Mostrar etiquetas" checked={this.state.showLabels}
+                    onChange={e => {this.setState({showLabels: e.target.checked});}}/>
+                </Form.Group>
+              </Col>
             </Row>
 
           </Col>
 
-          <Col sm={12} lg={6} style={{height:"100%"}}>
-            
+          <Col sm={12} lg={6}>
             <BarPlot id='prob-chart' data={this.state.styles}/>
-
-            <Form.Group>
-                <Form.Label>Cantidad de clases: {this.state.numStyles}</Form.Label>
-              <Form.Control className="num-style-slider"
-                onChange={e => {this.numStylesChange(parseInt(e.target.value));} }
-                id="num-styles-slider" type="range" min={10} max={60} step={1}
-                value={this.state.numStyles}
-              />
-            </Form.Group>
           </Col>
 
         </Row>

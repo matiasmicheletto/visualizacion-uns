@@ -11,7 +11,7 @@ class Slider2D extends Component {
     width = 800
     height = 800
     padding = 20 // Espacio entre el borde y el eje
-    updateFreq = 250 // Velocidad de actualizacion de mouse
+    updateFreq = 100 // Velocidad de actualizacion de mouse
 
     // Atributos privados
     ctx = null   
@@ -34,7 +34,7 @@ class Slider2D extends Component {
 
     xyToCanvas(x,y) { // Conversion de coordenadas
         const v = Math.round(x / this.config.xMax * (this.width - 2*this.padding)) + this.padding;
-        const w = Math.round((100 - y) / this.config.yMax * (this.height - 2*this.padding)) + this.padding;
+        const w = Math.round((this.config.yMax - y) / this.config.yMax * (this.height - 2*this.padding)) + this.padding;
         return [v,w];
     }
 
@@ -50,7 +50,8 @@ class Slider2D extends Component {
                 this.height = this.containerRef.current.clientHeight;
                 canvas.width = this.width;
                 canvas.height = this.height;
-                this.ctx.font = "18px Helvetica";
+                //this.ctx.font = "18px Helvetica";
+                this.ctx.lineWidth = 3;
                 this.componentDidUpdate();
             }catch(e){
                 //console.log(e);
@@ -96,16 +97,19 @@ class Slider2D extends Component {
         this.ctx.stroke();
 
         // Dibujar centroides
-        let r = 0;
-        this.ctx.font = "12px Helvetica";
-        for(let d of this.props.dataBackground.data){
-            let p = this.xyToCanvas(d.u[2], d.u[1]);
-            this.ctx.strokeStyle = d.color;
-            this.ctx.beginPath();
-            this.ctx.arc(p[0], p[1], d.y*5, 0, 6.28);
-            this.ctx.fillText(this.props.dataBackground.names[r], p[0], p[1]);
-            this.ctx.stroke();
-            r+=1;
+        if(this.props.dataBackground){
+            let idx = 0;
+            this.ctx.font = "12px Helvetica";
+            for(let d of this.props.dataBackground.data){
+                let p = this.xyToCanvas(d.u[2], d.u[1]);
+                this.ctx.strokeStyle = d.color;
+                this.ctx.beginPath();
+                this.ctx.arc(p[0], p[1], d.y*5, 0, 6.28);
+                if(this.props.showLabels)
+                    this.ctx.fillText(this.props.dataBackground.names[idx], p[0], p[1]);
+                this.ctx.stroke();
+                idx+=1;
+            }
         }
 
         // Dibujar perilla del deslizador
@@ -157,7 +161,7 @@ class Slider2D extends Component {
 
                 const r = canvas.getBoundingClientRect();
 
-                // Mapear a escala 0-100
+                // Mapear escala
                 const x = (e.clientX - r.left - this.padding) / (r.right - r.left - 2*this.padding) * this.config.xMax;
                 const y = this.config.yMax - (e.clientY - r.top - this.padding) / (r.bottom - r.top - 2*this.padding) * this.config.yMax;
                 

@@ -6,8 +6,7 @@ class BarPlot extends Component {
     
     config = {
         chart: {
-            type: 'bar',
-            height: '900px'
+            type: 'bar'
         },
         title: {
             text: 'Estilos de cerveza y puntajes de similitud',
@@ -63,7 +62,7 @@ class BarPlot extends Component {
     render() {                
         return(
             <figure className="highcharts-figure">
-                <div id={this.props.id}></div>                
+                <div id={this.props.id} style={{height:"95%"}}></div>                
             </figure>
         )
     }
