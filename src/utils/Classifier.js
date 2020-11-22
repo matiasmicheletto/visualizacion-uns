@@ -43,7 +43,8 @@ const classify = (s, n = 10) => {
 
         styles.push({ // Agregar nuevo resultado de distancia de Mahalanobis
             name: data[k].Style,
-            dist: mahalanobis(x, u, ci)
+            dist: mahalanobis(x, u, ci),
+            u: [data[k].u_Color,data[k].u_IBU,data[k].u_ABV]
         });
     }
 
@@ -59,19 +60,25 @@ const classify = (s, n = 10) => {
     let subStyles = styles.slice(0,n+1); // Tomar un elemento más para que el ultimo no quede en 0
     const maxDist = Math.max.apply(Math, subStyles.map(v => { return v.dist; })); // Maxima distancia dentro de las n primeras clases
     const cSum = subStyles.reduce((a, b) => {return a + b.dist}, 0); // Suma de todos los elementos del subconjunto
-    subStyles = subStyles.map( v => {return {name: v.name, dist: (maxDist - v.dist)/(maxDist*n - cSum + maxDist)*100}} ); // Aplicar formula a cada elemento
+    subStyles = subStyles.map( v => {return {
+        name: v.name, 
+        dist: (maxDist - v.dist)/(maxDist*n - cSum + maxDist)*100,
+        u: v.u
+    }} ); // Aplicar formula a cada elemento
 
     // Adaptar los resultados al formato de salida
     let result = {
         names: [],
-        data: []
+        data: [],
+        u: []
     };
 
     for(let k in subStyles.slice(0,n)){
         result.names[k] = subStyles[k].name;
         result.data[k] = {
             y: Math.round(subStyles[k].dist*100)/100, // Reducir a dos cifras
-            color: colors[subStyles[k].name] // Asignar color
+            color: colors[subStyles[k].name], // Asignar color
+            u: subStyles[k].u // Pasar centroide
         }
     }
 

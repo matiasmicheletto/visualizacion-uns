@@ -10,8 +10,13 @@ class Slider2D extends Component {
     // Propiedades del slider
     width = 800
     height = 800
-    padding = 20
+    padding = 20 // Espacio entre el borde y el eje
+    updateFreq = 250 // Velocidad de actualizacion de mouse
+
+    // Atributos privados
     ctx = null   
+    lastUpdate = 0
+    dragging = false  
 
     config = { // Configuracion por defecto
         xLabel: "Eje X",
@@ -22,11 +27,15 @@ class Slider2D extends Component {
         yMax: 100
     }
 
-    dragging = false    
-    
     state = { // Valor del slider
         xValue: 59,
         yValue: 60
+    }
+
+    xyToCanvas(x,y) { // Conversion de coordenadas
+        const v = Math.round(x / this.config.xMax * (this.width - 2*this.padding)) + this.padding;
+        const w = Math.round((100 - y) / this.config.yMax * (this.height - 2*this.padding)) + this.padding;
+        return [v,w];
     }
 
     constructor() {
@@ -65,6 +74,7 @@ class Slider2D extends Component {
 
         // Redibujado canvas
         this.ctx.clearRect(0, 0, this.width, this.height);
+        this.ctx.strokeStyle = "#000000";
 
         // Dibujar ejes de coordenadas
         // Eje Y
@@ -84,11 +94,19 @@ class Slider2D extends Component {
 
         this.ctx.stroke();
 
+        // Dibujar centroides
+        for(let d of this.props.dataBackground.data){
+            let p = this.xyToCanvas(d.u[2], d.u[1]);
+            this.ctx.strokeStyle = d.color;
+            this.ctx.beginPath();
+            this.ctx.arc(p[0], p[1], d.y*5, 0, 6.28);
+            this.ctx.stroke();
+        }
+
         // Dibujar perilla del deslizador
-        const x = Math.round(this.state.xValue / this.config.xMax * (this.width - 2*this.padding)) + this.padding;
-        const y = Math.round((100 - this.state.yValue) / this.config.yMax * (this.height - 2*this.padding)) + this.padding;
+        const xy = this.xyToCanvas(this.state.xValue, this.state.yValue);
         
-        this.ctx.drawImage(knobImg, x - 20, y - 20, 40, 40);
+        this.ctx.drawImage(knobImg, xy[0] - 20, xy[1] - 20, 40, 40);
     }
 
     componentDidMount() { 
@@ -104,6 +122,7 @@ class Slider2D extends Component {
         this.ctx = canvas.getContext("2d");
         this.ctx.font = "18px Helvetica";
         this.ctx.textAlign = "center";
+        this.ctx.lineWidth = 3;
 
         // Copiar configuracion
         if(this.props.config)
@@ -128,7 +147,10 @@ class Slider2D extends Component {
         }
 
         this.mouseMove = e => {
-            if(this.dragging){
+            if(this.dragging && Date.now() - this.lastUpdate > this.updateFreq){
+
+                this.lastUpdate = Date.now();
+
                 const r = canvas.getBoundingClientRect();
 
                 // Mapear a escala 0-100

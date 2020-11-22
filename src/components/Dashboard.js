@@ -25,7 +25,7 @@ class Dashboard extends Component {
   sliderConfig = { // Slider bidimensional
     xLabel: "ABV [%]",
     xPrefix: "%",
-    xMax:10,
+    xMax: 15,
     yLabel: "IBU",
     yPrefix: "",
     yMax:100
@@ -51,7 +51,7 @@ class Dashboard extends Component {
 
   render() {
     return (
-      <Container style={{maxWidth:"85%"}}>
+      <Container style={{maxWidth:"90%"}}>
         <Row>
           <Col sm={12} lg={6}>                        
             <Row>              
@@ -65,6 +65,7 @@ class Dashboard extends Component {
             <Row style={{marginTop:'20px', padding:'0', width:'100%'}}>
               <Slider2D id="slider2d" 
                 config={this.sliderConfig}
+                dataBackground={this.state.styles}
                 xValue={this.state.target.abv} 
                 yValue={this.state.target.ibu} 
                 onChange={e => {this.targetChange({color: this.state.target.color, abv: parseFloat(e.xValue), ibu: parseFloat(e.yValue)})} }/>
