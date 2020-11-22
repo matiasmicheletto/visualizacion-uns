@@ -23,6 +23,9 @@ const classify = (s, n = 10, uf = false) => {
     // "n" es la cantidad de resultados a devolver y "uf" indica si hay que tener
     // en cuenta la frecuencia de cada clase o no 
 
+    // Devuelve un objeto con el formato necesario para graficar clases con Highcharts
+    
+
     let x = [s.color, s.ibu, s.abv]; // Vector de la receta a evaluar
     
     let styles = []; // Lista de distancias a cada distribucion
@@ -48,7 +51,7 @@ const classify = (s, n = 10, uf = false) => {
         styles.push({ // Agregar nuevo resultado de distancia de Mahalanobis
             name: data[k].Style,
             dist: m,
-            u: [data[k].u_Color,data[k].u_IBU,data[k].u_ABV]
+            u: [data[k].u_Color, data[k].u_IBU, data[k].u_ABV]
         });
     }
 
@@ -80,8 +83,11 @@ const classify = (s, n = 10, uf = false) => {
     for(let k in subStyles.slice(0,n)){
         result.names[k] = subStyles[k].name;
         result.data[k] = {
+            // Datos para grafico highchart
             y: Math.round(subStyles[k].dist*100)/100, // Reducir a dos cifras
-            color: colors[subStyles[k].name], // Asignar color
+            color: colors[subStyles[k].name], // Asignar color solido
+            // Datos para scatterplot en canvas
+            color_t: colors[subStyles[k].name+"_t"], // Asignar color semitransparente
             u: subStyles[k].u // Pasar centroide
         }
     }
@@ -94,7 +100,8 @@ var colors = {};
 let N = data.length; 
 for(let k in data){    
     let rgb = hsl2rgb(k/N, 0.6, 0.4);    
-    colors[data[k].Style] = "rgb("+rgb[0]+","+rgb[1]+","+rgb[2]+")";
+    colors[data[k].Style] = "rgb("+rgb[0]+","+rgb[1]+","+rgb[2]+")"; // Color solido
+    colors[data[k].Style+"_t"] = "rgba("+rgb[0]+","+rgb[1]+","+rgb[2]+", 0.5)"; // Color semitransparente
 };
 
 export default classify;

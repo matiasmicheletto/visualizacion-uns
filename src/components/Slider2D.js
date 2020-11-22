@@ -6,6 +6,7 @@ const knobImg = new Image(50, 50);
 knobImg.src = knob;
 
 class Slider2D extends Component {
+    // Implementa un slider para desplazarse por un espacio de dos dimensiones
     
     // Propiedades del slider
     width = 800
@@ -51,7 +52,7 @@ class Slider2D extends Component {
                 canvas.width = this.width;
                 canvas.height = this.height;
                 //this.ctx.font = "18px Helvetica";
-                this.ctx.lineWidth = 3;
+                //this.ctx.lineWidth = 3;
                 this.componentDidUpdate();
             }catch(e){
                 //console.log(e);
@@ -71,21 +72,24 @@ class Slider2D extends Component {
         )
     }
 
-    componentDidUpdate() {
+    componentDidUpdate() { // Redibujado 
 
-        // Redibujado canvas
+        // Borrar canvas
         this.ctx.clearRect(0, 0, this.width, this.height);
+        this.ctx.lineWidth = 3;
         this.ctx.strokeStyle = "#000000";
+        this.ctx.fillStyle = "#000000";
+        this.ctx.font = "18px Helvetica";
+        
 
         // Dibujar ejes de coordenadas
-        this.ctx.font = "18px Helvetica";
         // Eje Y
         this.ctx.moveTo(this.padding, this.height - this.padding);
         this.ctx.lineTo(this.padding, this.padding);
         // Etiqueta
         this.ctx.save();
-        this.ctx.rotate(-Math.PI/2);
-        this.ctx.fillText(this.config.yLabel, this.padding - 100, this.padding - 5);
+        this.ctx.rotate(-1.571);
+        this.ctx.fillText(this.config.yLabel, this.padding - 80, this.padding - 5);
         this.ctx.restore();
         
         // Eje X
@@ -94,27 +98,44 @@ class Slider2D extends Component {
         // Etiqueta
         this.ctx.fillText(this.config.xLabel, this.width - this.padding - 50, this.height - this.padding + 20);
 
-        this.ctx.stroke();
+        this.ctx.stroke();        
 
-        // Dibujar centroides
+        // Ejes del deslizador
+        const xy = this.xyToCanvas(this.state.xValue, this.state.yValue);
+        
+        this.ctx.lineWidth = 1;
+        this.ctx.moveTo(xy[0], xy[1]);
+        this.ctx.lineTo(xy[0], this.height - this.padding);
+        this.ctx.fillText(this.state.xValue.toFixed(2)+this.config.xPrefix, xy[0] + 30, this.height - this.padding - 5);
+        
+        this.ctx.moveTo(xy[0], xy[1]);
+        this.ctx.lineTo(this.padding, xy[1]);
+        this.ctx.fillText(this.state.yValue.toFixed(2), this.padding + 30, xy[1]);
+        
+        
+        this.ctx.stroke();
+        
+
+        // Dibujar centroides de cada clase
+        // El radio es proporcional al peso de la clase
         if(this.props.dataBackground){
             let idx = 0;
-            this.ctx.font = "12px Helvetica";
+            this.ctx.font = "bold 12px Helvetica"; // Estilo de las etiquetas de las clases
             for(let d of this.props.dataBackground.data){
                 let p = this.xyToCanvas(d.u[2], d.u[1]);
                 this.ctx.strokeStyle = d.color;
+                this.ctx.fillStyle = d.color_t;
                 this.ctx.beginPath();
                 this.ctx.arc(p[0], p[1], d.y*5, 0, 6.28);
                 if(this.props.showLabels)
                     this.ctx.fillText(this.props.dataBackground.names[idx], p[0], p[1]);
+                this.ctx.fill();
                 this.ctx.stroke();
                 idx+=1;
             }
         }
 
         // Dibujar perilla del deslizador
-        const xy = this.xyToCanvas(this.state.xValue, this.state.yValue);
-        
         this.ctx.drawImage(knobImg, xy[0] - 20, xy[1] - 20, 40, 40);
     }
 
@@ -143,21 +164,21 @@ class Slider2D extends Component {
         });
 
         // Crear eventos de mouse
-        this.mouseDown = e => {            
+        this.mouseDown = e => { // Inicio del arrastre del la perilla
             this.dragging = true;
         }
 
-        this.mouseUp = e => {
+        this.mouseUp = e => { // Fin del arrastre de la perilla
             if(this.dragging){
-                this.mouseMove(e); // Click sin arrastrar
+                this.mouseMove(e); // En caso de click sin arrastrar, efectuar actualizacion con este metodo
                 this.dragging = false;                
             }
         }
 
         this.mouseMove = e => {
-            if(this.dragging && Date.now() - this.lastUpdate > this.updateFreq){
+            if(this.dragging && Date.now() - this.lastUpdate > this.updateFreq){ // Limitar frecuencia
 
-                this.lastUpdate = Date.now();
+                this.lastUpdate = Date.now(); // Limitar frecuencia de actualizacion
 
                 const r = canvas.getBoundingClientRect();
 
@@ -174,7 +195,7 @@ class Slider2D extends Component {
             }
         }
 
-        knobImg.onload = () => {
+        knobImg.onload = () => { // Luego de cargar imagen de la perilla, redibujar
             this.componentDidUpdate();
         }
     }    
