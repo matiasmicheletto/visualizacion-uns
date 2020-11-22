@@ -77,6 +77,7 @@ class Slider2D extends Component {
         this.ctx.strokeStyle = "#000000";
 
         // Dibujar ejes de coordenadas
+        this.ctx.font = "18px Helvetica";
         // Eje Y
         this.ctx.moveTo(this.padding, this.height - this.padding);
         this.ctx.lineTo(this.padding, this.padding);
@@ -95,12 +96,16 @@ class Slider2D extends Component {
         this.ctx.stroke();
 
         // Dibujar centroides
+        let r = 0;
+        this.ctx.font = "12px Helvetica";
         for(let d of this.props.dataBackground.data){
             let p = this.xyToCanvas(d.u[2], d.u[1]);
             this.ctx.strokeStyle = d.color;
             this.ctx.beginPath();
             this.ctx.arc(p[0], p[1], d.y*5, 0, 6.28);
+            this.ctx.fillText(this.props.dataBackground.names[r], p[0], p[1]);
             this.ctx.stroke();
+            r+=1;
         }
 
         // Dibujar perilla del deslizador
@@ -120,7 +125,6 @@ class Slider2D extends Component {
         canvas.height = this.height;
 
         this.ctx = canvas.getContext("2d");
-        this.ctx.font = "18px Helvetica";
         this.ctx.textAlign = "center";
         this.ctx.lineWidth = 3;
 
