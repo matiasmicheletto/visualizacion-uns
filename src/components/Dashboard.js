@@ -75,7 +75,7 @@ class Dashboard extends Component {
                 onChange={e => {this.targetChange({color: this.state.target.color, abv: parseFloat(e.xValue), ibu: parseFloat(e.yValue)})} }/>
             </Row>
 
-            <Row style={{marginTop: "20px"}}>
+            <Row className="mt-4">
               <Col>
                 <div>
                   <h5>Propiedades a evaluar: </h5>

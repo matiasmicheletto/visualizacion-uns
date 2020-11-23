@@ -86,9 +86,11 @@ class DataTable extends Component {
   render() {
     return (
         <Container style={{maxWidth: "90%"}}>
-          <Row><h3>Base de datos</h3></Row>
+          
+          <Row><h3>Datos procesados</h3></Row>
+          
           <Row><p>Fuente: <a href="https://www.brewersfriend.com/homebrew-recipes/">Brewer's Friend Recipes</a></p></Row>
-          <br></br>
+          
           <Row>
             <Table striped bordered hover style={{maxWidth: "75%", margin: "0 auto"}}>
               <thead>
@@ -107,7 +109,8 @@ class DataTable extends Component {
               </tbody>
             </Table>
           </Row>
-          <Row className="justify-content-md-center">
+
+          <Row className="justify-content-md-center mt-3">
             <Pagination>
               <Pagination.First  onClick={this.gotoFirst}/>
               <Pagination.Prev onClick={this.decrementPage} />
@@ -128,8 +131,12 @@ class DataTable extends Component {
               <Pagination.Last onClick={this.gotoLast}/>
             </Pagination>
           </Row>
-          <br></br>
-          <Row style={{marginTop:"20px"}}>                      
+
+          <Row className="mt-4">
+            <h3>Gráfico de datos dispersos</h3>
+          </Row>
+          
+          <Row className="mt-3">
             <Col md={12} lg={6}>
               <ScatterPlot id="sp1" dataX="Color" dataY="IBU" />
             </Col>
@@ -137,6 +144,7 @@ class DataTable extends Component {
               <ScatterPlot id="sp2" dataX="ABV" dataY="IBU" />
             </Col>
           </Row>
+
         </Container>
     );
   }

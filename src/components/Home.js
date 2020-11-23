@@ -12,8 +12,7 @@ import card_img_plot from '../img/card_plot.png';
 import card_img_repo from '../img/card_repo.png';
 import card_img_eda from '../img/card_kaggle.png';
 import {FaExternalLinkAlt} from 'react-icons/fa';
-
-import './Home.css'
+import './Home.css';
 
 class Home extends Component {
   render() {

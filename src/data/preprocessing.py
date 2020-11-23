@@ -4,8 +4,15 @@ from scipy.stats import zscore
 import scipy.linalg as la
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
+import missingno as msno
 import seaborn as sns
 import math
+
+
+## Configuracion del script
+save_figs = True # Guardar graficos de salida
+update_output_data = False # Actualizar datos calculados
+
 
 ## Datos
 
@@ -30,6 +37,12 @@ print('Estilos totales: ',len(styles))
 print(" ")
 print('Estilos más comunes:')
 print(top_ten)
+
+
+## Graficar completitud del dataset (10% de los datos, muestreo aleatorio)
+if(save_figs):
+    msno.matrix(data.sample(frac = 0.1))
+    plt.savefig('MissingValues.png')
 
 
 ## Variables de interés
@@ -62,12 +75,14 @@ ax.set_ylabel('ABV')
 ax.set_zlabel('IBU')
 plt.legend(loc = 2)
 
-plt.savefig('Scatter3D.png')
+if(save_figs):
+    plt.savefig('Scatter3D.png')
 
 clean_data = clean_data.sample(frac = 1) # Para mezclar los estilos y que no esten ordenados
 
 # Exportar datos limpios a formato json
-clean_data.to_json(clean_data_file_name, orient = 'records')
+if(update_output_data): 
+    clean_data.to_json(clean_data_file_name, orient = 'records')
 
 
 
@@ -79,22 +94,24 @@ fig2.set_figheight(10)
 fig2.set_figwidth(20)
 sns.pairplot(clean_data, hue = "Style");
 
-plt.savefig('ScatterMatrix.png')
+if(save_figs):
+    plt.savefig('ScatterMatrix.png')
 
 
 
 ## Distribución de variables de interes
+if(save_figs):
+    fig3, ax3 = plt.subplots(len(relevant_columns),1)
+    fig3.set_figheight(20)
+    fig3.set_figwidth(20)
 
-fig3, ax3 = plt.subplots(len(relevant_columns),1)
-fig3.set_figheight(20)
-fig3.set_figwidth(20)
+    for idx, v in enumerate(relevant_columns):
+        f = sns.violinplot(ax = ax3[idx], x = "Style", y = v, data = clean_data)
+        f.grid()
+        f.set_xticklabels(ax3[idx].xaxis.get_majorticklabels(), rotation = 30)
 
-for idx, v in enumerate(relevant_columns):
-    f = sns.violinplot(ax = ax3[idx], x = "Style", y = v, data = clean_data)
-    f.grid()
-    f.set_xticklabels(ax3[idx].xaxis.get_majorticklabels(), rotation = 30)
 
-plt.savefig('VariableDistribution.png')
+    plt.savefig('VariableDistribution.png')
 
 
 
@@ -134,7 +151,8 @@ for s in styles:
     ctr = ctr + 1
 
 # Exportar a formato json
-distribution.to_json(styles_distribution_file_name, orient = 'records')
+if(update_output_data): 
+    distribution.to_json(styles_distribution_file_name, orient = 'records')
 
 
 
