@@ -43,6 +43,13 @@ class BarPlot extends Component {
                 dataLabels: {
                     enabled: true
                 }
+            },
+            series: {
+                events: {
+                    click: e => {
+                        this.props.onClassSelected(e.point.category);
+                    }
+                }
             }
         },
         credits: {
@@ -71,6 +78,13 @@ class BarPlot extends Component {
         this.config.xAxis.categories = this.props.data.names;
         this.config.series[0].data = this.props.data.data;
         this.config.plotOptions.bar.pointWidth = Math.round(600/this.props.data.names.length);
+        if(this.props.onClassSelected){ // Evento de seleccion de una clase para resaltar
+            this.config.plotOptions.series = {
+                events: {
+                    click: e => {this.props.onClassSelected(e.point.category)}
+                }
+            };
+        }
         this.chart = Highcharts.chart(this.props.id, this.config);
     }
 

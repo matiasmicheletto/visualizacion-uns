@@ -134,15 +134,19 @@ class Slider2D extends Component {
             let idx = 0;
             this.ctx.font = "bold 12px Helvetica"; // Estilo de las etiquetas de las clases
             for(let d of this.props.dataBackground.data){
-                let p = this.xyToCanvas(d.u[2], d.u[1]);
-                this.ctx.strokeStyle = d.color;
-                this.ctx.fillStyle = d.color_t;
+                this.ctx.strokeStyle = d.color; // Color solido de borde
+                this.ctx.fillStyle = d.color_t; // Color semitransparente de fondo
+                this.ctx.lineWidth = this.props.dataBackground.names[idx] === this.props.selected ? 10 : 1; // Estilo seleccionado
                 this.ctx.beginPath();
+                let p = this.xyToCanvas(d.u[2], d.u[1]); // Coordenadas para dibujar circulo y texto
                 this.ctx.arc(p[0], p[1], d.y*5, 0, 6.28);
-                if(this.props.showLabels)
+                if(this.props.showLabels) // Los nombres de los estilos se muestran si estan habilitados
                     this.ctx.fillText(this.props.dataBackground.names[idx], p[0], p[1]);
                 this.ctx.fill();
                 this.ctx.stroke();
+                
+                
+                
                 idx+=1;
             }
         }

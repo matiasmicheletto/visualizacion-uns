@@ -12,8 +12,9 @@ const defaultTarget = {
   ibu: 25.2,
   abv: 5.7
 };
-const numStyles = 15;
-const useFreq = false;
+const numStyles = 15; // Cantidad de estilos a listar
+const useFreq = false; // Ponderar estilos por popularidad
+const selectedStyle = null; // Seleccionar algun estilo
 
 class Dashboard extends Component {
  
@@ -22,7 +23,8 @@ class Dashboard extends Component {
     styles: classify(defaultTarget, numStyles, useFreq),
     numStyles: numStyles, // Cantidad de estilos a incluir
     showLabels: true, // Mostrar etiquetas de estilos en el slider
-    useFreq: useFreq // Usar popularidad para ponderar estilos
+    useFreq: useFreq, // Usar popularidad para ponderar estilos
+    selectedStyle: selectedStyle // Valor del estilo seleccionado del barplot
   }
 
   sliderConfig = { // Slider bidimensional
@@ -39,7 +41,8 @@ class Dashboard extends Component {
   targetChange(newTarget) { // Evento de cambio de receta a evaluar
     let newState = {
       target: newTarget, 
-      styles: classify(newTarget, this.state.numStyles, this.state.useFreq)
+      styles: classify(newTarget, this.state.numStyles, this.state.useFreq),
+      selectedStyle: null // Al cambiar la posicion del slider, deseleccionar todas
     };    
     this.setState(newState);
   }
@@ -48,7 +51,7 @@ class Dashboard extends Component {
     this.setState((p, c) => {                          
       return {
         target: p.target,
-        styles: classify(p.target, newValue),
+        styles: classify(p.target, newValue, p.useFreq),
         numStyles: newValue
       }
     });
@@ -74,6 +77,7 @@ class Dashboard extends Component {
                 showLabels={this.state.showLabels}
                 xValue={this.state.target.abv} 
                 yValue={this.state.target.ibu} 
+                selected={this.state.selectedStyle}
                 onChange={e => {this.targetChange({color: this.state.target.color, abv: parseFloat(e.xValue), ibu: parseFloat(e.yValue)})} }/>
             </Row>
 
@@ -113,7 +117,8 @@ class Dashboard extends Component {
           </Col>
 
           <Col sm={12} lg={6}>
-            <BarPlot id='prob-chart' data={this.state.styles}/>
+            <BarPlot id='prob-chart' data={this.state.styles} 
+              onClassSelected={style => {this.setState({selectedStyle: style});}}/>
           </Col>
 
         </Row>

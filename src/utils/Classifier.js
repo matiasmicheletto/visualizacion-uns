@@ -95,11 +95,13 @@ const classify = (s, n = 10, uf = false) => {
     return result;
 };
 
-// Generar colores aleatorios para las clases o estilos
+// Generar colores para las clases o estilos
+// Cada clase tiene asignado un valor de matiz distinto y los valores de saturacion
+// y luminosidad son aleatorios
 var colors = {};
 let N = data.length; 
 for(let k in data){    
-    let rgb = hsl2rgb(k/N, 0.6, 0.4);    
+    let rgb = hsl2rgb(k/N, 0.6 + Math.random()*0.4, 0.2 + Math.random()*0.4);    
     colors[data[k].Style] = "rgb("+rgb[0]+","+rgb[1]+","+rgb[2]+")"; // Color solido
     colors[data[k].Style+"_t"] = "rgba("+rgb[0]+","+rgb[1]+","+rgb[2]+", 0.5)"; // Color semitransparente
 };
