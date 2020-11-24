@@ -1,21 +1,27 @@
 import React, {Component} from 'react';
-import {Container, Row, Col, Table, Pagination} from 'react-bootstrap';
+import {Row, Table, Pagination} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import data from '../data/brewers_friend_recipes.json';
-import {LtoTextColor} from '../utils/LovibondScale.js';
-import ScatterPlot from '../charts/ScatterPlot.js';
 import './DataTable.css';
 
 
 
-// Tabla de datos con paginacion
+// Tabla de datos genericos con paginacion para bootstrap
 class DataTable extends Component {
 
-  itemsPerPage = 20
+  // Parametros de configuracion
+  itemsPerPage = 20 // Filas por pagina
   selectorCount = 10 // Cantidad de selectores de pagina a mostrar
-  maxPages = Math.floor(data.length/this.itemsPerPage)
+  maxPages = 0 // Maxima cantidad de paginas (se ajusta en fc de los datos)
 
   state = {
+    header: [],
+    data: [],
+    attrs: [],
+    suffix: [],
+    cellStyler: {
+      method: (v)=>{return {}},
+      col: ""
+    },
     currentPage: 0,
     selectorStart: 0
   }
@@ -53,55 +59,79 @@ class DataTable extends Component {
 
   pageSelector(pos) {
     return (
-      <Pagination.Item onClick={() => {
-              this.setState((prevState,prevProps) => {
-                return this.setPage(pos-1)
-              });
-            }} 
+      <Pagination.Item 
+            onClick={() => {this.setState((prevState,prevProps) => {return this.setPage(pos-1)});}} 
             className={this.state.currentPage===pos-1 ? "active": ""}
-            key={pos}>
+            key={pos}> 
               {pos}
       </Pagination.Item>             
     )
   }
 
+  getHeader() { // Genera el encabezado de la tabla
+    return (
+      this.state.header.map( (item, pos) => (
+          <th key={pos}>{item}</th>
+      ))      
+    )
+  }
+
   getTableRows() { // Genera las filas de la tabla a partir de un rango de los datos
     let start = this.itemsPerPage*this.state.currentPage;
-    let end = this.itemsPerPage*(this.state.currentPage+1);
+    let end = this.itemsPerPage*(this.state.currentPage + 1);
     return (
-      data.slice(start, end).map( (item, pos)=>(
+      this.state.data.slice(start, end).map( (item, pos)=>(
         <tr key={pos}>
-          <td>{start+pos+1}</td>
-          <td>{item.Name}</td>
-          <td>{item.Style}</td>
-          {/* <td>{item.BoilTime} min.</td> */}
-          <td>{item.IBU}</td>
-          <td>{item.ABV} %</td>
-          <td style={LtoTextColor(item.Color)}>{item.Color} °L</td>
+          { // Si enumera filas, agregar columna con los indices
+            this.state.enumRows ?
+            <td>{start+pos+1}</td>
+            :
+            ""
+          }
+          { // Resto de los atributos
+            this.state.attrs.map( (i, p)=>
+              (
+                this.state.cellStyler.col === i ? // Si una columna tiene estilizador, agregar
+                  <td key={p} style={this.state.cellStyler.method(item[i])}>{item[i].toFixed(2)}{this.state.suffix[i]}</td> 
+                :
+                  <td key={p}>{typeof item[i] === "number" && !Number.isInteger(item[i]) ? item[i].toFixed(2) : item[i]}{this.state.suffix[i]}</td> 
+              )
+            )
+          }
         </tr>
       ))                  
     )
   }
 
-  render() {
+  componentDidMount() {
+    // Si la enumeracion de filas esta habilitada, agregar columna
+    let header = this.props.header;
+    if(this.props.enumRows)
+      header.unshift("#");
+
+    // Ajustar el numero de selectores
+    this.maxPages = Math.floor(this.props.data.length / this.itemsPerPage)
+    if(this.maxPages < this.selectorCount)
+      this.selectorCount = this.maxPages-1;
+
+    this.setState({
+      header: header,
+      data: this.props.data,
+      attrs: this.props.attrs,
+      suffix: this.props.suffix,
+      cellStyler: this.props.cellStyler,
+      enumRows: this.props.enumRows
+    });
+  }
+
+  render() {    
     return (
-        <Container style={{maxWidth: "90%"}}>
-          
-          <Row><h3>Datos procesados</h3></Row>
-          
-          <Row><p>Fuente: <a href="https://www.brewersfriend.com/homebrew-recipes/">Brewer's Friend Recipes</a></p></Row>
-          
+        <div style={{width:"100%"}}>
           <Row>
             <Table striped bordered hover style={{maxWidth: "75%", margin: "0 auto"}}>
               <thead>
                 <tr>
-                  <th>#</th>
-                  <th>Nombre</th>
-                  <th>Estilo</th>
-                  {/* <th>Tiempo de ebullición</th> */}
-                  <th>IBU</th>
-                  <th>ABV</th>
-                  <th>Color</th>
+                  {this.getHeader()}
                 </tr>
               </thead>
               <tbody>
@@ -122,7 +152,7 @@ class DataTable extends Component {
               }
               {[...Array(this.selectorCount+1)].map((value, index) => (this.pageSelector(this.state.selectorStart+index+1)))}
               {
-                this.state.selectorStart < this.maxPages-this.selectorCount  ?
+                this.state.selectorStart < this.maxPages - this.selectorCount  ?
                   <Pagination.Ellipsis />
                   :
                   ""
@@ -132,20 +162,7 @@ class DataTable extends Component {
             </Pagination>
           </Row>
 
-          <Row className="mt-4">
-            <h3>Gráfico de datos dispersos</h3>
-          </Row>
-          
-          <Row className="mt-3">
-            <Col md={12} lg={6}>
-              <ScatterPlot id="sp1" dataX="Color" dataY="IBU" />
-            </Col>
-            <Col md={12} md={6}>
-              <ScatterPlot id="sp2" dataX="ABV" dataY="IBU" />
-            </Col>
-          </Row>
-
-        </Container>
+        </div>
     );
   }
 }

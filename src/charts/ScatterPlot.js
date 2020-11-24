@@ -86,7 +86,6 @@ class ScatterPlot extends Component {
         for(var s in styles){
             let serie = {
                 name: s,
-                //color: 'rgba('+Math.floor(Math.random()*100+155)+', '+Math.floor(Math.random()*50+150)+', '+Math.floor(Math.random()*10)+', 0.6)',
                 data: []
             };
             for(var d in styles[s])

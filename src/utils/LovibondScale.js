@@ -62,10 +62,14 @@ let colorMap = [
 ];
 
 const LtoRGB = (L) => { // Mapeo L -> RGB
-    let EBC = Math.round(2.666*L-1.49);
-    if(EBC < 0) EBC = 0;
-    if(EBC > 59) EBC = 59;    
-    return colorMap[EBC];
+    if(L){
+        let EBC = Math.round(2.666*parseFloat(L)-1.49);
+        if(EBC < 0) EBC = 0;
+        if(EBC > 59) EBC = 59;    
+        return colorMap[EBC];
+    }else{
+        return [255,255,255];
+    }
 }
 
 const LtoTextColor = (L) => {

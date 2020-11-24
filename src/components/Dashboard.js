@@ -9,7 +9,7 @@ import './Dashboard.css';
 // Valores de configuracion por defecto
 const defaultTarget = {
   color: 10.6,
-  ibu: 25.2,
+  ibu: 75.2,
   abv: 5.7
 };
 const numStyles = 15; // Cantidad de estilos a listar
@@ -31,7 +31,7 @@ class Dashboard extends Component {
     xLabel: "ABV [%]",
     xPrefix: "%",
     xMin: 0,
-    xMax: 10,
+    xMax: 12,
     yLabel: "IBU",
     yPrefix: "",
     yMin: 0,

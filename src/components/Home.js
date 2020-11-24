@@ -21,20 +21,8 @@ class Home extends Component {
           <Row>
             <h3>Menú</h3>
           </Row>
+          
           <Row>            
-            <Col sm={12} md={6} lg={4} xl={3}>
-              <Link to="/data" style={{color: "black"}}>
-                <Card className="shadow rounded">
-                  <Card.Img variant="top" src={card_img_db} />
-                  <Card.Body>
-                    <Card.Title>Conjunto de datos</Card.Title>
-                    <Card.Text>
-                      Previsualización de los datos crudos.
-                    </Card.Text>
-                  </Card.Body>
-                </Card>
-              </Link>
-            </Col>  
             <Col sm={12} md={6} lg={4} xl={3}>
               <a href="https://www.kaggle.com/matiasmiche/brewers-friend-recipes-analysis/" target="_blank" rel="noopener noreferrer" style={{color: "black"}}>
                 <Card className="shadow rounded">
@@ -47,6 +35,19 @@ class Home extends Component {
                   </Card.Body>
                 </Card>
               </a>
+            </Col>  
+            <Col sm={12} md={6} lg={4} xl={3}>
+              <Link to="/data" style={{color: "black"}}>
+                <Card className="shadow rounded">
+                  <Card.Img variant="top" src={card_img_db} />
+                  <Card.Body>
+                    <Card.Title>Conjunto de datos</Card.Title>
+                    <Card.Text>
+                      Previsualización de los datos crudos.
+                    </Card.Text>
+                  </Card.Body>
+                </Card>
+              </Link>
             </Col>  
             <Col sm={12} md={6} lg={4} xl={3}>
               <Link to="/dashboard" style={{color: "black"}}>

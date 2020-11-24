@@ -1,9 +1,9 @@
-import React, {Component} from 'react'
-import Menu from './components/Menu.js'
-import Home from './components/Home.js'
-import DataTable from './components/DataTable.js'
-import Dashboard from './components/Dashboard.js'
-import About from './components/About.js'
+import React, {Component} from 'react';
+import Menu from './components/Menu.js';
+import Home from './components/Home.js';
+import DataSection from './components/DataSection.js';
+import Dashboard from './components/Dashboard.js';
+import About from './components/About.js';
 import {
   BrowserRouter as Router,
   Switch,
@@ -25,7 +25,7 @@ class App extends Component {
               <Home />
             </Route>
             <Route path="/data">
-              <DataTable />
+              <DataSection />
             </Route>
             <Route path="/dashboard">
               <Dashboard />
