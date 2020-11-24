@@ -28,10 +28,12 @@ class Dashboard extends Component {
   sliderConfig = { // Slider bidimensional
     xLabel: "ABV [%]",
     xPrefix: "%",
-    xMax: 15,
+    xMin: 0,
+    xMax: 10,
     yLabel: "IBU",
     yPrefix: "",
-    yMax:150
+    yMin: 0,
+    yMax: 150
   }
 
   targetChange(newTarget) { // Evento de cambio de receta a evaluar

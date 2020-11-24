@@ -12,7 +12,7 @@ class Slider2D extends Component {
     width = 800
     height = 800
     padding = 20 // Espacio entre el borde y el eje
-    updateFreq = 100 // Velocidad de actualizacion de mouse
+    updateFreq = 100 // Velocidad de actualizacion de mouse (ms)
 
     // Atributos privados
     ctx = null   
@@ -24,6 +24,8 @@ class Slider2D extends Component {
         yLabel: "Eje Y",
         xPrefix: "",
         yPrefix: "",
+        xMin: 0,
+        yMin: 0,
         xMax: 100,
         yMax: 100
     }
@@ -33,10 +35,19 @@ class Slider2D extends Component {
         yValue: 60
     }
 
-    xyToCanvas(x,y) { // Conversion de coordenadas
-        const v = Math.round(x / this.config.xMax * (this.width - 2*this.padding)) + this.padding;
-        const w = Math.round((this.config.yMax - y) / this.config.yMax * (this.height - 2*this.padding)) + this.padding;
-        return [v,w];
+    xyToCanvas(x, y) { // Conversion de coordenadas
+        const v = Math.round((x - this.config.xMin) / (this.config.xMax - this.config.xMin) * (this.width - 2*this.padding)) + this.padding;
+        const w = Math.round((this.config.yMax - y) / (this.config.yMax - this.config.yMin) * (this.height - 2*this.padding)) + this.padding;
+        return [v, w];
+    }
+
+    canvasToXY(v, w, canvas) { // Conversion de coordenadas
+        const r = canvas.getBoundingClientRect();
+
+        const x = (v - r.left - this.padding) / (r.right - r.left - 2*this.padding) * (this.config.xMax - this.config.xMin) + this.config.xMin;
+        const y = this.config.yMax - (w - r.top - this.padding) / (r.bottom - r.top - 2*this.padding) * (this.config.yMax - this.config.yMin);
+
+        return [x, y];
     }
 
     constructor() {
@@ -67,6 +78,7 @@ class Slider2D extends Component {
                     onMouseDown={this.mouseDown}
                     onMouseMove={this.mouseMove}
                     onMouseUp={this.mouseUp}
+                    onWheel={this.mouseWheel}
                 ></canvas>
             </div>
         )
@@ -163,7 +175,7 @@ class Slider2D extends Component {
             yValue: this.props.yValue
         });
 
-        // Crear eventos de mouse
+        // Crear eventos de mouse para las interacciones
         this.mouseDown = e => { // Inicio del arrastre del la perilla
             this.dragging = true;
         }
@@ -180,18 +192,39 @@ class Slider2D extends Component {
 
                 this.lastUpdate = Date.now(); // Limitar frecuencia de actualizacion
 
-                const r = canvas.getBoundingClientRect();
-
-                // Mapear escala
-                const x = (e.clientX - r.left - this.padding) / (r.right - r.left - 2*this.padding) * this.config.xMax;
-                const y = this.config.yMax - (e.clientY - r.top - this.padding) / (r.bottom - r.top - 2*this.padding) * this.config.yMax;
+                const xy = this.canvasToXY(e.clientX, e.clientY, canvas);
                 
-                this.setState({xValue: x, yValue: y}); // Actualizar estado
+                this.setState({ // Actualizar estado
+                    xValue: xy[0], 
+                    yValue: xy[1]
+                }); 
 
                 this.props.onChange({ // Emitir evento
-                    xValue: x, 
-                    yValue: y
+                    xValue: xy[0], 
+                    yValue: xy[1]
                 });
+            }
+        }
+
+        this.mouseWheel = e => { 
+            if(Date.now() - this.lastUpdate > this.updateFreq){ // Limitar frecuencia
+            
+                this.lastUpdate = Date.now(); // Limitar frecuencia de actualizacion
+
+                const xy = this.canvasToXY(e.clientX, e.clientY, canvas);
+
+                const w = this.config.xMax - this.config.xMin;
+                const h = this.config.yMax - this.config.yMin;
+
+                const r = e.deltaY < 0 ? 0.4 : 0.6; // Zoom in : Zoom out
+                
+                this.config.xMin = xy[0] - w * r;
+                this.config.xMax = xy[0] + w * r;
+
+                this.config.yMin = xy[1] - h * r;
+                this.config.yMax = xy[1] + h * r;
+
+                this.componentDidUpdate();
             }
         }
 
