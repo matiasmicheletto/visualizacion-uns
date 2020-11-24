@@ -8,7 +8,7 @@ import {
 } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import card_img_db from '../img/card_db.png';
-import card_img_plot from '../img/card_plot.png';
+import card_img_dashboard from '../img/card_dashboard.png';
 import card_img_repo from '../img/card_repo.png';
 import card_img_eda from '../img/card_kaggle.png';
 import {FaExternalLinkAlt} from 'react-icons/fa';
@@ -30,7 +30,7 @@ class Home extends Component {
                   <Card.Body>
                     <Card.Title>Análisis exploratorio <FaExternalLinkAlt/></Card.Title>
                     <Card.Text>
-                      Preprocesamiento y limpieza de los datos del conjunto original.
+                      Preprocesamiento y limpieza de los datos del conjunto original con Python (Kaggle Notebooks).
                     </Card.Text>
                   </Card.Body>
                 </Card>
@@ -43,7 +43,7 @@ class Home extends Component {
                   <Card.Body>
                     <Card.Title>Conjunto de datos</Card.Title>
                     <Card.Text>
-                      Previsualización de los datos crudos.
+                      Previsualización de los datos crudos y procesados.
                     </Card.Text>
                   </Card.Body>
                 </Card>
@@ -52,7 +52,7 @@ class Home extends Component {
             <Col sm={12} md={6} lg={4} xl={3}>
               <Link to="/dashboard" style={{color: "black"}}>
                 <Card className="shadow rounded">
-                  <Card.Img variant="top" src={card_img_plot} />
+                  <Card.Img variant="top" src={card_img_dashboard} />
                   <Card.Body>
                     <Card.Title>Tablero interactivo</Card.Title>
                     <Card.Text>
@@ -69,7 +69,7 @@ class Home extends Component {
                   <Card.Body>
                     <Card.Title>Documentación <FaExternalLinkAlt/></Card.Title>
                     <Card.Text>
-                      Código fuente del desarrollo.
+                      Código fuente de la aplicación.
                     </Card.Text>
                   </Card.Body>                    
                 </Card>

@@ -64,14 +64,14 @@ const classify = (s, n = 10, uf = false) => {
     // Convertir a una escala legible similar a porcentaje de probabilidad
     // La condicion es que la suma de las escalas invertidas, de P = 100%
 
-    let subStyles = styles.slice(0,n+1); // Tomar un elemento más para que el ultimo no quede en 0
+    let subStyles = styles.slice(0, n+1); // Tomar un elemento mas de los que se van a mostrar para que el ultimo no quede en 0
     const maxDist = Math.max.apply(Math, subStyles.map(v => { return v.dist; })); // Maxima distancia dentro de las n primeras clases
     const cSum = subStyles.reduce((a, b) => {return a + b.dist}, 0); // Suma de todos los elementos del subconjunto
-    subStyles = subStyles.map( v => {return {
+    subStyles = subStyles.map( v => {return { // Aplicar formula a cada elemento
         name: v.name, 
         dist: (maxDist - v.dist)/(maxDist*n - cSum + maxDist)*100,
         u: v.u
-    }} ); // Aplicar formula a cada elemento
+    }} ); 
 
     // Adaptar los resultados al formato de salida
     let result = {
@@ -80,7 +80,7 @@ const classify = (s, n = 10, uf = false) => {
         u: []
     };
 
-    for(let k in subStyles.slice(0,n)){
+    for(let k in subStyles.slice(0,n)){ // Volver a recortar para quitar el ultimo elemento (n+1) que no debe graficarse
         result.names[k] = subStyles[k].name;
         result.data[k] = {
             // Datos para grafico highchart

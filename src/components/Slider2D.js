@@ -88,17 +88,17 @@ class Slider2D extends Component {
 
         // Borrar canvas
         this.ctx.clearRect(0, 0, this.width, this.height);
-        this.ctx.lineWidth = 3;
+        
+        // Dibujar ejes de coordenadas
         this.ctx.strokeStyle = "#000000";
         this.ctx.fillStyle = "#000000";
         this.ctx.font = "18px Helvetica";
-        
+        this.ctx.lineWidth = 3;
 
-        // Dibujar ejes de coordenadas
         // Eje Y
         this.ctx.moveTo(this.padding, this.height - this.padding);
         this.ctx.lineTo(this.padding, this.padding);
-        // Etiqueta
+        // Etiqueta (90° de rotacion)
         this.ctx.save();
         this.ctx.rotate(-1.571);
         this.ctx.fillText(this.config.yLabel, this.padding - 80, this.padding - 5);
@@ -124,30 +124,30 @@ class Slider2D extends Component {
         this.ctx.lineTo(this.padding, xy[1]);
         this.ctx.fillText(this.state.yValue.toFixed(2), this.padding + 30, xy[1]);
         
-        
         this.ctx.stroke();
         
 
         // Dibujar centroides de cada clase
         // El radio es proporcional al peso de la clase
         if(this.props.dataBackground){
-            let idx = 0;
             this.ctx.font = "bold 12px Helvetica"; // Estilo de las etiquetas de las clases
-            for(let d of this.props.dataBackground.data){
+            for(let k in this.props.dataBackground.data){
+                let d = this.props.dataBackground.data[k]; // Para simplificar nombre
+                
                 this.ctx.strokeStyle = d.color; // Color solido de borde
                 this.ctx.fillStyle = d.color_t; // Color semitransparente de fondo
-                this.ctx.lineWidth = this.props.dataBackground.names[idx] === this.props.selected ? 10 : 1; // Estilo seleccionado
-                this.ctx.beginPath();
+                this.ctx.lineWidth = this.props.dataBackground.names[k] === this.props.selected ? 10 : 2; // Estilo seleccionado
+                
                 let p = this.xyToCanvas(d.u[2], d.u[1]); // Coordenadas para dibujar circulo y texto
-                this.ctx.arc(p[0], p[1], d.y*5, 0, 6.28);
-                if(this.props.showLabels) // Los nombres de los estilos se muestran si estan habilitados
-                    this.ctx.fillText(this.props.dataBackground.names[idx], p[0], p[1]);
+                
+                this.ctx.beginPath();
+                this.ctx.arc(p[0], p[1], d.y*5, 0, 6.3);
+                this.ctx.closePath();
                 this.ctx.fill();
                 this.ctx.stroke();
-                
-                
-                
-                idx+=1;
+
+                if(this.props.showLabels) // Los nombres de los estilos se muestran si estan habilitados
+                    this.ctx.fillText(this.props.dataBackground.names[k], p[0], p[1]);
             }
         }
 
