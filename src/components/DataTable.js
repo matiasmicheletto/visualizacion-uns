@@ -14,61 +14,58 @@ class DataTable extends Component {
   maxPages = 0 // Maxima cantidad de paginas (se ajusta en fc de los datos)
 
   state = {
-    header: [],
-    data: [],
-    attrs: [],
-    suffix: [],
-    cellStyler: {
-      method: (v)=>{return {}},
-      col: ""
+    header: [], // Encabezado de cada columna
+    data: [], // Conjunto de datos (array de objetos)
+    attrs: [], // Nombre de los atributos de cada columna
+    suffix: {}, // Sufijo para agregar unidades a cada columna
+    cellStyler: { // Funcion que toma el valor de una celda y devuelve el estilo
+      method: (v)=>{return {}}, // Metodo para estilizar
+      col: "" // Nombre del atributo a estilizar
     },
-    currentPage: 0,
-    selectorStart: 0
+    currentPage: 0, // Numero actual de pagina de la tabla
+    selectorStart: 0 // Numero del primer selector de la fila de botones del paginador
   }
     
-  setPage = (pos) => { 
+  setPage = (pos) => { // Funcion para actualizar estado actual de pagina que se muestra
     let newPos = pos < 0 ? 0 : (pos > this.maxPages ? this.maxPages : pos);
     let start = Math.floor(pos-this.selectorCount/2)
     start = start < 0 ? 0 : (start > this.maxPages-this.selectorCount ? this.maxPages-this.selectorCount : start);
     return {currentPage: newPos, selectorStart: start}
   }
 
-  incrementPage = () => {
+  incrementPage = () => { // Siguiente pagina
     this.setState((prevState,prevProps) => {
-      return this.setPage(prevState.currentPage + 1)
+      return this.setPage(prevState.currentPage + 1);
     });
   }
 
-  decrementPage = () => {
+  decrementPage = () => { // Pagina previa
     this.setState((prevState,prevProps) => {
-      return this.setPage(prevState.currentPage - 1)
+      return this.setPage(prevState.currentPage - 1);
     });
   }
 
-  gotoFirst = () => {
-    this.setState((prevState,prevProps) => {
-      return this.setPage(0)
-    });
+  gotoFirst = () => { // Volver al inicio
+    this.setState(this.setPage(0));
   }
 
-  gotoLast = () => {
-    this.setState((prevState,prevProps) => {
-      return this.setPage(this.maxPages)
-    });
+  gotoLast = () => { // Ir a la ultima pagina
+    this.setState(this.setPage(this.maxPages));
   }
 
-  pageSelector(pos) {
+  pageSelector(pos) { // Cada uno de los botones de seleccion del paginador
     return (
       <Pagination.Item 
-            onClick={() => {this.setState((prevState,prevProps) => {return this.setPage(pos-1)});}} 
-            className={this.state.currentPage===pos-1 ? "active": ""}
-            key={pos}> 
-              {pos}
+        key={pos}      
+        className={this.state.currentPage === pos-1 ? "active": ""}
+        onClick={() => {this.setState((prevState,prevProps) => {return this.setPage(pos-1)});}}
+        > 
+          {pos}
       </Pagination.Item>             
     )
   }
 
-  getHeader() { // Genera el encabezado de la tabla
+  getHeader() { // Genera las celdas del encabezado de la tabla
     return (
       this.state.header.map( (item, pos) => (
           <th key={pos}>{item}</th>
@@ -84,47 +81,29 @@ class DataTable extends Component {
         <tr key={pos}>
           { // Si enumera filas, agregar columna con los indices
             this.state.enumRows ?
-            <td>{start+pos+1}</td>
+              <td>{start+pos+1}</td>
             :
-            ""
+              ""
           }
           { // Resto de los atributos
-            this.state.attrs.map( (i, p)=>
-              (
-                this.state.cellStyler.col === i ? // Si una columna tiene estilizador, agregar
-                  <td key={p} style={this.state.cellStyler.method(item[i])}>{item[i].toFixed(2)}{this.state.suffix[i]}</td> 
-                :
-                  <td key={p}>{typeof item[i] === "number" && !Number.isInteger(item[i]) ? item[i].toFixed(2) : item[i]}{this.state.suffix[i]}</td> 
+            this.state.attrs.map( (i, p) => (
+                <td 
+                  key={p} 
+                  style={this.state.cellStyler.col === i ? this.state.cellStyler.method(item[i]): {}}>
+                    {
+                      typeof item[i] === "number" && !Number.isInteger(item[i]) ? item[i].toFixed(2) : item[i]
+                    }
+                    {this.state.suffix[i]}
+                </td> 
               )
             )
           }
         </tr>
-      ))                  
+      ))
     )
   }
 
-  componentDidMount() {
-    // Si la enumeracion de filas esta habilitada, agregar columna
-    let header = this.props.header;
-    if(this.props.enumRows)
-      header.unshift("#");
-
-    // Ajustar el numero de selectores
-    this.maxPages = Math.floor(this.props.data.length / this.itemsPerPage)
-    if(this.maxPages < this.selectorCount)
-      this.selectorCount = this.maxPages-1;
-
-    this.setState({
-      header: header,
-      data: this.props.data,
-      attrs: this.props.attrs,
-      suffix: this.props.suffix,
-      cellStyler: this.props.cellStyler,
-      enumRows: this.props.enumRows
-    });
-  }
-
-  render() {    
+  render() {   
     return (
         <div style={{width:"100%"}}>
           <Row>
@@ -164,6 +143,28 @@ class DataTable extends Component {
 
         </div>
     );
+  }
+
+  componentDidMount() {
+    if(this.props.data){ // Puede que demore un poco mas en pasar este argumento?
+      // Si la enumeracion de filas esta habilitada, agregar columna
+      let header = this.props.enumRows ? ["#"].concat(this.props.header) : this.props.header; 
+
+      // Ajustar el numero de selectores en funcion de la cantidad de datos
+      this.maxPages = Math.ceil(this.props.data.length / this.itemsPerPage)-1;
+      if(this.maxPages < this.selectorCount)
+        this.selectorCount = this.maxPages - 1;
+
+      // Actualizar estado para forzar un nuevo renderizado
+      this.setState({
+        header: header,
+        data: this.props.data,
+        attrs: this.props.attrs,
+        suffix: this.props.suffix,
+        cellStyler: this.props.cellStyler,
+        enumRows: this.props.enumRows
+      });
+    }
   }
 }
 
