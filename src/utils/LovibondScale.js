@@ -77,7 +77,7 @@ const LtoTextColor = (L) => {
     return { // Formato objeto estilo ReactJS
         backgroundColor: "rgb("+rgb[0]+","+rgb[1]+","+rgb[2]+")", 
         color: L>13?"white":"black"
-    };
+    };    
 }
 
 export {LtoRGB, LtoTextColor};

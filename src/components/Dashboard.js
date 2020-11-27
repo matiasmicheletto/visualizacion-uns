@@ -14,16 +14,18 @@ const defaultTarget = {
 };
 const numStyles = 15; // Cantidad de estilos a listar
 const useFreq = false; // Ponderar estilos por popularidad
+const useStColor = false; // Usar color promedio de la clase
 const selectedStyle = null; // Seleccionar algun estilo
 
 class Dashboard extends Component {
  
   state = {
     target: defaultTarget,
-    styles: classify(defaultTarget, numStyles, useFreq),
+    styles: classify(defaultTarget, numStyles, useFreq, useStColor),
     numStyles: numStyles, // Cantidad de estilos a incluir
     showLabels: true, // Mostrar etiquetas de estilos en el slider
     useFreq: useFreq, // Usar popularidad para ponderar estilos
+    useStColor: useStColor, // Usar color promedio del estilo
     selectedStyle: selectedStyle // Valor del estilo seleccionado del barplot
   }
 
@@ -41,7 +43,7 @@ class Dashboard extends Component {
   targetChange(newTarget) { // Evento de cambio de receta a evaluar
     let newState = {
       target: newTarget, 
-      styles: classify(newTarget, this.state.numStyles, this.state.useFreq),
+      styles: classify(newTarget, this.state.numStyles, this.state.useFreq, this.state.useStColor),
       selectedStyle: null // Al cambiar la posicion del slider, deseleccionar todas
     };    
     this.setState(newState);
@@ -51,7 +53,7 @@ class Dashboard extends Component {
     this.setState((p, c) => {                          
       return {
         target: p.target,
-        styles: classify(p.target, newValue, p.useFreq),
+        styles: classify(p.target, newValue, p.useFreq, p.useStColor),
         numStyles: newValue
       }
     });
@@ -103,13 +105,11 @@ class Dashboard extends Component {
                 </Form.Group>
                 <Form.Group>  
                   <Form.Check type="switch" id="freq-switch" label="Ponderar por popularidad" checked={this.state.useFreq}
-                    onChange={e => {
-                      this.setState({
-                        useFreq: e.target.checked, 
-                        styles: classify(this.state.target, this.state.numStyles, e.target.checked)});
-                      }}/>
-                  <Form.Check type="switch" id="labls-switch" label="Mostrar etiquetas" checked={this.state.showLabels}
+                    onChange={e => {this.setState({useFreq: e.target.checked, styles: classify(this.state.target, this.state.numStyles, e.target.checked, this.state.useStColor)});}}/>
+                  <Form.Check type="switch" id="labels-switch" label="Mostrar etiquetas" checked={this.state.showLabels}
                     onChange={e => {this.setState({showLabels: e.target.checked});}}/>
+                  <Form.Check type="switch" id="color-switch" label="Usar color de estilo" checked={this.state.useStColor}
+                    onChange={e => {this.setState({useStColor: e.target.checked, styles: classify(this.state.target, this.state.numStyles, this.state.useFreq, e.target.checked)});}}/>
                 </Form.Group>
               </Col>
             </Row>

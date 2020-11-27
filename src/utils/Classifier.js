@@ -1,6 +1,7 @@
 import data from '../data/beer_styles_distribution.json';
 import {multiply, transpose} from 'mathjs';
-import {hsl2rgb} from './Colors.js'
+import {hsl2rgb} from './Colors.js';
+import {LtoRGB} from '../utils/LovibondScale.js';
 
 const mahalanobis = (x, u, ci) => { 
     // Calcula la distancia de Mahalanobies entre el vector x y el vector u dada
@@ -17,11 +18,12 @@ const mahalanobis = (x, u, ci) => {
     return m;
 };
 
-const classify = (s, n = 10, uf = false) => {
+const classify = (s, n = 10, uf = false, cm = false) => {
     // Dado el estilo de cerveza con atributos "s = {color, ibu, abv}" obtiene la distancia
     // de Mahalanobis a cada estilo de cerveza conocido presente en el dataset "data"
-    // "n" es la cantidad de resultados a devolver y "uf" indica si hay que tener
-    // en cuenta la frecuencia de cada clase o no 
+    // "n" es la cantidad de resultados a devolver, "uf" indica si hay que tener
+    // en cuenta la frecuencia de cada clase o no y "cm" es para alternar el mapa
+    // de color basado en el color del centroide de la clase o el color predefinido
 
     // Devuelve un objeto con el formato necesario para graficar clases con Highcharts
     
@@ -82,13 +84,25 @@ const classify = (s, n = 10, uf = false) => {
 
     for(let k in subStyles.slice(0,n)){ // Volver a recortar para quitar el ultimo elemento (n+1) que no debe graficarse
         result.names[k] = subStyles[k].name;
-        result.data[k] = {
-            // Datos para grafico highchart
-            y: Math.round(subStyles[k].dist*100)/100, // Reducir a dos cifras
-            color: colors[subStyles[k].name], // Asignar color solido
-            // Datos para scatterplot en canvas
-            color_t: colors[subStyles[k].name+"_t"], // Asignar color semitransparente
-            u: subStyles[k].u // Pasar centroide
+        if(!cm) // Usar colores predefinidos
+            result.data[k] = {
+                // Datos para grafico highchart
+                y: Math.round(subStyles[k].dist*100)/100, // Reducir a dos cifras
+                color: colors[subStyles[k].name], // Asignar color solido
+                // Datos para scatterplot en canvas
+                color_t: colors[subStyles[k].name+"_t"], // Asignar color semitransparente
+                u: subStyles[k].u // Pasar centroide
+            };
+        else{ // Usar color del centroide de la clase
+            const centrColor = LtoRGB(subStyles[k].u[0]); // Componente 0 de u es Color
+            result.data[k] = {
+                // Datos para grafico highchart
+                y: Math.round(subStyles[k].dist*100)/100, // Reducir a dos cifras
+                color: "rgb("+centrColor[0]+","+centrColor[1]+","+centrColor[2]+")", // Asignar color solido
+                // Datos para scatterplot en canvas
+                color_t: "rgba("+centrColor[0]+","+centrColor[1]+","+centrColor[2]+","+0.5+")", // Asignar color semitransparente
+                u: subStyles[k].u // Pasar centroide
+            };
         }
     }
 
