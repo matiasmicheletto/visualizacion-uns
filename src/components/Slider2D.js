@@ -78,7 +78,7 @@ class Slider2D extends Component {
                     onMouseDown={this.mouseDown}
                     onMouseMove={this.mouseMove}
                     onMouseUp={this.mouseUp}
-                    onWheel={this.mouseWheel}
+                    //onWheel={this.mouseWheel}
                 ></canvas>
             </div>
         )
@@ -210,7 +210,10 @@ class Slider2D extends Component {
             }
         }
 
-        this.mouseWheel = e => { 
+        // Hay que agregarlo por fuera de react para que no propague (y evitar scroll de la pagina)
+        canvas.addEventListener('wheel', e => {
+            e.preventDefault(); 
+            e.stopPropagation();            
             if(Date.now() - this.lastUpdate > this.updateFreq){ // Limitar frecuencia
             
                 this.lastUpdate = Date.now(); // Limitar frecuencia de actualizacion
@@ -230,7 +233,8 @@ class Slider2D extends Component {
 
                 this.componentDidUpdate();
             }
-        }
+        });
+
 
         knobImg.onload = () => { // Luego de cargar imagen de la perilla, redibujar
             this.componentDidUpdate();
