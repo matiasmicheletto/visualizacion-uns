@@ -141,7 +141,7 @@ class Slider2D extends Component {
                 let p = this.xyToCanvas(d.u[2], d.u[1]); // Coordenadas para dibujar circulo y texto
                 
                 this.ctx.beginPath();
-                this.ctx.arc(p[0], p[1], d.y*5, 0, 6.3);
+                this.ctx.arc(p[0], p[1], d.r*5, 0, 6.3);
                 this.ctx.closePath();
                 this.ctx.fill();
                 this.ctx.stroke();
