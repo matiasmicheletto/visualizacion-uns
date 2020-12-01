@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Análisis visual de grandes Conjuntos de datos - Trabajo Final</title>
+
+		<meta name="description" content="Análisis visual de grandes Conjuntos de datos - Trabajo Final">
+		<meta name="author" content="Matias Micheletto">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css" id="theme">		        
+	</head>
+
+	<body>
+		<div class="reveal">
+
+			<div class="slides">
+				<section data-background="img/Beers.jpg" class="opaque">
+					<h5>Análisis Visual de Grandes Conjuntos de Datos</h5>					
+					<h5>Trabajo Final<i></i></h5>
+					<br>
+					<h3>Análisis de los estilos de cerveza</h3>
+					<br><br>
+					<p style="font-size: 60%;">Matías Micheletto</p>	
+				</section>
+
+                <section data-background="img/Fabricacion.png" data-background-size="contain">
+                    <aside class="notes">
+                        <p>cocción y fermentación de mosto (líquido que se extrae del remojo de la malta de cebada)</p>
+                    </aside>
+                </section>
+
+                <section data-background="img/Infografia_2.png" data-background-size="contain">                    
+                </section>
+                
+                <section data-background-color="#ffffff" data-background="img/Infografia_1.png" data-background-size="contain">
+                </section>
+
+				<section data-background-iframe="https://www.brewersfriend.com/" data-background-interactive>
+				</section>
+
+                <section data-background-color="#ffffff" data-background="img/BrewersFriendPricing.png" data-background-size="contain">
+                </section>
+
+                <section data-background-color="#ffffff" data-background="img/KaggleDataset.png" data-background-size="contain">
+                </section>
+
+                <section data-background-color="#ffffff" data-background="img/MissingValues.png" data-background-size="contain">    
+                    <aside class="notes">
+                        <p>73.861 filas x 22 cols</p> 
+                        <p>6 son atributos categóricos y 16 son numéricos</p>
+                        <p>Missingno -> 10% del total aleatorio sin reemplazo.</p>
+                    </aside>
+                </section>
+
+                <section data-background-color="#ffffff" data-background="img/MissingValues_SelectedVars.png" data-background-size="contain">                   
+                </section>
+
+                <section data-background="img/Beers2.jpg" class="opaque">
+                    <p><b>ABV =</b> <i>Alcohol By Volume</i> </p>
+                    <ul>
+                        <li>Indica la graduación alcohólica de la cerveza y se expresa en porcentaje de etanol por volumen total.</li>
+                        <li>Suele encontrarse entre el 4% y 6% aunque puede llegar hasta el 40% en algunos estilos particulares.</li>                        
+                    </ul>
+                    \[\begin{equation}
+                        ABV = \frac{OG-FG}{FG} \times 133.00
+                    \end{equation} \]   
+                </section>
+
+                <section data-background="img/Beers3.jpg" class="opaque">
+                    <p><b>IBU =</b> <i>Interational Bitterness Units</i> </p>
+                    <ul>
+                    <li>Es un indicador de la cantidad de alfa-ácidos isomerizados durante la cocción del mosto.</li>
+                    <li>A mayor valor de IBU, más amarga es la cerveza.</li>
+                    <li>En general la escala abarca el rango de 0 a 100, pero existen cervezas que superan ampliamente este valor.</li>
+                    </ul>
+                    <aside class="notes">
+                        <p>Alfa-acidos -> componente del lúpulo</p> 
+                        <p>Isomerización -> restructuracion de las moléculas de un compuesto.</p>
+                    </aside>
+                </section>
+
+                <section data-background="img/Beers5.jpg" class="opaque">
+                    <p>
+                        <b>COLOR</b>
+                        <img src="img/LovibondColorimeter.png" style="position: absolute; z-index:-1; background: 0; border:0; opacity: 0.5"/>
+                    </p>
+                    
+                    <ul>
+                        <li>Se mide en escalas EBC (European Brewery Convention), SRM (Standard Reference Method) o Lovibond (°L).</li>
+                        <li>El rango de la escala EBC es de 0 a 80, SRM es de 0 a 60 y Lovibond es de 0 a 40.</li>
+                    </ul>
+                </section>
+
+                <section data-background="img/Beers5.jpg" class="opaque">
+                    <p>
+                        <b>COLOR</b>
+                        <img src="img/LovibondColorimeter.png" style="position: absolute; z-index:1; background: 0; border:0; opacity: 1"/>
+                    </p>
+                    
+                    <ul>
+                        <li>Se mide en escalas EBC (European Brewery Convention), SRM (Standard Reference Method) o Lovibond (°L).</li>
+                        <li>El rango de la escala EBC es de 0 a 80, SRM es de 0 a 60 y Lovibond es de 0 a 40.</li>
+                    </ul>
+                    <aside class="notes">
+                         Joseph Williams Lovibond 1883.
+                    </aside>
+                </section>
+
+                <section data-background="img/Popularity_inv.png" data-background-size="contain">  
+                    <aside class="notes">
+                        <p>175 clases diferentes en total</p>
+                        <p>Primeros 10 estilos -> 45% del total</p>
+                        <p>75 estilos menos populares -> menos de 100 observaciones c/u</p>
+                    </aside>            
+                </section>
+
+                <section data-background="img/Scatter_inv.png" data-background-size="contain">
+                </section>
+
+                <section data-background="img/Distancia_1.png" data-background-size="contain">                    
+                </section>
+
+                <section data-background="img/Distancia_2.png" data-background-size="contain">  
+                </section>
+
+                <section data-background="img/Distancia_3.png" data-background-size="contain">
+                </section>
+
+                <section data-background="img/Distancia_4.png" data-background-size="contain">  
+                </section>
+
+                <section data-background="img/VariableDistribution_inv.png" data-background-size="contain">
+                </section>
+
+                <section data-background="img/Distancia_5.png" data-background-size="contain">                    
+                </section>
+
+                <section data-background="img/Distancia_6.png" data-background-size="contain">                    
+                </section>
+
+                <section data-background="img/Distancia_7.png" data-background-size="contain">  
+                </section>
+
+                <section data-background="img/Diseño_1.png" data-background-size="contain">
+                </section>
+
+                <section data-background="img/Diseño_2.png" data-background-size="contain"> 
+                    <aside class="notes">
+                        <p>Primario -> Gráfico cualitativo. Secundario -> Gráfico cuantitativo.</p>
+                    </aside>
+                </section>
+
+                <section data-background="img/Diseño_3.png" data-background-size="contain">                    
+                </section>
+                
+                <section data-background="img/Diseño_final.png" data-background-size="contain">                    
+                </section>
+
+                <section data-background="img/Distancia_8.png" data-background-size="contain">                    
+                </section>
+
+                <section data-background="img/Distancia_9.png" data-background-size="contain">                    
+                </section>
+
+                <section data-background="img/Beers6.jpg" class="opaque">
+                    <p>Requerimientos</p>
+                    <ul style="font-size: 0.75em">
+                        <li>Se debe contar con un tablero interactivo para visualizar gráficamente el espacio de variables y poder desplazar unos cursores de prueba para evaluar distintas recetas de cerveza.</li>
+                        <li>Los resultados se deben actualizar en forma continua a medida que se modifican los valores del objetivo evaluado.</li>
+                        <li>Debe ser portable (multiplataforma).</li>
+                        <li>Debe tener libre acceso.</li>
+                    </ul>
+                </section>
+
+                <section data-background="img/Beers3.jpg" class="opaque">
+                    <h2>DEMO</h2>
+                    <a href="https://vis-uns.herokuapp.com" rel="noreferrer noopener" target="_blank">https://vis-uns.herokuapp.com</a>
+                </section>
+
+                <section data-background-iframe="https://vis-uns.herokuapp.com" data-background-interactive>
+                </section>
+
+                <section data-background="img/Beers4.jpg" class="opaque">
+                    <h4>Tecnologías utilizadas</h4>
+                    <img src="img/logos/nodejs.png" width="200px" style="background: 0; border:0;"/>
+                    <img src="img/logos/react.png" width="120px" style="background: 0; border:0;"/>
+                    <img src="img/logos/bootstrap.png" width="100px" style="background: 0; border:0;"/>
+                    <img src="img/logos/highcharts.png" width="200px" style="background: 0; border:0;"/>
+                    <img src="img/logos/heroku.png" width="120px" style="background: 0; border:0;"/>
+                </section>
+
+                <section data-background="img/MUV_inv_1.png" data-background-size="contain">    
+                    <h4>Modelo Unificado de Visualización</h4>                
+                </section>
+
+                <section data-background="img/MUV_inv_2.png" data-background-size="contain">                    
+                </section>
+
+                <section data-background="img/MUV_inv_3.png" data-background-size="contain">                    
+                </section>
+
+                <section data-background="img/MUV_inv_4.png" data-background-size="contain">                    
+                </section>
+
+                <section data-background="img/MUV_inv_5.png" data-background-size="contain">                    
+                </section>
+
+                <section data-background="img/MUV_inv_6.png" data-background-size="contain">                    
+                </section>
+
+                <section data-background="img/Beers.jpg" class="opaque">
+                    <h5>Análisis Visual de Grandes Conjuntos de Datos</h5>                  
+                    <h5>Trabajo Final<i></i></h5>
+                    <br>
+                    <h3>Análisis de los estilos de cerveza</h3>  
+                    <br><br>
+                    <p style="font-size: 60%;">Matías Micheletto</p>                    
+                </section>
+
+
+
+                <!-- 
+				<section data-background="img/Beers2.jpg" class="opaque">
+					<p style="text-align: left;">Preguntas a resolver con una visualización:</p>
+					<ol>
+						<li>¿Cuáles son los estilos de cerveza más populares en el ámbito de la cervercería artesanal?</li>
+						<br>
+						<li>¿Cuáles son la o las propiedades o características cuantitativas de la cerveza que mejor definen cada tipo o estilo?</li>
+						<br>
+						<li>¿Es posible clasificar los estilos de acuerdo a estas propiedades?</li>
+					</ol>
+				</section>
+                -->
+
+
+				
+			</div>
+		</div>
+
+		<script src="js/reveal.js"></script>		
+        <script src="js/x-frame-bypass.js"></script>        
+		<script>
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				center: true,
+				hash: true,
+				transition: 'fade', // none/fade/slide/convex/concave/zoom
+				backgroundTransition: 'fade',
+                math: {
+                  mathjax: 'https://cdn.jsdelivr.net/gh/mathjax/mathjax@2.7.8/MathJax.js',
+                  config: 'TeX-AMS_HTML-full',
+                  TeX: { Macros: { RR: "{\\bf R}" } }
+                },
+				dependencies: [
+					{ src: 'plugin/highlight/highlight.js' },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true },
+                    { src: 'plugin/math/math.js', async: true }
+				]
+			});
+		</script>
+
+	</body>
+</html>
