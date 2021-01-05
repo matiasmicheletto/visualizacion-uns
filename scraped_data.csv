@@ -1,4 +1,43 @@
-name,style,abv,ibu,color
+Avg. Perfect Northeast IPA (NEIPA),Specialty IPA: New England IPA,6.5,59.26,5.2 °L
+Sierra Nevada Pale Ale Clone,American Pale Ale,5.58,39.79,8 °L
+Vanilla Cream Ale,Cream Ale,5.48,19.44,4.83 °L
+Zombie Dust Clone - ALL GRAIN,American IPA,5.94,62.42,8.5 °L
+Russian River Pliny The Elder (original),Imperial IPA,7.09,232.89,6.33 °L
+Spotted Clown (New Glarus Spotted Cow Clone),Cream Ale,5.36,21.27,5.94 °L
+Chocolate Vanilla Porter,Robust Porter,5.77,31.36,34.76 °L
+Southern Tier Pumking Clone,Holiday/Winter Special Spiced Beer,8.16,50.22,15.64 °L
+Zombie Dust Clone - EXTRACT,American IPA,6.16,70.18,8.98 °L
+Mango Habanero IPA,Imperial IPA,8.88,98.09,8.55 °L
+Bakke Brygg Belgisk Blond 50 L,Belgian Blond Ale,6.52,18.54,4.35 °L
+Tank 7 Clone,Saison,7.63,41.11,6.25 °L
+White IPA,American IPA,6.2,55.96,3.91 °L
+Bells Two Hearted Clone,American IPA,7.14,63.62,8.1 °L
+Pilsner Urquell BYO Clone,Bohemian Pilsener,4.92,36.45,3.61 °L
+Racer 5 IPA Clone,American IPA,7.07,73.63,6.28 °L
+Sam Adams Rebel IPA Clone,American IPA,6.51,45.32,10.54 °L
+Bakke Brygg HveteIPA 25 L,American IPA,6.76,64.26,7.78 °L
+New Glarus Fat Squirrel Clone,Northern English Brown,4.61,22.81,12.56 °L
+Hop Notch Clone,American IPA,6.62,71.54,14.26 °L
+NEIPA Hoppy ( Juicy) -  Braumeister 20L,Specialty IPA: New England IPA,6.46,49.01,4.6 °L
+Goose Island IPA Clone,English IPA,6.63,51.93,9.47 °L
+Bill's Double Chocolate Milk Stout,Sweet Stout,5.87,33.9,41.27 °L
+NEIPA - Tired Hands Milkshake,American IPA,5.87,72.32,3.56 °L
+Simple Citra IPA - One Gallon,American IPA,6.1,40.9,11.45 °L
+Hazy Juicy IPA,American IPA,6.51,98.86,4.26 °L
+Lagunitas IPA Clone,English IPA,6.17,54.51,5.85 °L
+Ballast Point Sculpin Ale Clone,Imperial IPA,8.43,68.21,6.26 °L
+Brooklyn Sorachi Ace,Saison,9.1,33,4.1 °L
+Heineken Lager Clone,Premium American Lager,5.41,24.28,3.3 °L
+Brewdog Punk IPA Clone,American IPA,5.7,40.7,4.82 °L
+Pilsner Urquell National Award-Winning Clone (Decoction And Non-Decoction Version),Czech Premium Pale Lager,5,34.83,2.92 °L
+Dry Irish Stout: Guinness Clone,Dry Stout,4.44,35.43,31.4 °L
+Great Lakes Christmas Ale Clone,Winter Seasonal Beer,7.16,30.71,10.98 °L
+Easy Blonde Ale,Blonde Ale,4.48,22.6,4.15 °L
+Cascade Pale Ale,American Pale Ale,5.24,38.07,3.79 °L
+Julius | Tree House Brewing (approximation) Braumeister 20L,American IPA,6.6,42.96,5.57 °L
+Tree House Julius Clone,American IPA,6.26,77.09,6.93 °L
+New England IPA,American IPA,6.93,69.23,6.82 °L
+Dale's Pale Ale Clone,American Pale Ale,6.6,83.71,11.69 °L
 Blood Orange IPA Clone,American IPA,6.47,61.25,8.23 °L
 Biermuncher's Centennial Blonde,Blonde Ale,3.83,23.57,3.73 °L
 Hoegaarden Clone,Weizen/Weissbier,5.18,14.69,4.05 °L
@@ -19,3 +58,23 @@ Milkshake Style IPA Clone,American IPA,7.05,56.68,7.06 °L
 Coors Light Clone,Light American Lager,3.7,23.57,2.83 °L
 Trillium Inspired Pale Ale Clone,Double IPA,7.01,72.7,5.67 °L
 Kilkenny Irish Cream Ale Clone,Irish Red Ale,5.34,27.34,27.63 °L
+Rochefort 10 Clone,Belgian Dark Strong Ale,11.3,27,20.93 °L
+Jeremiah Red Clone,Irish Red Ale,7.07,29.03,16.04 °L
+Sierra Nevada Pale Ale Clone,American IPA,5.57,34.21,10.33 °L
+Corona Clone?,International Pale Lager,4.67,19.6,4.15 °L
+Bakke Brygg Julelager 25 L,Traditional Bock,6.53,26.69,18.96 °L
+Budvar Original Clone,Czech Premium Pale Lager,4.95,28.56,4.65 °L
+Founders Porter Clone,Robust Porter,6.06,34.91,40 °L
+Heady Topper Clone,Double IPA,8.03,123.51,6.04 °L
+Blue Moon Belgian White,Witbier,5.17,12.18,3.87 °L
+Hoppy Mango Kettle Sour,Mixed-Fermentation Sour Beer,5.96,10.12,5.04 °L
+Bell's Two Hearted (Official Clone Recipe),American IPA,6.91,70.13,6.81 °L
+Syntax Error IPA II,American IPA,7.2,105.67,7.77 °L
+Belgian Strong Pale - La Chouffe,Belgian Golden Strong Ale,8.14,24.96,4.28 °L
+Mosaic IPA,American IPA,7.24,67.25,7.68 °L
+Elvis Juice V2.0,American IPA,6.45,32.49,6.76 °L
+Cigar City Jai Alai Clone,Imperial IPA,7.89,89.8,11.3 °L
+Bakke Brygg Robust Porter 50 L,Robust Porter,5.93,36.24,34.44 °L
+Belgian Wit,Witbier,4.85,18.9,3.33 °L
+Vanilla Caramel Cream Ale,Cream Ale,5.43,26.45,10.08 °L
+1664 Blanc Clone,Witbier,5.87,23.21,3.11 °L
