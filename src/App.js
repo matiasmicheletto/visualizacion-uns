@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Menu from './components/Menu.js';
 import Home from './components/Home.js';
 import DataSection from './components/DataSection.js';
+import Model from './components/Model.js';
 import Dashboard from './components/Dashboard.js';
 import About from './components/About.js';
 import {
@@ -26,6 +27,9 @@ class App extends Component {
             </Route>
             <Route path="/data">
               <DataSection />
+            </Route>
+            <Route path="/model">
+              <Model />
             </Route>
             <Route path="/dashboard">
               <Dashboard />

@@ -1,0 +1,42 @@
+{
+    "nodes": [
+        {
+            "id": "main",
+            "label": "Cerveza"
+        },
+        {
+            "id": "ale",
+            "label": "Ale"
+        },
+        {
+            "id": "lager",
+            "label": "Lager"
+        },
+        {
+            "id": "belgian_ale",
+            "label": "Belgian/French Ale"
+        },
+        {
+            "id": "pale_ale",
+            "label": "Pale Ale"
+        }
+    ],
+    "edges": [
+        {
+            "from": "main",
+            "to": "ale"
+        },
+        {
+            "from": "main",
+            "to": "lager"
+        },
+        {
+            "from": "ale",
+            "to": "belgian_ale"
+        },
+        {
+            "from": "ale",
+            "to": "pale_ale"
+        }
+    ]
+}

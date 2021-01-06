@@ -1,19 +1,20 @@
-from urllib.request import Request, urlopen
+import requests
 import bs4
 import os
 import csv
 from random import uniform, sample
 from time import sleep
+import argparse
 
 
 # Script parameters
 url = 'https://www.brewersfriend.com/homebrew-recipes/page/'
 row_len = 10 # Number of columns that each row must have to match the desired data
-start_page = 1 # Scraping range from
-end_page = 200 # Scraping range to (add one)
-output_file_name = 'scraped_data.csv'
+start_page = 2000 # Scraping range from
+end_page = 3000 # Scraping range to (add one)
 del_if_exists = True # Delete the log file before start if already exist
-request_timeout = 10 # If the request takes too much time, stop scrapper
+request_timeout = 30 # If the request takes too much time, stop scrapper
+ua_database = 'user-agents.txt' # File with a list of user agents
 
 # Indexes of columns of interest (may change on website version)
 col_numbers = {
@@ -21,41 +22,63 @@ col_numbers = {
     'style': 1, # Recipe style (may contain commas)
     'abv': 5,
     'ibu': 6,
-    'color': 7
+    'color': 7 # Contains unit (° L)
 }
 
 
 def load_user_agents(): # Load a list of user agents from txt file
     ua = []
-    with open('user-agents.txt', 'r') as fd:
-        reader = csv.reader(fd)
-        for row in reader:
-            ua.append(row[0])
+    if os.path.exists(ua_database):
+        print('Loading user-agents...', end = '', flush = True)
+        with open(ua_database, 'r') as fd:
+            reader = csv.reader(fd)
+            for row in reader:
+                ua.append(row[0])
+            print(' Done.')
+    else: # If the database is not found
+        print('User agent list not found, using default value')
+        ua = ['Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36']
     return ua 
 
 
 def request_page(url, page_num, user_agent): # Request page and return data table as array
     pn = str(page_num)
-    print('Requesting page ' + pn + ' -- (UA = ' + user_agent + ')...', end = '')
-    req = Request(url + pn, headers = {'User-Agent': user_agent, 'Referer': 'https://www.google.com'})
-    content = urlopen(req, timeout = request_timeout).read()
-
     data = []
 
-    if len(content) > 0:
-        soup = bs4.BeautifulSoup(content, 'html.parser')
-        table = soup.find('table')
-        table_body = table.find_all('tbody')[1]
-        rows = table_body.find_all('tr')
-
-        for row in rows:
-            col_numbers = row.find_all('td')
-            col_numbers = [ele.text.strip() for ele in col_numbers]
-            data.append([ele for ele in col_numbers if ele])
-        
-        print(' Done.')
+    print('Requesting page ' + pn + ' -- (UA = ' + user_agent + ')...', end = '', flush = True)
+    try:
+        req = requests.get(url + pn, headers = {'user-agent': user_agent, 'referer': 'https://www.google.com'}, timeout = request_timeout)
+    except requests.HTTPError:
+        print(' HTTP Error')
+    except requests.ConnectionError:    
+        print(' Connection Error')
+    except requests.SSLError:
+        print(' SSL Error')
+    except requests.Timeout:
+        print(' Socket timed out')
     else:
-        print('\nEmpty page or request timed out')
+        content = req.content
+        print(' Done.')
+        if len(content) > 0: # Check if content is empty or not
+            print('Parsing content... ', end = '')
+            soup = bs4.BeautifulSoup(content, 'html.parser')
+            table = soup.find('table')
+            if table is not None: # Sometimes this table comes empty
+                table_body = table.find_all('tbody')[1]
+
+                if table_body is not None:
+                    rows = table_body.find_all('tr')
+
+                    for row in rows:
+                        col_numbers = row.find_all('td')
+                        col_numbers = [ele.text.strip() for ele in col_numbers]
+                        data.append([ele for ele in col_numbers if ele])
+                else:
+                    print('\nTable without rows.')
+            else:
+                print('\nTable not found.')
+            
+            print(' Done.', flush = True)
 
     return data
 
@@ -66,7 +89,7 @@ def extract_columns(row, col_numbers): # Extract the columns of interest
         row[col_numbers['style']], 
         row[col_numbers['abv']], 
         row[col_numbers['ibu']], 
-        row[col_numbers['color']] 
+        row[col_numbers['color']].replace(' °L','') # Remove unit symbol
     ]
 
     for k,el in enumerate(r): # Remove commas
@@ -76,7 +99,7 @@ def extract_columns(row, col_numbers): # Extract the columns of interest
 
 
 def write_to_file(filename, data): # Write table to csv file
-    print('Writing ' + str(len(data)) + ' lines to file ' + filename + '...', end = '')
+    print('Writing ' + str(len(data)) + ' lines to file ' + filename + '...', end = '', flush = True)
 
     with open(filename, 'a') as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames = ['name', 'style', 'abv', 'ibu', 'color'])
@@ -90,27 +113,49 @@ def write_to_file(filename, data): # Write table to csv file
                 'color': r[4]
             })
         
-    print(' Done.\n')
+    print(' Done.\n', flush = True)
 
 
 def random_pause(): # Random pause to simulate human user
-    sleep(uniform(1, 5))
+    s = round(uniform(5, 10))
+    print('Waiting for {} seconds'.format(s), flush = True)
+    sleep(s)
 
 
-# Obtain the user agent list
-ua = load_user_agents()
 
-# Check if file exists before begin
-if os.path.exists(output_file_name) and del_if_exists:
-        print('File already exist, deleting...', end = '')
+
+if __name__ == '__main__':
+
+    parser = argparse.ArgumentParser(description = "Brewer's Friend database scrapper")
+    parser.add_argument('-s','--start_page', help = 'Start page number', required = False)
+    parser.add_argument('-e','--end_page', help = 'End page number', required = False)
+    parser.add_argument('-f','--output_file', help = 'CSV output file name', required = False)
+    args = parser.parse_args()
+
+    start_page = int(args.start_page)
+    end_page = int(args.end_page)
+
+    output_file_name = 'scraped_data_' + str(start_page) + '.csv'
+
+    print('Scrapping pages ' + str(start_page) + ' to ' + str(end_page))
+
+    # Obtain the user agent list
+    ua = load_user_agents()
+
+    # Check if file exists before begin
+    if os.path.exists(output_file_name) and del_if_exists:
+        print('File already exist, deleting...', end = '', flush = True)
         os.remove(output_file_name)
-        print(' Done.')
+        print(' Done.', flush = True)
 
-# Start scrapping
-for n in range(start_page, end_page):
-    data = request_page(url, n, sample(ua,1)[0])
-    output = [ extract_columns(d, col_numbers) for d in data if len(d) == row_len ]
-    write_to_file(output_file_name, output)
-    if n < end_page - start_page - 1:
+    # Begin scrapping
+    n = start_page
+    while n < end_page:
+        data = request_page(url, n, sample(ua,1)[0])
+        
+        if len(data) > 0:
+            output = [ extract_columns(d, col_numbers) for d in data if len(d) == row_len ]
+            write_to_file(output_file_name, output)
+            n = n+1 # Go to next page only if data acquired is valid
+        
         random_pause()
-

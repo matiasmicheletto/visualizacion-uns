@@ -16,6 +16,7 @@ class Menu extends Component {
         <Nav className="mr-auto">          
           <NavLink to="/home" component={Nav.Link} activeClassName='active'>Inicio</NavLink>
           <NavLink to="/data" component={Nav.Link} activeClassName='active'>Datos</NavLink>
+          <NavLink to="/model" component={Nav.Link} activeClassName='active'>Modelo</NavLink>
           <NavLink to="/dashboard" component={Nav.Link} activeClassName='active'>Tablero</NavLink>                    
         </Nav>          
         <Nav>
