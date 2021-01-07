@@ -1,0 +1,50 @@
+[
+    {
+        "id": "Main",
+        "label": "Styles"
+    },
+    {
+        "id": "Ale",
+        "label": "Ale"
+    },
+    {
+        "id": "Lager",
+        "label": "lager"
+    },
+    {
+        "id": "Pale_Ale",
+        "label": "Pale Ale"
+    },
+    {
+        "id": "Belgian_Ale",
+        "label": "Belgian Ale"
+    },
+    {
+        "id": "Belgian_Dark_Ale",
+        "label": "Belgian Dark Ale"
+    },
+    {
+        "id": "Belgian_Strong_Pale_Ale",
+        "label": "Belgian Strong Pale Ale"
+    },
+    {
+        "id": "Lambic",
+        "label": "Lambic"
+    },
+    {
+        "id": "German_Ale",
+        "label": "German Ale"
+    },
+    {
+        "id": "Strong_Pale_Ale",
+        "label": "Strong Pale Ale"
+    },
+    {
+        "id": "Straight_(Unblended)_Lambic",
+        "label": "Straight (Unblended) Lambic"
+    },
+    {
+        "id": "India_Pale_Ale",
+        "label": "Indica Pale Ale"
+    }
+]

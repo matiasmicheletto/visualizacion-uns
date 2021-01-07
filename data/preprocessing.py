@@ -10,7 +10,7 @@ import math
 
 
 ## Configuracion del script
-save_figs = True # Guardar graficos de salida
+save_figs = False # Guardar graficos de salida
 update_output_data = False # Actualizar datos calculados
 
 

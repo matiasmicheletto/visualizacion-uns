@@ -1,42 +1,142 @@
-{
-    "nodes": [
-        {
-            "id": "main",
-            "label": "Cerveza"
-        },
-        {
-            "id": "ale",
-            "label": "Ale"
-        },
-        {
-            "id": "lager",
-            "label": "Lager"
-        },
-        {
-            "id": "belgian_ale",
-            "label": "Belgian/French Ale"
-        },
-        {
-            "id": "pale_ale",
-            "label": "Pale Ale"
-        }
-    ],
-    "edges": [
-        {
-            "from": "main",
-            "to": "ale"
-        },
-        {
-            "from": "main",
-            "to": "lager"
-        },
-        {
-            "from": "ale",
-            "to": "belgian_ale"
-        },
-        {
-            "from": "ale",
-            "to": "pale_ale"
-        }
-    ]
-}
+[
+    {
+        "from": "Main",
+        "to": "Ale"
+    },
+    {
+        "from": "Main",
+        "to": "Lager"
+    },
+    {
+        "from": "Ale",
+        "to": "Belgian_Ale"
+    },
+    {
+        "from": "Ale",
+        "to": "Pale_Ale"
+    },
+    {
+        "from": "Witbier",
+        "to": "Belgian_Ale"
+    },
+    {
+        "from": "Belgian_Ale",
+        "to": "Belgian_Dark_Ale"
+    },
+    {
+        "from": "Belgian_Dark_Ale",
+        "to": "Belgian_Dark_Strong_Ale"
+    },
+    {
+        "from": "Belgian_Dark_Strong_Ale",
+        "to": "Belgian_Dubbel"
+    },
+    {
+        "from": "Belgian_Ale",
+        "to": "Belgian_Pale_Ale"
+    },
+    {
+        "from": "Belgian_Pale_Ale",
+        "to": "Belgian_Strong_Pale_Ale"
+    },
+    {
+        "from": "Belgian_Strong_Pale_Ale",
+        "to": "Belgian_Tripel"
+    },
+    {
+        "from": "Belgian_Ale",
+        "to": "Saison"
+    },
+    {
+        "from": "Ale",
+        "to": "Lambic"
+    },
+    {
+        "from": "Lambic",
+        "to": "Fruit_Beer"
+    },
+    {
+        "from": "Ale",
+        "to": "German_Ale"
+    },
+    {
+        "from": "German_Ale",
+        "to": "Weizen\/Weissbier"
+    },
+    {
+        "from": "Pale_Ale",
+        "to": "American_Pale_Ale"
+    },
+    {
+        "from": "American_Pale_Ale",
+        "to": "American_Amber_Ale"
+    },
+    {
+        "from": "American_Pale_Ale",
+        "to": "Blonde_Ale"
+    },
+    {
+        "from": "Ale",
+        "to": "American_Brown_Ale"
+    },
+    {
+        "from": "Ale",
+        "to": "Mild"
+    },
+    {
+        "from": "Ale",
+        "to": "Irish_Red_Ale"
+    },
+    {
+        "from": "Pale_Ale",
+        "to": "Strong_Pale_Ale"
+    },
+    {
+        "from": "Strong_Pale_Ale",
+        "to": "American_Strong_Ale"
+    },
+    {
+        "from": "Strong_Pale_Ale",
+        "to": "British_Strong_Ale"
+    },
+    {
+        "from": "Strong_Pale_Ale",
+        "to": "Old_Ale"
+    },
+    {
+        "from": "Strong_Pale_Ale",
+        "to": "American_Barleywine"
+    },
+    {
+        "from": "Strong_Pale_Ale",
+        "to": "Strong_Scotch_Ale"
+    },
+    {
+        "from": "American_Pale_Ale",
+        "to": "American_Wheat_Beer"
+    },
+    {
+        "from": "Lambic",
+        "to": "Straight_(Unblended)_Lambic"
+    },
+    {
+        "from": "Pale_Ale",
+        "to": "India_Pale_Ale"
+    },
+    {
+        "from": "India_Pale_Ale",
+        "to": "Double_IPA"
+    },
+    {
+        "from": "Imperial_IPA",
+        "to": "Extra_Special\/Strong_Bitter_(ESB)"
+    },
+    {
+        "from": "Pale_Ale",
+        "to": "Imperial_IPA"
+    },
+    {
+        "from": "",
+        "to": ""
+    }
+]
