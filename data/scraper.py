@@ -5,6 +5,7 @@ import csv
 from random import uniform, sample
 from time import sleep
 import argparse
+import urllib3 # For disable warnings only
 
 
 # Script parameters
@@ -47,13 +48,13 @@ def request_page(url, page_num, user_agent): # Request page and return data tabl
 
     print('Requesting page ' + pn + ' -- (UA = ' + user_agent + ')...', end = '', flush = True)
     try:
-        req = requests.get(url + pn, headers = {'user-agent': user_agent, 'referer': 'https://www.google.com'}, timeout = request_timeout)
+        req = requests.get(url + pn, headers = {'user-agent': user_agent, 'referer': 'https://www.google.com'}, timeout = request_timeout, verify = False)
     except requests.HTTPError:
         print(' HTTP Error')
     except requests.ConnectionError:    
         print(' Connection Error')
-    except requests.SSLError:
-        print(' SSL Error')
+    #except requests.SSLError:
+    #    print(' SSL Error')
     except requests.Timeout:
         print(' Socket timed out')
     else:
@@ -64,9 +65,9 @@ def request_page(url, page_num, user_agent): # Request page and return data tabl
             soup = bs4.BeautifulSoup(content, 'html.parser')
             table = soup.find('table')
             if table is not None: # Sometimes this table comes empty
-                table_body = table.find_all('tbody')[1]
-
-                if table_body is not None:
+                tbody_list = table.find_all('tbody') # In the web, there are 2 tbody, maybe they fix this later
+                if tbody_list is not None and len(tbody_list) >= 2:
+                    table_body = tbody_list[1]
                     rows = table_body.find_all('tr')
 
                     for row in rows:
@@ -117,7 +118,7 @@ def write_to_file(filename, data): # Write table to csv file
 
 
 def random_pause(): # Random pause to simulate human user
-    s = round(uniform(5, 10))
+    s = round(uniform(3, 6))
     print('Waiting for {} seconds'.format(s), flush = True)
     sleep(s)
 
@@ -126,6 +127,10 @@ def random_pause(): # Random pause to simulate human user
 
 if __name__ == '__main__':
 
+    # Because sometimes requests throw SSL error, using verify = False shows warnings every loop
+    urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+
+    # Get optional arguments
     parser = argparse.ArgumentParser(description = "Brewer's Friend database scrapper")
     parser.add_argument('-s','--start_page', help = 'Start page number', required = False)
     parser.add_argument('-e','--end_page', help = 'End page number', required = False)
@@ -135,7 +140,11 @@ if __name__ == '__main__':
     start_page = int(args.start_page)
     end_page = int(args.end_page)
 
-    output_file_name = 'scraped_data_' + str(start_page) + '.csv'
+    # By default, the output file name contains the first scrapped page, in case it halts due to error
+    if args.output_file is not None:
+        output_file_name = args.output_file
+    else:
+        output_file_name = 'scraped_data_' + str(start_page) + '.csv'
 
     print('Scrapping pages ' + str(start_page) + ' to ' + str(end_page))
 
@@ -143,6 +152,8 @@ if __name__ == '__main__':
     ua = load_user_agents()
 
     # Check if file exists before begin
+    print(output_file_name)
+
     if os.path.exists(output_file_name) and del_if_exists:
         print('File already exist, deleting...', end = '', flush = True)
         os.remove(output_file_name)
