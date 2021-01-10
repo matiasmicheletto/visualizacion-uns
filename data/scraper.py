@@ -11,10 +11,10 @@ import urllib3 # For disable warnings only
 # Script parameters
 url = 'https://www.brewersfriend.com/homebrew-recipes/page/'
 row_len = 10 # Number of columns that each row must have to match the desired data
-start_page = 2000 # Scraping range from
-end_page = 3000 # Scraping range to (add one)
+start_page = 1 # Scraping range from
+end_page = 100 # Scraping range to (add one)
 del_if_exists = True # Delete the log file before start if already exist
-request_timeout = 30 # If the request takes too much time, stop scrapper
+request_timeout = 30 # If the request takes too much time, stop scraper
 ua_database = 'user-agents.txt' # File with a list of user agents
 
 # Indexes of columns of interest (may change on website version)
@@ -42,13 +42,13 @@ def load_user_agents(): # Load a list of user agents from txt file
     return ua 
 
 
-def request_page(url, page_num, user_agent): # Request page and return data table as array
+def request_page(session, url, page_num, user_agent): # Request page and return data table as array
     pn = str(page_num)
     data = []
 
     print('Requesting page ' + pn + ' -- (UA = ' + user_agent + ')...', end = '', flush = True)
     try:
-        req = requests.get(url + pn, headers = {'user-agent': user_agent, 'referer': 'https://www.google.com'}, timeout = request_timeout, verify = False)
+        req = session.get(url + pn, headers = {'user-agent': user_agent, 'referer': 'https://www.google.com'}, timeout = request_timeout, verify = False)
     except requests.HTTPError:
         print(' HTTP Error')
     except requests.ConnectionError:    
@@ -118,7 +118,7 @@ def write_to_file(filename, data): # Write table to csv file
 
 
 def random_pause(): # Random pause to simulate human user
-    s = round(uniform(3, 6))
+    s = round(uniform(3, 8))
     print('Waiting for {} seconds'.format(s), flush = True)
     sleep(s)
 
@@ -131,7 +131,7 @@ if __name__ == '__main__':
     urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
     # Get optional arguments
-    parser = argparse.ArgumentParser(description = "Brewer's Friend database scrapper")
+    parser = argparse.ArgumentParser(description = "Brewer's Friend database scraper")
     parser.add_argument('-s','--start_page', help = 'Start page number', required = False)
     parser.add_argument('-e','--end_page', help = 'End page number', required = False)
     parser.add_argument('-f','--output_file', help = 'CSV output file name', required = False)
@@ -140,13 +140,13 @@ if __name__ == '__main__':
     start_page = int(args.start_page)
     end_page = int(args.end_page)
 
-    # By default, the output file name contains the first scrapped page, in case it halts due to error
+    # By default, the output file name contains the first scraped page, in case it halts due to error
     if args.output_file is not None:
         output_file_name = args.output_file
     else:
         output_file_name = 'scraped_data_' + str(start_page) + '.csv'
 
-    print('Scrapping pages ' + str(start_page) + ' to ' + str(end_page))
+    print('scraping pages ' + str(start_page) + ' to ' + str(end_page))
 
     # Obtain the user agent list
     ua = load_user_agents()
@@ -159,10 +159,11 @@ if __name__ == '__main__':
         os.remove(output_file_name)
         print(' Done.', flush = True)
 
-    # Begin scrapping
+    # Begin scraping
     n = start_page
+    session = requests.Session()
     while n < end_page:
-        data = request_page(url, n, sample(ua,1)[0])
+        data = request_page(session, url, n, sample(ua,1)[0])
         
         if len(data) > 0:
             output = [ extract_columns(d, col_numbers) for d in data if len(d) == row_len ]
