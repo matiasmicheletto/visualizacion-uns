@@ -8,6 +8,9 @@ import styles from '../data/beer_styles.json';
 import extra_styles from '../data/extra_styles.json';
 import edges from '../data/beer_hierarchy.json';
 
+for(let k in styles)
+    styles[k].label = styles[k].style;
+
 const model = {
     nodes: extra_styles.concat(styles),
     edges: edges
@@ -34,7 +37,7 @@ class Model extends Component {
             edges: new DataSet(model.edges),
         };
         const options = {
-            height: '750px'
+            height: '800px'
             /*
             layout: {
               hierarchical: {

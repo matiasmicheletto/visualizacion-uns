@@ -253,7 +253,7 @@
     },
     {
         "from": "American_Pale_Ale",
-        "to": "American_Wheat_Beer"
+        "to": "American_Wheat_or_Rye_Beer"
     },
     {
         "from": "Lambic",
@@ -558,5 +558,13 @@
     {
         "from": "Specialty_Beer",
         "to": "Holiday\/Winter_Special_Spiced_Beer"
+    },
+    {
+        "from": "Specialty_Beer",
+        "to": "Wood-Aged_Beer"
+    },
+    {
+        "from": "Specialty_Beer",
+        "to": "Mixed-Style_Beer"
     }
 ]

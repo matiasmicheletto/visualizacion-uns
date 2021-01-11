@@ -50,7 +50,7 @@ relevant_columns = ['IBU', 'Color', 'ABV'] # Variables a utilizar
 not_relevant_columns = ['FG', 'OG', 'URL', 'StyleID', 'Size(L)', 'BoilSize', 'BoilTime', 'BoilGravity', 'Efficiency', 'MashThickness', 'SugarScale', 'BrewMethod', 'PitchRate', 'PrimaryTemp', 'PrimingMethod', 'PrimingAmount', 'UserId'] # Variables a descartar
 
 # Quitar las columnas que no se van a utilizar
-data = data.drop(columns = not_relevant_columns, axis = 1);
+data = data.drop(columns = not_relevant_columns, axis = 1)
 
 
 
