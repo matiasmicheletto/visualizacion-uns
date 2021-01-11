@@ -11,3 +11,5 @@ Un notebook ipython para analizar los datos del conjunto original, obtener un mo
 Una aplicación web para organizar el análisis de los datos y simular mediante un tablero interactivo la estimación del estilo de una receta de cerveza en base a sus características.
 
 ![screenshot](doc/screenshot.png)
+
+![screenshot2](doc/screenshot2.png) 
