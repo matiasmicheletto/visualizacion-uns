@@ -61,10 +61,6 @@
     },
     {
         "from": "Belgian_Ale",
-        "to": "Belgian_Dark_Ale"
-    },
-    {
-        "from": "Belgian_Dark_Ale",
         "to": "Belgian_Dark_Strong_Ale"
     },
     {
@@ -81,10 +77,6 @@
     },
     {
         "from": "Belgian_Pale_Ale",
-        "to": "Belgian_Strong_Pale_Ale"
-    },
-    {
-        "from": "Belgian_Strong_Pale_Ale",
         "to": "Belgian_Tripel"
     },
     {

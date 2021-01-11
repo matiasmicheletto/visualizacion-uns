@@ -80,4 +80,13 @@ const LtoTextColor = (L) => {
     };    
 }
 
-export {LtoRGB, LtoTextColor};
+const LtoHexaColor = (L) => { // Mapeo L->Color hexa
+    const rgb = LtoRGB(L);    
+    const c2h = (c) => {return c.toString(16).padStart(2,"0")};
+    return {
+        backgroundColor: "#"+c2h(rgb[0])+c2h(rgb[1])+c2h(rgb[2]),
+        color: L>13?"white":"black"
+    };
+}
+
+export {LtoRGB, LtoTextColor, LtoHexaColor};

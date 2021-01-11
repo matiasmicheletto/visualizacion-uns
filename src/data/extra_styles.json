@@ -1,74 +1,77 @@
 [
     {
         "id": "Main",
-        "label": "Styles"
+        "label": "Estilos",
+        "color": "red"
     },
     {
         "id": "Ale",
-        "label": "Ale"
+        "label": "Ale",
+        "color": "gray"
     },
     {
         "id": "Lager",
-        "label": "Lager"
+        "label": "Lager",
+        "color": "gray"
     },
     {
         "id": "Pale_Ale",
-        "label": "Pale Ale"
+        "label": "Pale Ale",
+        "color": "gray"
     },
     {
         "id": "Amber_Ale",
-        "label": "Amber Ale"
+        "label": "Amber Ale",
+        "color": "gray"
     },
     {
         "id": "Belgian_Ale",
-        "label": "Belgian Ale"
+        "label": "Belgian Ale",
+        "color": "gray"
     },
     {
         "id": "Brown_Ale",
-        "label": "Brown Ale"
-    },
-    {
-        "id": "Belgian_Dark_Ale",
-        "label": "Belgian Dark Ale"
-    },
-    {
-        "id": "Belgian_Strong_Pale_Ale",
-        "label": "Belgian Strong Pale Ale"
+        "label": "Brown Ale",
+        "color": "gray"
     },
     {
         "id": "German_Ale",
-        "label": "German Ale"
+        "label": "German Ale",
+        "color": "gray"
     },
     {
         "id": "Strong_Pale_Ale",
-        "label": "Strong Pale Ale"
+        "label": "Strong Pale Ale",
+        "color": "gray"
     },
     {
         "id": "Barleywine",
-        "label": "Barleywine"
-    },
-    {
-        "id": "Straight_(Unblended)_Lambic",
-        "label": "Straight (Unblended) Lambic"
+        "label": "Barleywine",
+        "color": "gray"
     },
     {
         "id": "India_Pale_Ale",
-        "label": "India Pale Ale"
+        "label": "India Pale Ale",
+        "color": "gray"
     },
     {
         "id": "Stout\/Porter",
-        "label": "Stout\/Porter"
+        "label": "Stout\/Porter",
+        "color": "gray"
     },
     {
         "id": "Bock",
-        "label": "Bock"
+        "label": "Bock",
+        "color": "gray"
     },
     {
         "id": "Munich_Lager",
-        "label": "Munich_Lager"
+        "label": "Munich_Lager",
+        "color": "gray"
     },
     {
         "id": "Pilsner",
-        "label": "Pilsner"
+        "label": "Pilsner",
+        "color": "gray"
     }
 ]

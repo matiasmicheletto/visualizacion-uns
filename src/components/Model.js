@@ -7,9 +7,14 @@ import "vis-network/styles/vis-network.css";
 import styles from '../data/beer_styles.json';
 import extra_styles from '../data/extra_styles.json';
 import edges from '../data/beer_hierarchy.json';
+import {LtoHexaColor} from '../utils/LovibondScale.js';
 
-for(let k in styles)
+for(let k in styles){
+    let h = LtoHexaColor(styles[k].u_Color); // Color de fondo (hexa) y de letra (b&w)
     styles[k].label = styles[k].style;
+    styles[k].color = h.backgroundColor;
+    styles[k].font = {color: h.color}
+}
 
 const model = {
     nodes: extra_styles.concat(styles),
