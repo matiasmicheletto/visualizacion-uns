@@ -9,7 +9,7 @@
     },
     {
         "id": "Lager",
-        "label": "lager"
+        "label": "Lager"
     },
     {
         "id": "Pale_Ale",
@@ -28,12 +28,12 @@
         "label": "Belgian Strong Pale Ale"
     },
     {
-        "id": "Lambic",
-        "label": "Lambic"
-    },
-    {
         "id": "German_Ale",
         "label": "German Ale"
+    },
+    {
+        "id": "German_Lager",
+        "label": "German Lager"
     },
     {
         "id": "Strong_Pale_Ale",
@@ -46,5 +46,21 @@
     {
         "id": "India_Pale_Ale",
         "label": "Indica Pale Ale"
+    },
+    {
+        "id": "Stout\/Porter",
+        "label": "Stout\/Porter"
+    },
+    {
+        "id": "Bock",
+        "label": "Bock"
+    },
+    {
+        "id": "Munich_Lager",
+        "label": "Munich_Lager"
+    },
+    {
+        "id": "Pilsner",
+        "label": "Pilsner"
     }
 ]

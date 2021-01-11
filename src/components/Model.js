@@ -22,7 +22,7 @@ class Model extends Component {
 
     render() {
         return (
-            <Container>
+            <Container style={{maxWidth:"80%"}}>
                 <div ref={this.containerRef}></div>
             </Container>
         );
@@ -35,7 +35,14 @@ class Model extends Component {
         };
         const options = {
             height: '750px'
-        };
+            /*
+            layout: {
+              hierarchical: {
+                direction: "UD",
+              },
+            },
+            */
+          }
         const network = new Network(this.containerRef.current, data, options);
     }
 }
