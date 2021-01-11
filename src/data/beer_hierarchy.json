@@ -8,6 +8,10 @@
         "to": "Lager"
     },
     {
+        "from": "Main",
+        "to": "Specialty_Beer"
+    },
+    {
         "from": "Ale",
         "to": "Belgian_Ale"
     },
@@ -16,8 +20,36 @@
         "to": "Pale_Ale"
     },
     {
+        "from": "Ale",
+        "to": "Amber_Ale"
+    },
+    {
+        "from": "Ale",
+        "to": "Barleywine"
+    },
+    {
+        "from": "Barleywine",
+        "to": "Wheatwine"
+    },
+    {
+        "from": "Barleywine",
+        "to": "American_Barleywine"
+    },
+    {
+        "from": "Barleywine",
+        "to": "English_Barleywine"
+    },
+    {
         "from": "Belgian_Ale",
         "to": "Witbier"
+    },
+    {
+        "from": "Belgian_Ale",
+        "to": "Trappist_Single"
+    },
+    {
+        "from": "Belgian_Ale",
+        "to": "Belgian_Specialty_Ale"
     },
     {
         "from": "Belgian_Ale",
@@ -42,6 +74,10 @@
     {
         "from": "Belgian_Ale",
         "to": "Belgian_Pale_Ale"
+    },
+    {
+        "from": "Belgian_Ale",
+        "to": "Belgian_Blond_Ale"
     },
     {
         "from": "Belgian_Pale_Ale",
@@ -69,7 +105,7 @@
     },
     {
         "from": "Lambic",
-        "to": "Gueeuze"
+        "to": "Gueuze"
     },
     {
         "from": "Ale",
@@ -77,23 +113,27 @@
     },
     {
         "from": "German_Ale",
-        "to": "Weizen\/Weissbier"
+        "to": "Weissbier"
     },
     {
-        "from": "Weizen\/Weissbier",
+        "from": "Weissbier",
         "to": "Gose"
     },
     {
-        "from": "Weizen\/Weissbier",
+        "from": "Weissbier",
         "to": "Weizenbock"
     },
     {
-        "from": "Weizen\/Weissbier",
+        "from": "Weissbier",
         "to": "Dunkelweizen"
     },
     {
-        "from": "Weizen\/Weissbier",
+        "from": "Weissbier",
         "to": "Berliner_Weisse"
+    },
+    {
+        "from": "Weissbier",
+        "to": "Dunkles_Weissbier"
     },
     {
         "from": "German_Ale",
@@ -104,6 +144,14 @@
         "to": "Altbier"
     },
     {
+        "from": "Altbier",
+        "to": "North_German_Altbier"
+    },
+    {
+        "from": "Altbier",
+        "to": "D\u00fcsseldorf_Altbier"
+    },
+    {
         "from": "German_Ale",
         "to": "Roggenbier_(German_Rye_Beer)"
     },
@@ -112,8 +160,40 @@
         "to": "American_Pale_Ale"
     },
     {
-        "from": "American_Pale_Ale",
+        "from": "Pale_Ale",
+        "to": "Australian_Sparkling_Ale"
+    },
+    {
+        "from": "Amber_Ale",
         "to": "American_Amber_Ale"
+    },
+    {
+        "from": "Amber_Ale",
+        "to": "Scottish_Heavy"
+    },
+    {
+        "from": "Amber_Ale",
+        "to": "Scottish_Light"
+    },
+    {
+        "from": "Amber_Ale",
+        "to": "Scottish_Export"
+    },
+    {
+        "from": "Amber_Ale",
+        "to": "Best_Bitter"
+    },
+    {
+        "from": "Amber_Ale",
+        "to": "Strong_Bitter"
+    },
+    {
+        "from": "Amber_Ale",
+        "to": "Ordinary_Bitter"
+    },
+    {
+        "from": "Amber_Ale",
+        "to": "Irish_Red_Ale"
     },
     {
         "from": "American_Pale_Ale",
@@ -121,15 +201,31 @@
     },
     {
         "from": "Ale",
+        "to": "Brown_Ale"
+    },
+    {
+        "from": "Brown_Ale",
         "to": "American_Brown_Ale"
     },
     {
-        "from": "Ale",
+        "from": "Brown_Ale",
+        "to": "British_Brown_Ale"
+    },
+    {
+        "from": "Brown_Ale",
+        "to": "Dark_Mild"
+    },
+    {
+        "from": "Brown_Ale",
         "to": "Mild"
     },
     {
-        "from": "Ale",
-        "to": "Irish_Red_Ale"
+        "from": "Brown_Ale",
+        "to": "Northern_English_Brown"
+    },
+    {
+        "from": "Brown_Ale",
+        "to": "Southern_English_Brown"
     },
     {
         "from": "Pale_Ale",
@@ -149,11 +245,11 @@
     },
     {
         "from": "Strong_Pale_Ale",
-        "to": "American_Barleywine"
+        "to": "Strong_Scotch_Ale"
     },
     {
         "from": "Strong_Pale_Ale",
-        "to": "Strong_Scotch_Ale"
+        "to": "Belgian_Golden_Strong_Ale"
     },
     {
         "from": "American_Pale_Ale",
@@ -168,16 +264,56 @@
         "to": "India_Pale_Ale"
     },
     {
+        "from": "Pale_Ale",
+        "to": "British_Golden_Ale"
+    },
+    {
         "from": "India_Pale_Ale",
         "to": "Double_IPA"
     },
     {
-        "from": "Imperial_IPA",
-        "to": "Extra_Special\/Strong_Bitter_(ESB)"
+        "from": "India_Pale_Ale",
+        "to": "Imperial_IPA"
     },
     {
-        "from": "Pale_Ale",
-        "to": "Imperial_IPA"
+        "from": "India_Pale_Ale",
+        "to": "American_IPA"
+    },
+    {
+        "from": "India_Pale_Ale",
+        "to": "English_IPA"
+    },
+    {
+        "from": "India_Pale_Ale",
+        "to": "Specialty_IPA:_New_England_IPA"
+    },
+    {
+        "from": "India_Pale_Ale",
+        "to": "Specialty_IPA:_Black_IPA"
+    },
+    {
+        "from": "India_Pale_Ale",
+        "to": "Specialty_IPA:_Red_IPA"
+    },
+    {
+        "from": "India_Pale_Ale",
+        "to": "Specialty_IPA:_White_IPA"
+    },
+    {
+        "from": "India_Pale_Ale",
+        "to": "Specialty_IPA:_Rye_IPA"
+    },
+    {
+        "from": "India_Pale_Ale",
+        "to": "Specialty_IPA:_Brown_IPA"
+    },
+    {
+        "from": "India_Pale_Ale",
+        "to": "Specialty_IPA:_Belgian_IPA"
+    },
+    {
+        "from": "Imperial_IPA",
+        "to": "Extra_Special\/Strong_Bitter_(ESB)"
     },
     {
         "from": "Ale",
@@ -190,6 +326,14 @@
     {
         "from": "Stout\/Porter",
         "to": "American_Porter"
+    },
+    {
+        "from": "Stout\/Porter",
+        "to": "Brown_Porter"
+    },
+    {
+        "from": "Stout\/Porter",
+        "to": "Robust_Porter"
     },
     {
         "from": "Stout\/Porter",
@@ -212,6 +356,14 @@
         "to": "Imperial_Stout"
     },
     {
+        "from": "Stout\/Porter",
+        "to": "Dry_Stout"
+    },
+    {
+        "from": "Stout\/Porter",
+        "to": "Tropical_Stout"
+    },
+    {
         "from": "Imperial_Stout",
         "to": "Russian_Imperial_Stout"
     },
@@ -224,32 +376,76 @@
         "to": "Baltic_Porter"
     },
     {
+        "from": "Stout\/Porter",
+        "to": "Irish_Extra_Stout"
+    },
+    {
         "from": "Ale",
         "to": "Cream_Ale"
     },
     {
         "from": "Lager",
-        "to": "German_Lager"
+        "to": "International_Amber_Lager"
     },
     {
-        "from": "German_Lager",
+        "from": "International_Amber_Lager",
         "to": "Rauchbier"
     },
     {
-        "from": "German_Lager",
+        "from": "International_Amber_Lager",
         "to": "Vienna_Lager"
     },
     {
-        "from": "German_Lager",
+        "from": "International_Amber_Lager",
         "to": "M\u00e4rzen"
     },
     {
-        "from": "German_Lager",
+        "from": "International_Amber_Lager",
+        "to": "Festbier"
+    },
+    {
+        "from": "International_Amber_Lager",
         "to": "Bock"
     },
     {
-        "from": "German_Lager",
+        "from": "International_Amber_Lager",
+        "to": "German_Leichtbier"
+    },
+    {
+        "from": "International_Amber_Lager",
+        "to": "German_Helles_Exportbier"
+    },
+    {
+        "from": "International_Amber_Lager",
+        "to": "California_Common"
+    },
+    {
+        "from": "International_Amber_Lager",
         "to": "Munich_Lager"
+    },
+    {
+        "from": "International_Amber_Lager",
+        "to": "Czech_Amber_Lager"
+    },
+    {
+        "from": "Lager",
+        "to": "International_Pale_Lager"
+    },
+    {
+        "from": "International_Pale_Lager",
+        "to": "American_Lager"
+    },
+    {
+        "from": "International_Pale_Lager",
+        "to": "Czech_Pale_Lager"
+    },
+    {
+        "from": "International_Pale_Lager",
+        "to": "Czech_Dark_Lager"
+    },
+    {
+        "from": "Czech_Pale_Lager",
+        "to": "Czech_Premium_Pale_Lager"
     },
     {
         "from": "Munich_Lager",
@@ -269,11 +465,19 @@
     },
     {
         "from": "Bock",
+        "to": "Traditional_Bock"
+    },
+    {
+        "from": "Bock",
         "to": "Maibock\/Helles_Bock"
     },
     {
         "from": "Bock",
         "to": "Helles_Bock"
+    },
+    {
+        "from": "Bock",
+        "to": "Dunkles_Bock"
     },
     {
         "from": "Lager",
@@ -292,11 +496,67 @@
         "to": "German_Pilsner_(Pils)"
     },
     {
-        "from": "Lager",
-        "to": "American_Lager"
+        "from": "American_Lager",
+        "to": "Dark_American_Lager"
     },
     {
         "from": "American_Lager",
-        "to": "Dark_American_Lager"
+        "to": "Premium_American_Lager"
+    },
+    {
+        "from": "American_Lager",
+        "to": "American_Light_Lager"
+    },
+    {
+        "from": "Specialty_Beer",
+        "to": "Wild_Specialty_Beer"
+    },
+    {
+        "from": "Specialty_Beer",
+        "to": "Specialty_Fruit_Beer"
+    },
+    {
+        "from": "Specialty_Beer",
+        "to": "Specialty_Smoked_Beer"
+    },
+    {
+        "from": "Specialty_Beer",
+        "to": "Classic_Style_Smoked_Beer"
+    },
+    {
+        "from": "Specialty_Beer",
+        "to": "Other_Smoked_Beer"
+    },
+    {
+        "from": "Specialty_Beer",
+        "to": "Clone_Beer"
+    },
+    {
+        "from": "Specialty_Beer",
+        "to": "Brett_Beer"
+    },
+    {
+        "from": "Specialty_Beer",
+        "to": "Mixed-Fermentation_Sour_Beer"
+    },
+    {
+        "from": "Specialty_Beer",
+        "to": "Braggot"
+    },
+    {
+        "from": "Specialty_Beer",
+        "to": "Autumn_Seasonal_Beer"
+    },
+    {
+        "from": "Specialty_Beer",
+        "to": "Winter_Seasonal_Beer"
+    },
+    {
+        "from": "Specialty_Beer",
+        "to": "Spice_Herb_or_Vegetable_Beer"
+    },
+    {
+        "from": "Specialty_Beer",
+        "to": "Holiday\/Winter_Special_Spiced_Beer"
     }
 ]

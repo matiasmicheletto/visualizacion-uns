@@ -1,4 +1,4 @@
-import data from '../data/beer_styles_distribution.json';
+import data from '../data/beer_styles.json';
 import {multiply, transpose} from 'mathjs';
 import {hsl2rgb} from './Colors.js';
 import {LtoRGB} from '../utils/LovibondScale.js';
@@ -34,7 +34,7 @@ const classify = (s, n = 10, uf = false, cm = false, fr = false) => {
     let styles = []; // Lista de distancias a cada distribucion
 
     // Valor maximo de frecuencia (calcular solo si se usa)
-    const fMax = uf || fr ? Math.max.apply(Math, data.map(v => { return v.Freq; })) : 1; 
+    const fMax = uf || fr ? Math.max.apply(Math, data.map(v => { return v.freq; })) : 1; 
 
     for(let k in data){ // Para cada clase o estilo
 
@@ -52,12 +52,12 @@ const classify = (s, n = 10, uf = false, cm = false, fr = false) => {
 
         // Calcular distancia de mahalanobis entre el objetivo y la media
         // Si pondera por frecuencia, acortar distancia
-        const m = uf ? mahalanobis(x, u, ci) * fMax / data[k].Freq : mahalanobis(x, u, ci);
+        const m = uf ? mahalanobis(x, u, ci) * fMax / data[k].freq : mahalanobis(x, u, ci);
 
         styles.push({ // Agregar nuevo resultado de distancia de Mahalanobis
-            name: data[k].Style,
+            name: data[k].style,
             dist: m,
-            freq: data[k].Freq,
+            freq: data[k].freq,
             u: [data[k].u_Color, data[k].u_IBU, data[k].u_ABV]
         });
     }
@@ -126,8 +126,8 @@ var colors = {};
 let N = data.length; 
 for(let k in data){    
     let rgb = hsl2rgb(k/N, 0.6 + Math.random()*0.4, 0.2 + Math.random()*0.4);    
-    colors[data[k].Style] = "rgb("+rgb[0]+","+rgb[1]+","+rgb[2]+")"; // Color solido
-    colors[data[k].Style+"_t"] = "rgba("+rgb[0]+","+rgb[1]+","+rgb[2]+", 0.5)"; // Color semitransparente
+    colors[data[k].style] = "rgb("+rgb[0]+","+rgb[1]+","+rgb[2]+")"; // Color solido
+    colors[data[k].style+"_t"] = "rgba("+rgb[0]+","+rgb[1]+","+rgb[2]+", 0.5)"; // Color semitransparente
 };
 
 export default classify;

@@ -16,8 +16,16 @@
         "label": "Pale Ale"
     },
     {
+        "id": "Amber_Ale",
+        "label": "Amber Ale"
+    },
+    {
         "id": "Belgian_Ale",
         "label": "Belgian Ale"
+    },
+    {
+        "id": "Brown_Ale",
+        "label": "Brown Ale"
     },
     {
         "id": "Belgian_Dark_Ale",
@@ -32,12 +40,12 @@
         "label": "German Ale"
     },
     {
-        "id": "German_Lager",
-        "label": "German Lager"
-    },
-    {
         "id": "Strong_Pale_Ale",
         "label": "Strong Pale Ale"
+    },
+    {
+        "id": "Barleywine",
+        "label": "Barleywine"
     },
     {
         "id": "Straight_(Unblended)_Lambic",
@@ -45,7 +53,7 @@
     },
     {
         "id": "India_Pale_Ale",
-        "label": "Indica Pale Ale"
+        "label": "India Pale Ale"
     },
     {
         "id": "Stout\/Porter",
