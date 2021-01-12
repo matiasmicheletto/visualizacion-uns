@@ -9,6 +9,7 @@ import {
 import 'bootstrap/dist/css/bootstrap.min.css';
 import card_img_db from '../img/card_db.png';
 import card_img_dashboard from '../img/card_dashboard.png';
+import card_img_model from '../img/card_model.png';
 import card_img_repo from '../img/card_repo.png';
 import card_img_eda from '../img/card_kaggle.png';
 import {FaExternalLinkAlt} from 'react-icons/fa';
@@ -19,23 +20,10 @@ class Home extends Component {
     return (
         <Container style={{maxWidth: "85%"}}>
           <Row>
-            <h3>Menú</h3>
+            <h3>Herramientas de análisis</h3>
           </Row>
           
           <Row>            
-            <Col sm={12} md={6} lg={4} xl={3}>
-              <a href="https://www.kaggle.com/matiasmiche/brewers-friend-recipes-analysis/" target="_blank" rel="noopener noreferrer" style={{color: "black"}}>
-                <Card className="shadow rounded">
-                  <Card.Img variant="top" src={card_img_eda} />
-                  <Card.Body>
-                    <Card.Title>Análisis exploratorio <FaExternalLinkAlt/></Card.Title>
-                    <Card.Text>
-                      Preprocesamiento y limpieza de los datos del conjunto original con Python (Kaggle Notebooks).
-                    </Card.Text>
-                  </Card.Body>
-                </Card>
-              </a>
-            </Col>  
             <Col sm={12} md={6} lg={4} xl={3}>
               <Link to="/data" style={{color: "black"}}>
                 <Card className="shadow rounded">
@@ -50,6 +38,19 @@ class Home extends Component {
               </Link>
             </Col>  
             <Col sm={12} md={6} lg={4} xl={3}>
+              <Link to="/model" style={{color: "black"}}>
+                <Card className="shadow rounded">
+                  <Card.Img variant="top" src={card_img_model} />
+                  <Card.Body>
+                    <Card.Title>Modelo de dominio</Card.Title>
+                    <Card.Text>
+                      Gráfico de relaciones entre estilos.
+                    </Card.Text>
+                  </Card.Body>                    
+                </Card>
+              </Link>     
+            </Col>
+            <Col sm={12} md={6} lg={4} xl={3}>
               <Link to="/dashboard" style={{color: "black"}}>
                 <Card className="shadow rounded">
                   <Card.Img variant="top" src={card_img_dashboard} />
@@ -61,6 +62,26 @@ class Home extends Component {
                   </Card.Body>                    
                 </Card>
               </Link>     
+            </Col>
+          </Row>
+
+          <Row>
+            <h3>Enlaces externos</h3>
+          </Row>
+
+          <Row>
+            <Col sm={12} md={6} lg={4} xl={3}>
+              <a href="https://www.kaggle.com/matiasmiche/brewers-friend-recipes-analysis/" target="_blank" rel="noopener noreferrer" style={{color: "black"}}>
+                <Card className="shadow rounded">
+                  <Card.Img variant="top" src={card_img_eda} />
+                  <Card.Body>
+                    <Card.Title>Análisis exploratorio <FaExternalLinkAlt/></Card.Title>
+                    <Card.Text>
+                      Preprocesamiento y limpieza de los datos del conjunto original con Python (Kaggle Notebooks).
+                    </Card.Text>
+                  </Card.Body>
+                </Card>
+              </a>
             </Col>
             <Col sm={12} md={6} lg={4} xl={3}>
               <a href="https://github.com/matiasmicheletto/visualizacion-uns" target="_blank" rel="noopener noreferrer" style={{color: "black"}}>
@@ -74,7 +95,7 @@ class Home extends Component {
                   </Card.Body>                    
                 </Card>
               </a>     
-            </Col>
+            </Col>  
           </Row>
         </Container>
     );

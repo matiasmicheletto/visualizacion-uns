@@ -11,7 +11,7 @@ class DataSection extends Component {
         return (
             <Container style={{maxWidth:"90%"}}>
 
-                <Row><h3>Datos crudos</h3></Row>
+                <Row><h3>Subconjunto de datos crudos</h3></Row>
           
                 <Row>
                     <p>Fuente: <a href="https://www.brewersfriend.com/homebrew-recipes/">Brewer's Friend Recipes</a></p>
@@ -41,19 +41,19 @@ class DataSection extends Component {
                     </Col>
                 </Row>
 
-                <Row><h3>Datos procesados</h3></Row>
+                <Row><h3>Lista de estilos contemplados</h3></Row>
 
                 <Row>
-                    <p>Datos agrupados por estilo, contabilizando frecuencia y centroide</p>
+                    <p>Datos agrupados por estilo, contabilizando frecuencia de las clases y valores promedios</p>
                 </Row>
 
                 <Row>
                     <DataTable 
-                        header={["Estilo", "Frecuencia", "IBU", "ABV", "Color", "S11", "S12", "S13", "S21", "S22", "S23", "S31", "S32", "S33"]}
+                        header={["Estilo", "Frecuencia", "IBU", "ABV", "Color"]}
                         suffix={{u_ABV: " %", u_Color: " °L"}}
                         enumRows={true}
                         data={cleanData}
-                        attrs={["style", "freq", "u_IBU", "u_ABV", "u_Color", "s11", "s12", "s13", "s21", "s22", "s23", "s31", "s32", "s33"]}
+                        attrs={["style", "freq", "u_IBU", "u_ABV", "u_Color"]}
                         cellStyler={{method: LtoTextColor, col: "u_Color"}}
                     />
                 </Row>
